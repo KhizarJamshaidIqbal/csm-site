@@ -1,0 +1,51 @@
+  <script type="application/ld+json">
+
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does CSM connect with frontend builders like Lovable and v0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSM exposes a native streaming Model Context Protocol (MCP) HTTP server (/wp-json/csm/v1/mcp). When building on Lovable, Cursor, Bolt, or v0, the developer or merchant supplies the MCP endpoint and Bearer token. The AI agent inspects CSM's tool catalog and autonomously wires every button, cart hook, product grid, and checkout form to production backend endpoints with zero manual coding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you guarantee security for payments and cart data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSM never stores raw credit card credentials in plain text. It leverages strict client-side tokenization via Stripe Elements / PayPal SDK, combined with strict server-side HMAC webhook signature validation. Furthermore, checkout enforces per-cart cryptographic CSRF tokens (X-CSM-Cart-CSRF) to prevent session forgery and request hijacking."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why choose CSM over building directly on Shopify?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Shopify is a closed SaaS walled-garden that charges monthly subscription fees, takes up to 2.0% transaction surcharges on non-Shopify-Payments, and restricts database access. CSM is 100% agent-native from day one, offers complete sovereign database ownership, charges 0% transaction fees, and provides 317+ specialized MCP tools allowing AI agents to fully manage your inventory, returns, flash sales, and customer service."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the current business model and monetization strategy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSM follows a proven open-core + managed cloud model: a free self-hosted WordPress plugin for individual developers and small merchants drives viral bottom-up adoption; the managed CSM Cloud Gateway adds a zero-setup MCP streaming proxy, multi-store orchestration, and latency routing; and the Enterprise Sovereign Fleet provides dedicated high-concurrency instances with automated disaster recovery and custom ERP connectors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is CSM already deployed in production?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The engine is a shipping WordPress plugin (v1.76.9) with 317 registered MCP tools, used by our named headless storefront client and available for evaluation. Live reference deployments and a demo endpoint are available to qualified parties under NDA."
+        }
+      }
+    ]
+  }
+  
+</script>
+
