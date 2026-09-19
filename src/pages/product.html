@@ -1,0 +1,160 @@
+---
+{"page":"product"}
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Architecture — CSM Engine | Headless Commerce State Machine</title>
+  <meta name="description" content="Technical deep-dive into CSM Engine: Model Context Protocol (MCP) server architecture, 317 specialized tools, OAuth 2.1 security, 36 custom database tables, and the agent skill bundle.">
+  <link rel="canonical" href="https://csmengine.epsoldev.com/product.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#060913">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/csm-logo.svg">
+  <meta property="og:title" content="CSM Engine Technical Architecture — 317 MCP Tools &amp; Relational Backend">
+  <meta property="og:description" content="Explore how CSM Engine connects AI frontend builders to a 36-table commerce state machine via Model Context Protocol.">
+  <meta property="og:image" content="https://csmengine.epsoldev.com/assets/images/hero-agent-mesh.jpg">
+  <meta property="og:url" content="https://csmengine.epsoldev.com/product.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/tailwind.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://csmengine.epsoldev.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Technical Architecture", "item": "https://csmengine.epsoldev.com/product.html" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-white bg-grid-pattern">
+
+{{> header.html}}
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+
+    <!-- PAGE HERO -->
+    <div class="text-center max-w-4xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-300 font-mono mb-6">
+        <span>SPECIFICATION &amp; RUNTIME</span>
+        <span class="text-slate-600">•</span>
+        <span>MCP PROTOCOL 2025-06-18</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+        The Dual-API Architecture: <br>
+        <span class="gradient-text-accent">Public REST + Agentic MCP</span>
+      </h1>
+      <p class="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
+        Why single-API backends fail: Human shoppers require deterministic REST endpoints with sub-millisecond cart validation. AI agents require semantic Model Context Protocol servers with introspectable schemas, granular safety gates, and stateful workflow prompts. CSM Engine runs both seamlessly on a single relational foundation.
+      </p>
+    </div>
+
+{{> product/diagram.html}}
+    <!-- 3-TIER PERMISSION & SAFETY MODEL -->
+    <div class="mb-20">
+      <div class="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-3">AGENT PERMISSION BOUNDARIES</div>
+      <h2 class="text-3xl font-bold text-white mb-6">Autonomous Safety: 3 Token Permission Modes</h2>
+      <p class="text-slate-300 font-light mb-8 max-w-3xl">
+        Giving autonomous agents raw database access is catastrophic for commerce. CSM implements a strict three-tier token permission model backed by cryptographically bound approval tokens.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Mode 1: read_only -->
+        <div class="glass-card rounded-xl p-6 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono mb-4">
+              MODE 1: read_only
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Zero-Mutation Inspection</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-light mb-4">
+              Allows the AI agent to query store resources, inspect recent orders, analyze stock levels, and review customer feedback without any permission to modify data.
+            </p>
+            <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
+              <li>✓ Can read <span class="text-slate-200">csm://store/overview</span></li>
+              <li>✓ Can call <span class="text-slate-200">inventory_stats</span></li>
+              <li>✗ Mutations return <span class="text-red-400">403 Forbidden</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-slate-500 font-mono">
+            Ideal for analytical &amp; reporting agents.
+          </div>
+        </div>
+
+        <!-- Mode 2: approval_required -->
+        <div class="glass-card rounded-xl p-6 border border-purple-500/30 bg-purple-950/10 flex flex-col justify-between relative">
+          <div class="absolute -top-3 right-4 px-2 py-0.5 rounded bg-purple-500 text-slate-950 font-bold text-[10px] uppercase font-mono">
+            DEFAULT SAFEST
+          </div>
+          <div>
+            <div class="inline-block px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono mb-4">
+              MODE 2: approval_required
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Dry-Run Preview + Token Binding</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-light mb-4">
+              When an agent invokes a write tool (e.g. creating a product, issuing a coupon, approving a return), CSM executes a dry-run and responds with a preview payload and a single-use approval token.
+            </p>
+            <div class="p-3 rounded-lg bg-black/40 border border-white/10 font-mono text-[10px] text-purple-300 mb-4 overflow-x-auto">
+              {"needs_approval": true, "approval_token": "b2a4d...", "expires_at": "+600s", "preview": {...}}
+            </div>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              The mutation only applies when the agent re-calls the exact tool with the exact parameters and the cryptographic approval token within 600 seconds.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-slate-500 font-mono">
+            Guards production stores against LLM hallucinations.
+          </div>
+        </div>
+
+        <!-- Mode 3: full -->
+        <div class="glass-card rounded-xl p-6 border border-white/10 flex flex-col justify-between">
+          <div>
+            <div class="inline-block px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-4">
+              MODE 3: full
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Unattended Execution</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-light mb-4">
+              Permits trusted internal agents and scheduled cron pipelines (e.g., n8n nightly sync, stock ledger reconciliations) to execute mutations directly with immediate transaction commit.
+            </p>
+            <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
+              <li>✓ Direct write execution</li>
+              <li>✓ Rate limited to 60 calls/min</li>
+              <li>✓ Logged to <span class="text-slate-200">csm_audit_log</span></li>
+            </ul>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-[11px] text-slate-500 font-mono">
+            Requires explicit merchant enablement in admin.
+          </div>
+        </div>
+      </div>
+    </div>
+
+{{> product/skill-bundle.html}}
+{{> product/prompts-tables.html}}
+{{> product/integration.html}}
+    <!-- BOTTOM CTA BANNER -->
+    <div class="rounded-2xl p-8 bg-gradient-to-r from-violet-950/60 via-slate-900 to-cyan-950/60 border border-white/10 text-center">
+      <h2 class="text-2xl font-bold text-white mb-2">Ready to evaluate CSM Engine?</h2>
+      <p class="text-sm text-slate-300 font-light max-w-xl mx-auto mb-6">
+        Request our technical architecture briefing, NDA-gated reference implementation, and confidential investor pitch deck.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button class="open-deck-btn px-6 py-3.5 rounded-xl bg-white text-slate-900 font-bold text-xs hover:bg-slate-100 transition-all shadow-xl">
+          Request Confidential Pitch Deck
+        </button>
+        <button class="open-waitlist-btn px-6 py-3.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-cyan-500 to-purple-600 hover:opacity-90 transition-all">
+          Join Early Access Waitlist
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+{{> footer.html}}
+{{> product/modals.html}}
+{{> scripts.html}}
