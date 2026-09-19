@@ -13,14 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* -------------------------------------------------------------
  * Lead capture configuration
- * Paste your Web3Forms access key below to activate live delivery
- * (free account at web3forms.com -> endpoint: api.web3forms.com/submit).
- * Until the key is set, submissions are backed up to localStorage
- * and the UI shows an honest "temporarily unavailable" message.
+ * Points at your own Gmail SMTP mail gateway (/php/mailgate.php).
+ * On the live Hostinger site, credentials live in config.creds.php (gitignored,
+ * set once via hPanel) and the endpoint is relative: /php/mailgate.php
  * ----------------------------------------------------------- */
 const LEAD_CAPTURE = {
-  endpoint: "https://api.web3forms.com/submit",
-  accessKey: "" // <-- paste your Web3Forms access key here
+  LIVE_ON_SERVER: true,
+  endpoint: "/php/mailgate.php"
 };
 
 function safeReadArray(key) {
@@ -33,7 +32,7 @@ function safeReadArray(key) {
 }
 
 async function submitLead(payload, submitBtn) {
-  if (!LEAD_CAPTURE.accessKey) {
+  if (!LEAD_CAPTURE.LIVE_ON_SERVER) {
     return { ok: false, reason: "not_configured" };
   }
 
@@ -50,7 +49,7 @@ async function submitLead(payload, submitBtn) {
       body: JSON.stringify(payload)
     });
     const data = await res.json().catch(() => ({}));
-    return { ok: res.ok && data.success !== false, reason: data.message || "request_failed" };
+    return { ok: !!data.ok, reason: data.message || "request_failed" };
   } catch (err) {
     return { ok: false, reason: "network" };
   } finally {
@@ -259,7 +258,9 @@ function initModals() {
 
       const submitBtn = waitlistForm.querySelector('button[type="submit"]');
       const result = await submitLead({
-        access_key: LEAD_CAPTURE.accessKey,
+        type: "waitlist",
+        ticketNumber: ticketNumber,
+        timestamp: new Date().toISOString(),
         subject: "New CSM Engine Waitlist Signup",
         from_name: "CSM Engine Waitlist",
         name: name,
@@ -309,7 +310,7 @@ function initModals() {
 
       const submitBtn = deckForm.querySelector('button[type="submit"]');
       const result = await submitLead({
-        access_key: LEAD_CAPTURE.accessKey,
+        type: "deck",
         subject: "New CSM Engine Pitch Deck Request",
         from_name: "CSM Engine Investor Portal",
         fund: deckFund,

@@ -15,3 +15,5 @@ desktop.ini
 # Build tooling (downloaded locally, not committed)
 tailwindcss.exe
 
+# Secrets — NEVER commit (created on server via hPanel File Manager)
+php/config.creds.php
