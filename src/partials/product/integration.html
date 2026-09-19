@@ -1,0 +1,55 @@
+    <!-- CLIENT SETUP SNIPPETS -->
+    <div class="mb-20">
+      <div class="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-3">INTEGRATION GUIDE</div>
+      <h2 class="text-3xl font-bold text-white mb-6">Connecting Your AI Agent in 60 Seconds</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Claude Desktop Config -->
+        <div class="glass-card rounded-xl p-6 border border-white/10">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-white">Claude Desktop Configuration</span>
+            <span class="text-xs font-mono text-slate-400">claude_desktop_config.json</span>
+          </div>
+<pre class="bg-black/40 p-4 rounded-lg text-xs font-mono text-cyan-300 overflow-x-auto border border-white/5">
+<code>{
+  "mcpServers": {
+    "csm-engine": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch",
+        "https://yourstore.com/wp-json/csm/v1/mcp"
+      ],
+      "env": {
+        "CSM_BEARER_TOKEN": "csm_tok_live_..."
+      }
+    }
+  }
+}</code>
+</pre>
+        </div>
+
+        <!-- Cursor Config -->
+        <div class="glass-card rounded-xl p-6 border border-white/10">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-white">Cursor IDE Setup</span>
+            <span class="text-xs font-mono text-slate-400">.cursor/mcp.json</span>
+          </div>
+<pre class="bg-black/40 p-4 rounded-lg text-xs font-mono text-cyan-300 overflow-x-auto border border-white/5">
+<code>{
+  "mcpServers": {
+    "csm": {
+      "url": "https://yourstore.com/wp-json/csm/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer csm_tok_live_..."
+      }
+    }
+  }
+}</code>
+</pre>
+        </div>
+
+      </div>
+    </div>
+
