@@ -252,6 +252,12 @@ textarea:focus-visible {
   font-size: 0.75rem;
 }
 
+/* Header row: brand and CTA group keep their size; only the nav may adapt */
+header > div.h-20 > a.group,
+header > div.h-20 > div.hidden.sm\:flex {
+  flex-shrink: 0;
+}
+
 /* Never let brand, nav labels or header buttons break onto two lines */
 header nav a,
 header .flex-col span,
@@ -276,10 +282,12 @@ header .open-waitlist-btn {
   }
 }
 
-/* At >=1280px tighten spacing so the full row fits the 1280px container */
+/* At >=1280px compact the homepage nav so the full row fits the 1280px container */
 @media (min-width: 1280px) {
   #main-header nav {
-    gap: 1.25rem;
-    font-size: 0.8125rem;
+    gap: 1rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    margin: 0 1rem;
   }
 }
