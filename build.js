@@ -46,6 +46,7 @@ function read(file) {
   return fs.readFileSync(file, 'utf8');
 }
 
+
 function parseFrontMatter(source, file) {
   if (!source.startsWith('---')) return { vars: {}, body: source };
   const end = source.indexOf('\n---', 3);
@@ -93,6 +94,7 @@ function compilePages() {
   return out;
 }
 
+
 function compileJs() {
   if (!fs.existsSync(JS_MANIFEST)) return new Map();
   const manifest = JSON.parse(read(JS_MANIFEST));
@@ -119,8 +121,10 @@ function lintSize() {
     ...walk(SRC),
     ...walk(path.join(ROOT, 'php')).filter(p => !p.includes(`${path.sep}PHPMailer${path.sep}`)),
     path.join(ROOT, 'css', 'styles.css'),
+    path.join(ROOT, 'css', 'hero-effects.css'),
     path.join(ROOT, 'js', 'simulator.js'),
     path.join(ROOT, 'js', 'calculator.js'),
+    path.join(ROOT, 'js', 'hero-effects.js'),
     path.join(ROOT, 'build.js'),
     path.join(ROOT, 'validate-links.js'),
     path.join(ROOT, 'validate-ld.js'),
@@ -141,6 +145,7 @@ function firstDiffLine(a, b) {
   }
   return -1;
 }
+
 
 function main() {
   const args = new Set(process.argv.slice(2));
