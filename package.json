@@ -1,0 +1,18 @@
+{
+  "name": "csm-site",
+  "private": true,
+  "version": "2.0.0",
+  "description": "CSM Engine marketing and investor site. Static HTML compiled from src/ with build.js; Tailwind compiled separately.",
+  "scripts": {
+    "build": "node build.js",
+    "check": "node build.js --check --lint-size",
+    "lint:size": "node build.js --lint-size",
+    "validate:links": "node validate-links.js",
+    "validate:ld": "node validate-ld.js",
+    "validate": "npm run check && npm run validate:links && npm run validate:ld",
+    "tailwind": "tailwindcss -i css/input.css -o css/tailwind.css --minify"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
