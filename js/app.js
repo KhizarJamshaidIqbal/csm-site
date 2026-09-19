@@ -81,6 +81,7 @@ function hideFormError(form) {
   }
 }
 
+
 function leadFailureMessage(result, unavailableMessage) {
   if (result.reason === "not_configured") {
     return unavailableMessage;
@@ -191,6 +192,7 @@ function bindModalChrome(modal, closeBtn, successCloseBtn) {
   });
 }
 
+
 function bindModalKeyboard(modals) {
   document.addEventListener("keydown", (e) => {
     if (!e) return;
@@ -220,6 +222,7 @@ function bindModalKeyboard(modals) {
     }
   });
 }
+
 
 function bindWaitlistForm(waitlistForm, waitlistSuccess) {
   if (!waitlistForm) return;
@@ -262,6 +265,7 @@ function bindWaitlistForm(waitlistForm, waitlistSuccess) {
   });
 }
 
+
 function bindDeckForm(deckForm, deckSuccess) {
   if (!deckForm) return;
   deckForm.addEventListener("submit", async (e) => {
@@ -295,6 +299,7 @@ function bindDeckForm(deckForm, deckSuccess) {
     }
   });
 }
+
 
 function initModals() {
   const waitlistModal = document.getElementById("waitlist-modal");
@@ -380,6 +385,7 @@ function initFaqAccordion() {
  * Architecture 6 Pillars Tabs
  * ----------------------------------------------------------- */
 
+
 function initArchitectureTabs() {
   const tabButtons = document.querySelectorAll(".arch-tab-btn");
   const tabPanels = document.querySelectorAll(".arch-tab-panel");
@@ -445,6 +451,7 @@ function flashButtonLabel(btn, html, ms) {
   }, ms);
 }
 
+
 function initCopySnippets() {
   document.querySelectorAll(".copy-snippet-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -470,4 +477,32 @@ document.addEventListener("DOMContentLoaded", () => {
   initFaqAccordion();
   initArchitectureTabs();
   initCopySnippets();
+
+  // Progressive enhancement only. No dependencies.
+  const heroRoot = document.querySelector("#main-content.bg-radial-hero");
+  if (!heroRoot) return;
+
+  const stylesheetHref = "css/hero-effects.css";
+  const scriptSrc = "js/hero-effects.js";
+
+  const startHeroEffects = () => {
+    if (document.querySelector(`script[src="${scriptSrc}"]`)) return;
+    const script = document.createElement("script");
+    script.src = scriptSrc;
+    script.async = true;
+    document.head.appendChild(script);
+  };
+
+  const existingStylesheet = document.querySelector(`link[href="${stylesheetHref}"]`);
+  if (existingStylesheet) {
+    if (existingStylesheet.sheet) startHeroEffects();
+    else existingStylesheet.addEventListener("load", startHeroEffects, { once: true });
+    return;
+  }
+
+  const stylesheet = document.createElement("link");
+  stylesheet.rel = "stylesheet";
+  stylesheet.href = stylesheetHref;
+  stylesheet.addEventListener("load", startHeroEffects, { once: true });
+  document.head.appendChild(stylesheet);
 });
