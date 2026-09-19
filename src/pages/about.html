@@ -1,0 +1,163 @@
+---
+{"page":"about"}
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — CSM Engine | Building the Autonomous Operating System for Commerce</title>
+  <meta name="description" content="The thesis, origin, and team behind CSM Engine — developed by EPSOL Dev to connect generative AI frontends to 317+ production Model Context Protocol commerce tools.">
+  <link rel="canonical" href="https://csmengine.epsoldev.com/about.html">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#060913">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/csm-logo.svg">
+  <meta property="og:title" content="About CSM Engine — The Autonomous Operating System for Commerce">
+  <meta property="og:description" content="Why the separation of generative UI and transactional backend was inevitable — and why Model Context Protocol is the winning standard.">
+  <meta property="og:image" content="https://csmengine.epsoldev.com/assets/images/hero-agent-mesh.jpg">
+  <meta property="og:url" content="https://csmengine.epsoldev.com/about.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/tailwind.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://csmengine.epsoldev.com/" },
+      { "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://csmengine.epsoldev.com/about.html" }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-white bg-grid-pattern">
+
+{{> header.html}}
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+
+    <p class="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-3">Company &amp; Team</p>
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-6 leading-tight">
+      Building the Autonomous Operating System for Commerce.
+    </h1>
+    <p class="text-base sm:text-lg text-slate-300 font-light leading-relaxed mb-12">
+      CSM Engine is developed by <strong class="text-white">EPSOL Dev</strong>, an engineering firm specializing in headless WordPress infrastructure, Model Context Protocol servers, and enterprise automation.
+    </p>
+
+    <!-- THE THESIS -->
+    <section class="mb-14">
+      <h2 class="text-2xl font-bold text-white mb-4">The Thesis</h2>
+      <div class="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed font-light">
+        <p>
+          Generative UI tools (Lovable, v0, Bolt, Cursor) collapsed the cost of building a storefront
+          interface to nearly zero. But a storefront without a transactional backend cannot take a single
+          order: payments, taxes, inventory atomicity, returns, fraud resistance, and customer service
+          remain months of specialized engineering.
+        </p>
+        <p>
+          That separation — generative front-end, mission-critical back-end — was inevitable. What was
+          missing was a <strong class="text-white">standard interface</strong> the two could speak. The
+          Model Context Protocol (MCP) is that standard. CSM Engine bets that MCP becomes the universal
+          contract between AI agents and commerce infrastructure, and we are building the deepest,
+          most battle-tested commerce tool catalog on that protocol: <strong class="text-white">317
+          production tools</strong> spanning payments, inventory, returns, flash sales, SEO, and
+          conversational CRM.
+        </p>
+        <p>
+          The result: a prompt becomes a transacting store in minutes, with 0% platform take-rate and
+          full data sovereignty — the "Stripe + AWS" layer for AI storefronts.
+        </p>
+      </div>
+    </section>
+
+    <!-- THE ORIGIN & EPSOL DEV -->
+    <section class="mb-14">
+      <h2 class="text-2xl font-bold text-white mb-4">The Origin &amp; Team</h2>
+      <div class="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed font-light">
+        <p>
+          CSM Engine was architected by founder <strong class="text-white">Khizar Jamshaid Iqbal</strong> and the engineering team at <strong class="text-white">EPSOL Dev</strong>. The company operates across dual hubs: registered corporate headquarters in London (128 City Road, London EC1V 2NX) and core software engineering operations in Sialkot.
+        </p>
+        <p>
+          Prior to creating CSM Engine, the team engineered high-traffic custom WooCommerce and WordPress architectures, including sister platform Custom Blog Management (CBM). Recognizing the structural limitations of WordPress post meta for high-frequency stores, the team extracted that machinery into <strong>36 custom relational database tables</strong> and wrapped them in an introspectable Model Context Protocol server.
+        </p>
+      </div>
+    </section>
+
+    <!-- VERIFIED PRODUCTION METRICS -->
+    <section class="mb-14">
+      <h2 class="text-2xl font-bold text-white mb-4">Verified Platform Facts</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div class="glass-card rounded-xl p-5 border border-white/10">
+          <div class="text-2xl font-extrabold font-mono text-cyan-400 mb-1">317</div>
+          <div class="text-xs text-slate-400">Verified MCP Tool Adapters in core plugin codebase</div>
+        </div>
+        <div class="glass-card rounded-xl p-5 border border-white/10">
+          <div class="text-2xl font-extrabold font-mono text-emerald-400">v1.76.9</div>
+          <div class="text-xs text-slate-400">Active engine version powering live reference stores</div>
+        </div>
+        <div class="glass-card rounded-xl p-5 border border-white/10">
+          <div class="text-2xl font-extrabold font-mono text-purple-400">36 Tables</div>
+          <div class="text-xs text-slate-400">Custom relational database tables preventing CMS bloat</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFERENCE DEPLOYMENT -->
+    <section class="mb-14">
+      <h2 class="text-2xl font-bold text-white mb-4">Reference Customer: Lux Wearz</h2>
+      <div class="p-6 rounded-2xl bg-slate-900/60 border border-white/10 space-y-3 text-sm text-slate-300 font-light leading-relaxed">
+        <p>
+          CSM Engine serves as the core commerce back-office for <strong>Lux Wearz</strong>, an apparel brand operating on a decoupled architecture. The storefront uses CSM's REST API for catalog browsing and cart checkout, while autonomous agents leverage CSM's MCP tools for real-time inventory reconciliation, returns processing, and conversational care over WhatsApp.
+        </p>
+        <div class="flex flex-wrap gap-4 text-xs font-mono text-slate-400 pt-2 border-t border-white/10">
+          <span>Catalog: 99 live products</span>
+          <span>•</span>
+          <span>Orders: 191 processed</span>
+          <span>•</span>
+          <span>Audit Log: 4,736 entries</span>
+          <span>•</span>
+          <span>Take-rate: 0%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE ENGINEERING VALUES -->
+    <section class="mb-14">
+      <h2 class="text-2xl font-bold text-white mb-4">Engineering Principles</h2>
+      <ul class="space-y-3 text-sm sm:text-base text-slate-300 leading-relaxed font-light list-disc pl-5">
+        <li><strong class="text-white">Additive-first (Rule 8):</strong> Agents must plan safe, additive mutations before touching critical transactional paths.</li>
+        <li><strong class="text-white">0% Platform take-rate:</strong> We monetize hosted compute, streaming capacity, and enterprise gateways — never merchant transaction volume.</li>
+        <li><strong class="text-white">Sovereignty by default:</strong> Merchants own their database, customer records, and inventory history on their own server infrastructure.</li>
+        <li><strong class="text-white">Permission safety:</strong> Three-tier token security (read-only, approval-required with single-use tokens, and full) prevents LLM hallucination risk.</li>
+      </ul>
+    </section>
+
+    <!-- CONTACT & INVESTOR RELATIONS -->
+    <section class="mb-4">
+      <div class="rounded-2xl p-8 bg-gradient-to-r from-violet-950/60 via-slate-900 to-cyan-950/60 border border-white/10 text-center">
+        <h2 class="text-xl font-bold text-white mb-2">Connect With Founders</h2>
+        <p class="text-sm text-slate-300 font-light max-w-xl mx-auto mb-6">
+          Reach out for technical partnership evaluations, early access alpha keys, or confidential Seed Round briefing materials.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button class="open-deck-btn px-6 py-3.5 rounded-xl bg-white text-slate-900 font-bold text-xs hover:bg-slate-100 transition-all shadow-xl">
+            Request Pitch Deck
+          </button>
+          <a href="mailto:info@epsoldev.com" class="px-6 py-3.5 rounded-xl text-xs font-bold text-white bg-white/10 hover:bg-white/20 border border-white/15 transition-all">
+            Email info@epsoldev.com
+          </a>
+        </div>
+        <p class="text-xs text-slate-400 font-mono mt-6">
+          EPSOL Dev • 128 City Road, London EC1V 2NX • +44 7446 367457
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+{{> footer.html}}
+{{> modals.html}}
+{{> scripts.html}}
