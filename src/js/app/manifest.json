@@ -1,0 +1,10 @@
+{
+  "banner": "/**\n * CSM Startup Landing & Investor Portal - Main Application Logic\n *\n * GENERATED FILE. Do not edit directly.\n * Sources: src/js/app/*.js (order defined in src/js/app/manifest.json)\n * Rebuild:  npm run build\n */\n\n",
+  "files": [
+    "lead-capture.js",
+    "navbar.js",
+    "modals.js",
+    "widgets.js",
+    "bootstrap.js"
+  ]
+}
