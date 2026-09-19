@@ -7,18 +7,23 @@
   <meta name="description" content="Connect AI frontend builders like Lovable and v0 directly to a battle-tested e-commerce backend engine. Powered by 317+ Model Context Protocol (MCP) tools.">
 
   <!-- Canonical & SEO -->
-  <link rel="canonical" href="https://csmengine.com/">
+  <link rel="canonical" href="https://csmengine.epsoldev.com/">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#060913">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/icons/csm-logo.svg">
 
+  <!-- Resource preconnects (fonts + icon CDN) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
   <!-- Open Graph / Meta -->
   <meta property="og:title" content="CSM Engine — Autonomous E-Commerce Backend for AI Builders">
   <meta property="og:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a production-grade 317-tool backend instantly. Zero backend code required.">
-  <meta property="og:image" content="https://csmengine.com/assets/images/hero-agent-mesh.jpg">
-  <meta property="og:url" content="https://csmengine.com/">
+  <meta property="og:image" content="https://csmengine.epsoldev.com/assets/images/hero-agent-mesh.jpg">
+  <meta property="og:url" content="https://csmengine.epsoldev.com/">
   <meta property="og:site_name" content="CSM Engine">
   <meta property="og:type" content="website">
 
@@ -26,7 +31,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CSM Engine — Autonomous E-Commerce Backend for AI Builders">
   <meta name="twitter:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a production-grade 317-tool backend instantly. Zero backend code required.">
-  <meta name="twitter:image" content="https://csmengine.com/assets/images/hero-agent-mesh.jpg">
+  <meta name="twitter:image" content="https://csmengine.epsoldev.com/assets/images/hero-agent-mesh.jpg">
 
   <!-- Structured Data: Organization -->
   <script type="application/ld+json">
@@ -35,10 +40,10 @@
     "@type": "Organization",
     "name": "CSM Engine",
     "alternateName": "Commerce State Machine",
-    "url": "https://csmengine.com/",
-    "logo": "https://csmengine.com/assets/icons/csm-logo.svg",
+    "url": "https://csmengine.epsoldev.com/",
+    "logo": "https://csmengine.epsoldev.com/assets/icons/csm-logo.svg",
     "description": "The autonomous e-commerce backend engine for the AI builder era, connecting generative UI frontends to 317+ production Model Context Protocol (MCP) commerce tools.",
-    "sameAs": ["https://github.com/KhizarJamshaidIqbal/custom-store-management"]
+    "sameAs": ["https://github.com/KhizarJamshaidIqbal/csm-site"]
   }
   </script>
 
@@ -95,6 +100,45 @@
   <!-- Tailwind CSS (compiled production build — regenerate with: .\tailwindcss.exe -i css/input.css -o css/tailwind.css --minify) -->
   <link rel="stylesheet" href="css/tailwind.css">
 
+  <!-- Structured Data: SoftwareApplication + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "CSM Engine",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "E-Commerce Backend / Commerce OS",
+        "operatingSystem": "Web, Self-Hosted, Cloud",
+        "url": "https://csmengine.epsoldev.com/",
+        "description": "Autonomous e-commerce backend engine exposing 317+ production Model Context Protocol (MCP) tools for payments, inventory, returns, flash sales, and CRM, wireable by AI builders such as Lovable, v0, Bolt, and Cursor.",
+        "softwareVersion": "1.76.9",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Open-core self-hosted plugin; managed CSM Cloud Gateway from $49/mo"
+        },
+        "featureList": "317+ MCP tools, Stripe/PayPal tokenization, atomic inventory reservation, RMA returns engine, cart CSRF protection, flash sales, WhatsApp AI CRM, audit logging, RBAC",
+        "author": {
+          "@type": "Organization",
+          "name": "Epsol Development"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "CSM Engine",
+        "url": "https://csmengine.epsoldev.com/",
+        "publisher": {
+          "@type": "Organization",
+          "name": "CSM Engine"
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- Lucide Icons (pinned version for supply-chain stability) -->
   <script src="https://unpkg.com/lucide@1.47.0"></script>
 
@@ -142,14 +186,14 @@
       <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
         <a href="#breakthrough" class="hover:text-white transition-colors">The Breakthrough</a>
+        <a href="#architecture" class="hover:text-white transition-colors">317+ MCP Tools</a>
+        <a href="#comparison" class="hover:text-white transition-colors">Comparison</a>
         <a href="#simulator" class="hover:text-cyan-400 transition-colors flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
           Live Simulator
         </a>
-        <a href="#architecture" class="hover:text-white transition-colors">317+ MCP Tools</a>
-        <a href="#investor-thesis" class="hover:text-white transition-colors">Investor Thesis</a>
-        <a href="#calculator" class="hover:text-white transition-colors">ROI Calculator</a>
-        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+        <a href="about.html" class="hover:text-white transition-colors">About Us</a>
+        <a href="security.html" class="hover:text-white transition-colors">Security</a>
       </nav>
 
       <!-- Header Actions -->
@@ -171,11 +215,11 @@
     <!-- Mobile Nav Drawer -->
     <div id="mobile-menu" class="hidden md:hidden bg-[#080C18] border-b border-white/10 px-4 py-6 space-y-4">
       <a href="#breakthrough" class="block text-slate-300 hover:text-white text-base font-medium">The Breakthrough</a>
-      <a href="#simulator" class="block text-cyan-400 hover:text-cyan-300 text-base font-medium">Live Simulator</a>
       <a href="#architecture" class="block text-slate-300 hover:text-white text-base font-medium">317+ MCP Tools</a>
-      <a href="#investor-thesis" class="block text-slate-300 hover:text-white text-base font-medium">Investor Thesis</a>
-      <a href="#calculator" class="block text-slate-300 hover:text-white text-base font-medium">ROI Calculator</a>
-      <a href="#faq" class="block text-slate-300 hover:text-white text-base font-medium">FAQ</a>
+      <a href="#comparison" class="block text-slate-300 hover:text-white text-base font-medium">Comparison Matrix</a>
+      <a href="#simulator" class="block text-cyan-400 hover:text-cyan-300 text-base font-medium">Live Simulator</a>
+      <a href="about.html" class="block text-slate-300 hover:text-white text-base font-medium">About Us</a>
+      <a href="security.html" class="block text-slate-300 hover:text-white text-base font-medium">Security</a>
       <div class="pt-4 border-t border-white/10 flex flex-col gap-3">
         <button class="open-deck-btn w-full py-2.5 rounded-lg text-xs font-semibold text-center text-slate-300 border border-white/10">
           Request Pitch Deck
@@ -214,7 +258,7 @@
       </p>
 
       <!-- Primary Action Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
         <button class="open-waitlist-btn w-full sm:w-auto px-8 py-4 rounded-xl text-base font-bold text-white bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:opacity-95 shadow-xl shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
           <i data-lucide="sparkles" class="w-5 h-5 text-yellow-300"></i>
           <span>Join Early Access Waitlist</span>
@@ -223,6 +267,14 @@
         <a href="#simulator" class="w-full sm:w-auto px-8 py-4 rounded-xl text-base font-semibold text-slate-200 bg-slate-900/80 hover:bg-slate-800 border border-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2">
           <i data-lucide="terminal" class="w-5 h-5 text-cyan-400"></i>
           <span>Run Live MCP Simulator</span>
+        </a>
+      </div>
+
+      <!-- Competitive Matrix Deep Link -->
+      <div class="mb-14">
+        <a href="#comparison" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-cyan-300 transition-colors">
+          <i data-lucide="scale" class="w-3.5 h-3.5"></i>
+          Explore the 10-Way Competitive Matrix ↓
         </a>
       </div>
 
@@ -809,7 +861,7 @@
       </div>
 
       <!-- Comparison Matrix Table -->
-      <div class="glass-card rounded-2xl overflow-hidden border border-white/10 mb-16">
+      <div id="comparison" class="glass-card rounded-2xl overflow-hidden border border-white/10 mb-16 scroll-mt-28">
         <div class="p-6 border-b border-white/10 flex items-center justify-between">
           <h4 class="text-lg font-bold text-white">Competitive Advantage Breakdown</h4>
           <span class="text-xs font-mono text-cyan-400">Head-to-Head Comparison</span>
@@ -827,46 +879,74 @@
             </thead>
             <tbody class="divide-y divide-white/5">
               <tr>
-                <td class="p-4 text-white font-semibold">Native Model Context Protocol (MCP)</td>
+                <td class="p-4 text-white font-semibold">1. Native Model Context Protocol (MCP)</td>
                 <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">✓ 317 Native Tools</td>
                 <td class="p-4 text-red-400">✗ No MCP Support</td>
-                <td class="p-4 text-slate-400">Partial Third-Party</td>
+                <td class="p-4 text-slate-400">Partial (Custom Wrap)</td>
                 <td class="p-4 text-red-400">✗ Frontend Only</td>
               </tr>
               <tr>
-                <td class="p-4 text-white font-semibold">Time to Live Store from AI Prompt</td>
-                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">&lt; 5 Minutes</td>
+                <td class="p-4 text-white font-semibold">2. Time-to-Live (Prompt to Store)</td>
+                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">&lt; 5 Minutes (Automated)</td>
                 <td class="p-4 text-slate-400">2 - 4 Weeks</td>
                 <td class="p-4 text-slate-400">1 - 3 Months</td>
                 <td class="p-4 text-red-400">Never (No Backend)</td>
               </tr>
               <tr>
-                <td class="p-4 text-white font-semibold">Backend Plumbing Required</td>
-                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">0 Lines (Autonomous)</td>
-                <td class="p-4 text-slate-400">Theme Liquid / App Store</td>
-                <td class="p-4 text-slate-400">High (TypeScript Node)</td>
-                <td class="p-4 text-red-400">100% Custom Needed</td>
-              </tr>
-              <tr>
-                <td class="p-4 text-white font-semibold">Platform Transaction Fee Surcharge</td>
-                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">0.0% (Zero)</td>
-                <td class="p-4 text-red-400">0.5% - 2.0%</td>
+                <td class="p-4 text-white font-semibold">3. Platform Take-Rate / Transaction Fee</td>
+                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">0.0% (Sovereign)</td>
+                <td class="p-4 text-red-400">0.5% - 2.0% Tax</td>
                 <td class="p-4 text-slate-400">0.0%</td>
                 <td class="p-4 text-slate-400">N/A</td>
               </tr>
               <tr>
-                <td class="p-4 text-white font-semibold">Post-Purchase RMA & Returns Suite</td>
-                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">✓ Built-in (34 Tools)</td>
-                <td class="p-4 text-slate-400">Requires Paid Apps</td>
-                <td class="p-4 text-slate-400">Custom Implementation</td>
+                <td class="p-4 text-white font-semibold">4. Payment Key Vault &amp; Webhooks</td>
+                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">Dual Live/Sandbox + HMAC Verify</td>
+                <td class="p-4 text-slate-400">Single Env, Overwrite Required</td>
+                <td class="p-4 text-slate-400">Manual Env Variables</td>
+                <td class="p-4 text-red-400">Mock Data Only</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-white font-semibold">5. Post-Purchase RMA &amp; Returns Suite</td>
+                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">✓ 34 Native Tools (Auto-Inspect + Refund Preview)</td>
+                <td class="p-4 text-slate-400">Requires $200+/mo Paid Apps</td>
+                <td class="p-4 text-slate-400">Complex Custom Code</td>
                 <td class="p-4 text-red-400">✗ None</td>
               </tr>
               <tr>
-                <td class="p-4 text-white font-semibold">WhatsApp Official AI Care Bridge</td>
-                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">✓ Native Multi-Instance</td>
-                <td class="p-4 text-slate-400">Expensive Add-ons</td>
-                <td class="p-4 text-slate-400">Custom Integration</td>
+                <td class="p-4 text-white font-semibold">6. Cryptographic Cart Security</td>
+                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">X-CSM-Cart-CSRF Strict Envelope</td>
+                <td class="p-4 text-slate-400">Proprietary Cookie</td>
+                <td class="p-4 text-slate-400">Manual Middleware</td>
+                <td class="p-4 text-red-400">✗ Vulnerable / Mock</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-white font-semibold">7. High-Concurrency Stock Locking</td>
+                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">Atomic Lock (inventory_adjust)</td>
+                <td class="p-4 text-slate-400">Platform Rate Limits</td>
+                <td class="p-4 text-slate-400">Redis Lock Setup Required</td>
                 <td class="p-4 text-red-400">✗ None</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-white font-semibold">8. Conversational CRM &amp; WhatsApp</td>
+                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">✓ Native Multi-Instance + Golden-Set QA</td>
+                <td class="p-4 text-slate-400">Expensive Add-ons (Gorgias / Zendesk)</td>
+                <td class="p-4 text-slate-400">Custom Webhook Logic</td>
+                <td class="p-4 text-red-400">✗ None</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-white font-semibold">9. Database &amp; Cloud Sovereignty</td>
+                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">100% Self-Hostable or Managed Node</td>
+                <td class="p-4 text-red-400">Closed SaaS (No Direct DB)</td>
+                <td class="p-4 text-slate-400">Self-Hosted Node / Postgres</td>
+                <td class="p-4 text-red-400">No Database</td>
+              </tr>
+              <tr>
+                <td class="p-4 text-white font-semibold">10. Headless Integration Code Lines</td>
+                <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">0 Lines (AI Agent wires via MCP)</td>
+                <td class="p-4 text-slate-400">5,000+ Lines Liquid &amp; App Bridges</td>
+                <td class="p-4 text-slate-400">10,000+ Lines NestJS &amp; DB Plumbing</td>
+                <td class="p-4 text-red-400">100% Custom Backend Needed</td>
               </tr>
             </tbody>
           </table>
@@ -1188,7 +1268,7 @@
   ==================================================================== -->
   <footer class="border-t border-white/10 py-16 bg-[#04070F] text-slate-400 text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-6 gap-8 mb-12">
         
         <!-- Brand Col -->
         <div class="md:col-span-2">
@@ -1216,27 +1296,40 @@
             <li><a href="#simulator" class="hover:text-white transition-colors">Live Simulator</a></li>
             <li><a href="#architecture" class="hover:text-white transition-colors">317+ MCP Tools</a></li>
             <li><a href="#calculator" class="hover:text-white transition-colors">ROI Calculator</a></li>
+            <li><a href="#comparison" class="hover:text-white transition-colors">Comparison Matrix</a></li>
           </ul>
         </div>
 
         <!-- Links Col 2 -->
         <div>
-          <h5 class="text-white font-semibold mb-3 font-mono text-xs uppercase tracking-wider">Investors</h5>
+          <h5 class="text-white font-semibold mb-3 font-mono text-xs uppercase tracking-wider">Platform &amp; Trust</h5>
           <ul class="space-y-2">
-            <li><a href="#" class="open-deck-btn hover:text-white transition-colors">Confidential Pitch Deck</a></li>
-            <li><a href="#investor-thesis" class="hover:text-white transition-colors">Market & TAM Thesis</a></li>
-            <li><a href="#early-access" class="hover:text-white transition-colors">Seed Allocation</a></li>
-            <li><a href="mailto:investors@csmengine.io" class="hover:text-white transition-colors">Investor Relations</a></li>
+            <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="security.html" class="hover:text-white transition-colors">Security Whitepaper</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors">System Status</a></li>
+            <li><a href="https://api.csmengine.dev" target="_blank" rel="noopener" class="hover:text-white transition-colors">Live API Endpoint</a></li>
           </ul>
         </div>
 
         <!-- Links Col 3 -->
         <div>
-          <h5 class="text-white font-semibold mb-3 font-mono text-xs uppercase tracking-wider">Developers</h5>
+          <h5 class="text-white font-semibold mb-3 font-mono text-xs uppercase tracking-wider">Legal &amp; Compliance</h5>
           <ul class="space-y-2">
-            <li><a href="https://github.com/KhizarJamshaidIqbal/custom-store-management" target="_blank" class="hover:text-white transition-colors">GitHub Repository</a></li>
+            <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="privacy.html#rights" class="hover:text-white transition-colors">GDPR / Sovereign Rights</a></li>
+            <li><a href="privacy.html#security" class="hover:text-white transition-colors">Security Audit</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 4 -->
+        <div>
+          <h5 class="text-white font-semibold mb-3 font-mono text-xs uppercase tracking-wider">Investors &amp; Developers</h5>
+          <ul class="space-y-2">
+            <li><a href="#" class="open-deck-btn hover:text-white transition-colors">Confidential Pitch Deck</a></li>
+            <li><a href="https://github.com/KhizarJamshaidIqbal/csm-site" target="_blank" rel="noopener" class="hover:text-white transition-colors">GitHub Repository</a></li>
             <li><a href="#" class="open-waitlist-btn hover:text-white transition-colors">Alpha MCP Token</a></li>
-            <li><a href="#faq" class="hover:text-white transition-colors">Documentation</a></li>
+            <li><a href="mailto:investors@csmengine.io" class="hover:text-white transition-colors">Founder Briefing</a></li>
           </ul>
         </div>
 
@@ -1245,13 +1338,17 @@
       <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 font-mono text-[11px]">
         <div>© 2026 CSM Engine Inc. All rights reserved. Sovereign E-Commerce Infrastructure.</div>
         <div class="flex items-center gap-6">
-          <a href="privacy.html#security" class="hover:text-slate-400">Security &amp; Compliance</a>
+          <a href="security.html" class="hover:text-slate-400">Security &amp; Compliance</a>
           <a href="privacy.html" class="hover:text-slate-400">Privacy Policy</a>
           <a href="terms.html" class="hover:text-slate-400">Terms of Service</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Deep-link anchors for subpage modal triggers (about.html/security.html footer CTAs) -->
+  <span id="waitlist" aria-hidden="true"></span>
+  <span id="pitch-deck" aria-hidden="true"></span>
 
   <!-- ====================================================================
        MODAL 1: EARLY ACCESS & INVESTOR WAITLIST MODAL

@@ -1,4 +1,20 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://csmengine.com/sitemap.xml
+# AI Search Engine Crawlers (explicitly allowed for GEO/AEO citations)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://csmengine.epsoldev.com/sitemap.xml

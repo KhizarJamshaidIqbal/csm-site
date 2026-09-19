@@ -1,25 +1,31 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — CSM Engine</title>
-  <meta name="description" content="How CSM Engine collects, uses, and protects the personal information you submit through the early access waitlist and investor deck request forms.">
-  <link rel="canonical" href="https://csmengine.com/privacy.html">
+  <title>Privacy Policy — CSM Engine | Enterprise Sovereign Data Policy</title>
+  <meta name="description" content="CSM Engine enterprise sovereign privacy policy: merchants retain 100% data ownership, zero advertising trackers, MCP data safety rules, and GDPR/CCPA compliance.">
+  <link rel="canonical" href="https://csmengine.epsoldev.com/privacy.html">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#060913">
   <link rel="icon" type="image/svg+xml" href="assets/icons/csm-logo.svg">
-  <!-- Tailwind CSS (compiled production build — regenerate with: .\tailwindcss.exe -i css/input.css -o css/tailwind.css --minify) -->
+  <meta property="og:title" content="CSM Engine — Enterprise Sovereign Privacy Policy">
+  <meta property="og:description" content="Merchants retain 100% ownership of catalog, customer records, and transaction histories. Zero vendor lock-in. Zero advertising trackers.">
+  <meta property="og:url" content="https://csmengine.epsoldev.com/privacy.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/tailwind.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-white">
+<body class="bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-white bg-grid-pattern">
 
-  <header class="border-b border-white/10 bg-[#060913]/90 backdrop-blur-md">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+  <header class="sticky top-0 z-50 bg-[#060913]/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3">
         <img src="assets/icons/csm-logo.svg" alt="CSM Engine Logo" class="w-10 h-10">
-        <span class="text-xl font-bold text-white">CSM Engine</span>
+        <span class="text-xl font-bold text-white tracking-tight">CSM Engine</span>
       </a>
       <a href="index.html" class="text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">&larr; Back to Site</a>
     </div>
@@ -27,69 +33,113 @@
 
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <p class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-3">Legal</p>
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">Privacy Policy</h1>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">Privacy Policy — Enterprise Sovereign Data</h1>
     <p class="text-xs text-slate-400 mb-10">Last updated: September 19, 2026</p>
 
     <div class="space-y-8 text-sm text-slate-300 leading-relaxed font-light [&_h2]:text-white [&_h2]:text-lg [&_h2]:font-bold [&_h2]:mb-2 [&_h2]:mt-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1">
 
       <section>
-        <h2>1. Who We Are</h2>
-        <p>CSM Engine (&ldquo;we&rdquo;, &ldquo;us&rdquo;) operates this website to provide information about our autonomous e-commerce backend platform and to collect early access and investor inquiries. This policy explains what personal information we collect and how we use it.</p>
+        <h2>1. The Sovereign Data Contract</h2>
+        <p>
+          Merchants using CSM Engine retain <strong class="text-white">100% ownership</strong> of their catalog,
+          customer records, and transaction histories. Whether you self-host the open-core engine or use
+          the managed CSM Cloud Gateway, your data lives in a database you control. There is zero vendor
+          lock-in: export or migrate your entire store at any time.
+        </p>
       </section>
 
       <section>
-        <h2>2. Information We Collect</h2>
+        <h2>2. Information Collected on This Website</h2>
         <p>We only collect information you voluntarily submit through our forms:</p>
         <ul>
-          <li><strong>Early Access Waitlist:</strong> your name, work email, company/venture fund, applicant role, and preferred frontend builder.</li>
-          <li><strong>Pitch Deck Request:</strong> your fund or angel name and investor email address.</li>
+          <li><strong>Early Access Waitlist:</strong> name, work email, company/venture fund, applicant role, and preferred frontend builder.</li>
+          <li><strong>Pitch Deck Request:</strong> fund or angel name and investor email address.</li>
         </ul>
-        <p>We do not collect payment information, precise location data, or any special category data. We do not use tracking cookies or third-party analytics on this site.</p>
+        <p>We do not collect payment information, precise location data, or special category data.</p>
       </section>
 
       <section>
-        <h2>3. How We Use Your Information</h2>
+        <h2>3. Zero Advertising Trackers</h2>
+        <p>
+          This website runs <strong class="text-white">no third-party advertising trackers and sells no telemetry</strong>
+          to ad networks. We use no tracking cookies. The only client-side storage is a local backup of
+          your own form submission, held in your browser's local storage and clearable at any time.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Model Context Protocol Data Safety</h2>
+        <p>
+          Prompts and tool outputs streamed through the MCP endpoint are authenticated with
+          <strong class="text-white">Bearer token authentication</strong> and scoped by role-based access
+          control. Your prompts and commerce data are used solely to execute the operations you request.
+          We do not use merchant prompts, customer records, or transaction data to train public
+          foundation models.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. How We Use Your Information</h2>
         <ul>
           <li>To reserve your place on the early access waitlist and contact you about onboarding.</li>
           <li>To send qualified investor requests the confidential pitch summary and data room link.</li>
-          <li>To send occasional product and funding updates related to CSM Engine. You can opt out at any time by replying to any email.</li>
+          <li>To send occasional product and funding updates. Opt out at any time by replying to any email.</li>
         </ul>
       </section>
 
       <section>
-        <h2>4. Processors We Use</h2>
-        <p>Form submissions are delivered through <strong>Web3Forms</strong> (a form-to-email delivery service), which processes your submission solely to deliver it to our inbox. We do not sell, rent, or share your personal information with any other third parties for marketing purposes.</p>
-      </section>
-
-      <section>
-        <h2>5. Local Storage</h2>
-        <p>To keep a backup of your submission on your own device, we store a copy of the details you entered in your browser&rsquo;s local storage. This data never leaves your device except through the form delivery described above, and you can clear it at any time via your browser settings.</p>
+        <h2>6. Processors</h2>
+        <p>
+          Form submissions on this site are delivered through Web3Forms (a form-to-email delivery
+          service), which processes your submission solely to deliver it to our inbox. We do not sell,
+          rent, or share your personal information with other third parties for marketing purposes.
+        </p>
       </section>
 
       <section id="security">
-        <h2>6. Security &amp; Compliance</h2>
-        <p>Submissions are transmitted over HTTPS. We apply the principle of data minimization: we ask only for the fields needed to respond to your request, and we retain them only as long as needed for that purpose or as required by law. No system is perfectly secure; please do not send confidential information through these forms beyond what is requested.</p>
+        <h2>7. Security &amp; Compliance</h2>
+        <p>
+          Submissions are transmitted over HTTPS. Our full security architecture — cryptographic cart
+          tokens, HMAC webhook verification, encryption at rest for API secrets, RBAC, and immutable
+          audit logging — is documented in the
+          <a href="security.html" class="text-cyan-400 hover:text-cyan-300">Security Whitepaper</a>.
+          Data minimization applies throughout: we retain personal data only as long as needed for the
+          stated purpose or as required by law.
+        </p>
+      </section>
+
+      <section id="rights">
+        <h2>8. GDPR &amp; CCPA — Your Rights</h2>
+        <p>
+          Depending on your jurisdiction (including the EU/EEA under GDPR and California under
+          CCPA/CPRA), you may have the right to access, correct, delete, or port the personal data we
+          hold about you, and to object to or restrict its processing. Merchants on the platform can
+          additionally anonymize customer records and run audit purge routines
+          (<code class="text-cyan-300 font-mono text-xs bg-white/5 px-1.5 py-0.5 rounded">audit_purge_run</code>)
+          against their own sovereign databases. To exercise your rights, email us — we respond within
+          30 days.
+        </p>
       </section>
 
       <section>
-        <h2>7. Your Rights</h2>
-        <p>Depending on your jurisdiction (including the EU/EEA under GDPR and California under CCPA/CPRA), you may have the right to access, correct, delete, or port the personal data we hold about you, and to object to or restrict its processing. To exercise any of these rights, email us and we will respond within 30 days.</p>
-      </section>
-
-      <section>
-        <h2>8. Contact</h2>
-        <p>Questions about this policy or your data? Email <a href="mailto:founders@csmengine.dev" class="text-cyan-400 hover:text-cyan-300">founders@csmengine.dev</a>.</p>
+        <h2>9. Contact</h2>
+        <p>
+          Questions about this policy or your data? Email
+          <a href="mailto:founders@csmengine.dev" class="text-cyan-400 hover:text-cyan-300">founders@csmengine.dev</a>.
+        </p>
       </section>
     </div>
   </main>
 
-  <footer class="border-t border-white/10 py-8 bg-[#04070F] text-slate-400 text-xs">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div>&copy; 2026 CSM Engine Inc. All rights reserved.</div>
-      <div class="flex items-center gap-6">
-        <a href="index.html" class="hover:text-white transition-colors">Home</a>
-        <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
-        <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+  <footer class="border-t border-white/10 py-10 bg-[#04070F] text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>&copy; 2026 CSM Engine Inc. All rights reserved.</div>
+        <div class="flex items-center gap-6">
+          <a href="index.html" class="hover:text-white transition-colors">Home</a>
+          <a href="security.html" class="hover:text-white transition-colors">Security</a>
+          <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+        </div>
       </div>
     </div>
   </footer>

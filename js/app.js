@@ -215,6 +215,14 @@ function initModals() {
     deckSuccessClose.addEventListener("click", () => closeModal(deckModal));
   }
 
+  // Deep-link support: open modals when arriving from subpages
+  // e.g. about.html links to index.html#waitlist or index.html#pitch-deck
+  if (window.location.hash === "#waitlist" && waitlistModal) {
+    openModal(waitlistModal);
+  } else if (window.location.hash === "#pitch-deck" && deckModal) {
+    openModal(deckModal);
+  }
+
   // Waitlist Form Submit
   if (waitlistForm) {
     waitlistForm.addEventListener("submit", async (e) => {
