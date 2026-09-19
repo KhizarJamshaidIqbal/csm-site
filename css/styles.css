@@ -65,6 +65,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+
 .gradient-text-accent {
   background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #C084FC 100%);
   -webkit-background-clip: text;
@@ -148,6 +149,7 @@ body {
   background: rgba(255, 255, 255, 0.02);
 }
 
+
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 3px;
@@ -210,5 +212,74 @@ textarea:focus-visible {
   .animate-ping,
   .animate-fade-in {
     animation: none !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Header fixes
+ * ------------------------------------------------------------------ */
+
+/* Skip link (secondary pages): visually hidden until it receives keyboard focus.
+   Without this rule it rendered permanently at the top-left of every subpage. */
+.skip-link {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  overflow: visible;
+  clip: auto;
+  border-radius: 0.5rem;
+  background: #06B6D4;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+/* Never let brand, nav labels or header buttons break onto two lines */
+header nav a,
+header .flex-col span,
+header .open-deck-btn,
+header .open-waitlist-btn {
+  white-space: nowrap;
+}
+
+/* Homepage header has 8 nav links: below 1280px they cannot fit next to the
+   brand and the two CTA buttons, so use the hamburger drawer instead. */
+@media (min-width: 768px) and (max-width: 1279.98px) {
+  #main-header nav {
+    display: none;
+  }
+
+  #main-header #mobile-menu-btn {
+    display: inline-flex;
+  }
+
+  #main-header #mobile-menu:not(.hidden) {
+    display: block;
+  }
+}
+
+/* At >=1280px tighten spacing so the full row fits the 1280px container */
+@media (min-width: 1280px) {
+  #main-header nav {
+    gap: 1.25rem;
+    font-size: 0.8125rem;
   }
 }
