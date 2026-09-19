@@ -12,6 +12,71 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* -------------------------------------------------------------
+ * Lead capture configuration
+ * Paste your Web3Forms access key below to activate live delivery
+ * (free account at web3forms.com -> endpoint: api.web3forms.com/submit).
+ * Until the key is set, submissions are backed up to localStorage
+ * and the UI shows an honest "temporarily unavailable" message.
+ * ----------------------------------------------------------- */
+const LEAD_CAPTURE = {
+  endpoint: "https://api.web3forms.com/submit",
+  accessKey: "" // <-- paste your Web3Forms access key here
+};
+
+function safeReadArray(key) {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(key) || "[]");
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    return [];
+  }
+}
+
+async function submitLead(payload, submitBtn) {
+  if (!LEAD_CAPTURE.accessKey) {
+    return { ok: false, reason: "not_configured" };
+  }
+
+  const originalLabel = submitBtn ? submitBtn.innerHTML : "";
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "Sending...";
+  }
+
+  try {
+    const res = await fetch(LEAD_CAPTURE.endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json().catch(() => ({}));
+    return { ok: res.ok && data.success !== false, reason: data.message || "request_failed" };
+  } catch (err) {
+    return { ok: false, reason: "network" };
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalLabel;
+    }
+  }
+}
+
+function showFormError(form, message) {
+  const errBox = form ? form.querySelector(".form-error") : null;
+  if (!errBox) return;
+  errBox.textContent = message;
+  errBox.classList.remove("hidden");
+}
+
+function hideFormError(form) {
+  const errBox = form ? form.querySelector(".form-error") : null;
+  if (errBox) {
+    errBox.textContent = "";
+    errBox.classList.add("hidden");
+  }
+}
+
+/* -------------------------------------------------------------
  * Navbar & Mobile Menu
  * ----------------------------------------------------------- */
 function initNavbar() {
@@ -29,7 +94,18 @@ function initNavbar() {
 
   if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener("click", () => {
+      const willOpen = mobileMenu.classList.contains("hidden");
       mobileMenu.classList.toggle("hidden");
+      mobileMenuBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    });
+
+    // Close mobile menu on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e && e.key === "Escape" && !mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.add("hidden");
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+        mobileMenuBtn.focus();
+      }
     });
 
     // Close mobile menu on anchor click
@@ -101,16 +177,49 @@ function initModals() {
   });
 
   document.addEventListener("keydown", (e) => {
-    if (e && e.key === "Escape") {
+    if (!e) return;
+
+    if (e.key === "Escape") {
       closeModal(waitlistModal);
       closeModal(deckModal);
     }
+
+    // Focus trap: keep Tab cycling inside the open modal
+    if (e.key === "Tab") {
+      const activeModal = [waitlistModal, deckModal].find(m => m && !m.classList.contains("hidden"));
+      if (!activeModal) return;
+
+      const focusables = getModalFocusables(activeModal);
+      if (!focusables.length) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
+
+  // Success-view close buttons (replaces inline onclick handlers)
+  const waitlistSuccessClose = document.getElementById("waitlist-success-close");
+  const deckSuccessClose = document.getElementById("deck-success-close");
+  if (waitlistSuccessClose) {
+    waitlistSuccessClose.addEventListener("click", () => closeModal(waitlistModal));
+  }
+  if (deckSuccessClose) {
+    deckSuccessClose.addEventListener("click", () => closeModal(deckModal));
+  }
 
   // Waitlist Form Submit
   if (waitlistForm) {
-    waitlistForm.addEventListener("submit", (e) => {
+    waitlistForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+      hideFormError(waitlistForm);
 
       const name = document.getElementById("wl-name").value.trim();
       const email = document.getElementById("wl-email").value.trim();
@@ -118,8 +227,8 @@ function initModals() {
       const role = document.querySelector('input[name="user_role"]:checked')?.value || "builder";
       const builderTool = document.getElementById("wl-builder")?.value || "lovable";
 
-      // Generate realistic VIP ticket number
-      const existingWaitlist = JSON.parse(localStorage.getItem("csm_waitlist") || "[]");
+      // Generate VIP ticket number (vanity number, also used locally)
+      const existingWaitlist = safeReadArray("csm_waitlist");
       const ticketNumber = 1420 + existingWaitlist.length + 1;
 
       const record = {
@@ -132,8 +241,35 @@ function initModals() {
         timestamp: new Date().toISOString()
       };
 
+      // Always keep a local backup so no lead is ever lost
       existingWaitlist.push(record);
-      localStorage.setItem("csm_waitlist", JSON.stringify(existingWaitlist));
+      try {
+        localStorage.setItem("csm_waitlist", JSON.stringify(existingWaitlist));
+      } catch (err) {
+        /* storage unavailable — remote delivery is still attempted */
+      }
+
+      const submitBtn = waitlistForm.querySelector('button[type="submit"]');
+      const result = await submitLead({
+        access_key: LEAD_CAPTURE.accessKey,
+        subject: "New CSM Engine Waitlist Signup",
+        from_name: "CSM Engine Waitlist",
+        name: name,
+        email: email,
+        company: company,
+        role: role,
+        builder_tool: builderTool,
+        botcheck: ""
+      }, submitBtn);
+
+      if (!result.ok) {
+        if (result.reason === "not_configured") {
+          showFormError(waitlistForm, "Online signup is temporarily unavailable. Please email founders@csmengine.dev and we will reserve your spot manually.");
+        } else {
+          showFormError(waitlistForm, "Something went wrong sending your request. Please try again, or email founders@csmengine.dev directly.");
+        }
+        return;
+      }
 
       if (waitlistTicketNum) {
         waitlistTicketNum.textContent = `#${ticketNumber.toLocaleString()}`;
@@ -148,14 +284,39 @@ function initModals() {
 
   // Deck Form Submit
   if (deckForm) {
-    deckForm.addEventListener("submit", (e) => {
+    deckForm.addEventListener("submit", async (e) => {
       e.preventDefault();
+      hideFormError(deckForm);
+
       const deckEmail = document.getElementById("deck-email").value.trim();
       const deckFund = document.getElementById("deck-fund").value.trim();
 
-      const deckRequests = JSON.parse(localStorage.getItem("csm_deck_requests") || "[]");
+      const deckRequests = safeReadArray("csm_deck_requests");
       deckRequests.push({ email: deckEmail, fund: deckFund, date: new Date().toISOString() });
-      localStorage.setItem("csm_deck_requests", JSON.stringify(deckRequests));
+      try {
+        localStorage.setItem("csm_deck_requests", JSON.stringify(deckRequests));
+      } catch (err) {
+        /* storage unavailable — remote delivery is still attempted */
+      }
+
+      const submitBtn = deckForm.querySelector('button[type="submit"]');
+      const result = await submitLead({
+        access_key: LEAD_CAPTURE.accessKey,
+        subject: "New CSM Engine Pitch Deck Request",
+        from_name: "CSM Engine Investor Portal",
+        fund: deckFund,
+        email: deckEmail,
+        botcheck: ""
+      }, submitBtn);
+
+      if (!result.ok) {
+        if (result.reason === "not_configured") {
+          showFormError(deckForm, "Online requests are temporarily unavailable. Please email founders@csmengine.dev to receive the confidential deck.");
+        } else {
+          showFormError(deckForm, "Something went wrong sending your request. Please try again, or email founders@csmengine.dev directly.");
+        }
+        return;
+      }
 
       deckForm.classList.add("hidden");
       if (deckSuccess) {
@@ -165,16 +326,43 @@ function initModals() {
   }
 }
 
+let lastFocusedElement = null;
+
+function getModalFocusables(modal) {
+  return Array.from(
+    modal.querySelectorAll('a[href], button:not([disabled]), input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])')
+  ).filter(el => el.offsetParent !== null);
+}
+
 function openModal(modal) {
   if (!modal) return;
   modal.classList.remove("hidden");
   document.body.style.overflow = "hidden";
+  lastFocusedElement = document.activeElement;
+
+  // Move focus into the modal (prefer the first form field)
+  const focusables = getModalFocusables(modal);
+  if (focusables.length) {
+    const firstInput = modal.querySelector('input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]), select, textarea');
+    const target = firstInput && focusables.includes(firstInput) ? firstInput : focusables[0];
+    target.focus();
+  }
 }
 
 function closeModal(modal) {
   if (!modal) return;
+  const wasOpen = !modal.classList.contains("hidden");
   modal.classList.add("hidden");
-  document.body.style.overflow = "";
+
+  // Only restore page scroll when no modal remains open
+  if (!document.querySelector("#waitlist-modal:not(.hidden), #deck-modal:not(.hidden)")) {
+    document.body.style.overflow = "";
+  }
+
+  if (wasOpen && lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+    lastFocusedElement.focus();
+  }
+  lastFocusedElement = null;
 }
 
 /* -------------------------------------------------------------
@@ -184,7 +372,7 @@ function initWaitlistCounter() {
   const counterEl = document.getElementById("dynamic-waitlist-count");
   if (!counterEl) return;
 
-  const stored = JSON.parse(localStorage.getItem("csm_waitlist") || "[]");
+  const stored = safeReadArray("csm_waitlist");
   const count = 1420 + stored.length;
   counterEl.textContent = count.toLocaleString();
 }
@@ -264,18 +452,48 @@ function initArchitectureTabs() {
 function initCopySnippets() {
   const copyButtons = document.querySelectorAll(".copy-snippet-btn");
 
+  function copyTextToClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    // Fallback for non-secure contexts / older browsers
+    return new Promise((resolve, reject) => {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        const ok = document.execCommand("copy");
+        document.body.removeChild(textarea);
+        ok ? resolve() : reject(new Error("copy_failed"));
+      } catch (err) {
+        document.body.removeChild(textarea);
+        reject(err);
+      }
+    });
+  }
+
   copyButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const targetId = btn.getAttribute("data-copy-target");
       const targetEl = document.getElementById(targetId);
       if (!targetEl) return;
 
-      navigator.clipboard.writeText(targetEl.textContent.trim()).then(() => {
+      copyTextToClipboard(targetEl.textContent.trim()).then(() => {
         const originalText = btn.innerHTML;
         btn.innerHTML = `<span class="text-emerald-400">✓ Copied!</span>`;
         setTimeout(() => {
           btn.innerHTML = originalText;
         }, 2000);
+      }).catch(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span class="text-amber-400">⚠ Copy blocked — select manually</span>`;
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+        }, 2500);
       });
     });
   });

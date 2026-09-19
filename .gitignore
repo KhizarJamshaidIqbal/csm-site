@@ -11,3 +11,7 @@ desktop.ini
 *.tmp
 .env
 .env.local
+
+# Build tooling (downloaded locally, not committed)
+tailwindcss.exe
+

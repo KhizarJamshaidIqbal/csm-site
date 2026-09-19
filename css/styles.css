@@ -96,6 +96,18 @@ body {
   pointer-events: none;
 }
 
+/* Terminal step fade-in (respects reduced-motion preferences) */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out both;
+  }
+}
+
 /* Pulse / Animation utilities */
 @keyframes pulseSubtle {
   0%, 100% { opacity: 0.9; transform: scale(1); }

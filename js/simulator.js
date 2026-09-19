@@ -10,7 +10,7 @@ const simulatorPresets = {
     steps: [
       {
         phase: "CONNECT",
-        text: "Connecting to CSM MCP Gateway [https://store.epsoldev.com/wp-json/csm/v1/mcp]...",
+        text: "Connecting to CSM MCP Gateway [https://api.csmengine.dev/wp-json/csm/v1/mcp]...",
         status: "OK",
         delay: 400
       },
@@ -262,7 +262,7 @@ async function runSimulation(data) {
         <div class="flex items-center gap-2 text-slate-300">
           <span class="text-slate-500">[${timestamp}]</span>
           <span class="px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-400 font-semibold text-[10px]">MCP_HANDSHAKE</span>
-          <span>${step.text}</span>
+          <span>${escapeHtml(step.text)}</span>
           <span class="text-emerald-400 ml-auto font-bold">[${step.status}]</span>
         </div>
       `;
@@ -283,7 +283,7 @@ async function runSimulation(data) {
     } else if (step.phase === "COMPLETE") {
       stepDiv.innerHTML = `
         <div class="p-2.5 rounded bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 flex items-center justify-between">
-          <span>${step.text}</span>
+          <span>${escapeHtml(step.text)}</span>
           <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold text-[10px]">${step.status}</span>
         </div>
       `;

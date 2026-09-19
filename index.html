@@ -5,34 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSM Engine — The Autonomous E-Commerce Backend for the AI Builder Era</title>
   <meta name="description" content="Connect AI frontend builders like Lovable and v0 directly to a battle-tested e-commerce backend engine. Powered by 317+ Model Context Protocol (MCP) tools.">
-  
+
+  <!-- Canonical & SEO -->
+  <link rel="canonical" href="https://csmengine.com/">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#060913">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/csm-logo.svg">
+
   <!-- Open Graph / Meta -->
   <meta property="og:title" content="CSM Engine — Autonomous E-Commerce Backend for AI Builders">
   <meta property="og:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a production-grade 317-tool backend instantly. Zero backend code required.">
-  <meta property="og:image" content="assets/images/hero-agent-mesh.jpg">
+  <meta property="og:image" content="https://csmengine.com/assets/images/hero-agent-mesh.jpg">
+  <meta property="og:url" content="https://csmengine.com/">
+  <meta property="og:site_name" content="CSM Engine">
   <meta property="og:type" content="website">
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            space: '#060913',
-            card: 'rgba(14, 20, 36, 0.75)',
-            primary: '#06B6D4',
-            violet: '#8B5CF6',
-            fuchsia: '#D946EF',
-            emerald: '#10B981',
-          }
-        }
-      }
-    }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CSM Engine — Autonomous E-Commerce Backend for AI Builders">
+  <meta name="twitter:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a production-grade 317-tool backend instantly. Zero backend code required.">
+  <meta name="twitter:image" content="https://csmengine.com/assets/images/hero-agent-mesh.jpg">
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CSM Engine",
+    "alternateName": "Commerce State Machine",
+    "url": "https://csmengine.com/",
+    "logo": "https://csmengine.com/assets/icons/csm-logo.svg",
+    "description": "The autonomous e-commerce backend engine for the AI builder era, connecting generative UI frontends to 317+ production Model Context Protocol (MCP) commerce tools.",
+    "sameAs": ["https://github.com/KhizarJamshaidIqbal/custom-store-management"]
+  }
   </script>
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Structured Data: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does CSM connect with frontend builders like Lovable and v0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSM exposes a native streaming Model Context Protocol (MCP) HTTP server (/wp-json/csm/v1/mcp). When building on Lovable, Cursor, Bolt, or v0, the developer or merchant supplies the MCP endpoint and Bearer token. The AI agent inspects CSM's tool catalog and autonomously wires every button, cart hook, product grid, and checkout form to production backend endpoints with zero manual coding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you guarantee security for payments and cart data?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSM never stores raw credit card credentials in plain text. It leverages strict client-side tokenization via Stripe Elements / PayPal SDK, combined with strict server-side HMAC webhook signature validation. Furthermore, checkout enforces per-cart cryptographic CSRF tokens (X-CSM-Cart-CSRF) to prevent session forgery and request hijacking."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why choose CSM over building directly on Shopify?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Shopify is a closed SaaS walled-garden that charges monthly subscription fees, takes up to 2.0% transaction surcharges on non-Shopify-Payments, and restricts database access. CSM is 100% agent-native from day one, offers complete sovereign database ownership, charges 0% transaction fees, and provides 317+ specialized MCP tools allowing AI agents to fully manage your inventory, returns, flash sales, and customer service."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the current business model and monetization strategy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CSM follows a proven open-core + managed cloud model: a free self-hosted WordPress plugin for individual developers and small merchants drives viral bottom-up adoption; the CSM Cloud Gateway ($49–$299/mo) adds a managed zero-setup MCP streaming proxy, multi-store orchestration, and automatic latency routing; and Enterprise Sovereign Fleet ($999+/mo) provides dedicated high-concurrency instances with automated disaster recovery, SLA, and custom ERP connectors."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is CSM already deployed in production?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The engine is live in production driving real e-commerce storefronts, processing live orders, verifying Stripe webhooks, handling multi-variant matrices, and serving high-frequency traffic across Cloudflare Edge networks with sub-50ms latency. Reference stores and a live demo endpoint are available to qualified investors under NDA."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS (compiled production build — regenerate with: .\tailwindcss.exe -i css/input.css -o css/tailwind.css --minify) -->
+  <link rel="stylesheet" href="css/tailwind.css">
+
+  <!-- Lucide Icons (pinned version for supply-chain stability) -->
+  <script src="https://unpkg.com/lucide@1.47.0"></script>
 
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
@@ -40,9 +104,10 @@
 <body class="bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-white bg-grid-pattern relative">
 
   <!-- ====================================================================
-       TOP ANNOUNCEMENT BAR (INVESTOR SEED & EARLY ACCESS)
+       STICKY HEADER: ANNOUNCEMENT BAR + NAVIGATION (single sticky unit)
   ==================================================================== -->
-  <div class="bg-gradient-to-r from-violet-950/80 via-slate-900/90 to-cyan-950/80 border-b border-white/10 text-xs py-2 px-4 text-center sticky top-0 z-50 backdrop-blur-md">
+  <header id="main-header" class="sticky top-0 z-50 transition-all duration-300">
+    <div class="bg-gradient-to-r from-violet-950/80 via-slate-900/90 to-cyan-950/80 border-b border-white/10 text-xs py-2 px-4 text-center backdrop-blur-md">
     <div class="max-w-7xl mx-auto flex items-center justify-center gap-3 flex-wrap">
       <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-semibold text-[11px] border border-cyan-500/30">
         <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
@@ -57,11 +122,8 @@
     </div>
   </div>
 
-  <!-- ====================================================================
-       MAIN HEADER / NAVIGATION
-  ==================================================================== -->
-  <header id="main-header" class="sticky top-[37px] z-40 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- MAIN NAVIGATION -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Brand Logo -->
       <a href="#" class="flex items-center gap-3 group">
@@ -101,7 +163,7 @@
       </div>
 
       <!-- Mobile Hamburger Button -->
-      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10" aria-label="Toggle Menu">
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
     </div>
@@ -443,7 +505,7 @@
               </div>
               <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center justify-between">
                 <span class="text-slate-400">API Endpoint:</span>
-                <span class="text-slate-300">https://store.epsoldev.com</span>
+                <span class="text-slate-300">https://api.csmengine.dev</span>
               </div>
             </div>
           </div>
@@ -900,7 +962,7 @@
             <div>
               <span class="text-[11px] font-mono text-slate-400 uppercase tracking-wider block">Dev Hours Saved / Year</span>
               <div id="calc-hours-saved" class="text-3xl font-extrabold text-cyan-400 font-mono">3,180</div>
-              <span class="text-[11px] text-slate-400">Equivalent to ~1.8 full-time senior engineers</span>
+              <span class="text-[11px] text-slate-400">Equivalent to ~<span id="calc-fte">1.8</span> full-time senior engineers</span>
             </div>
 
             <div class="pt-3 border-t border-white/10">
@@ -1112,7 +1174,7 @@
             <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 transition-transform"></i>
           </button>
           <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed font-light border-t border-white/5 pt-3">
-            Yes. Version 1.76.9 is live in production today driving real e-commerce storefronts (e.g. `luxwearz.com` and `store.epsoldev.com`), processing live orders, verifying Stripe webhooks, handling multi-variant matrices, and serving high-frequency traffic across Cloudflare Edge networks with sub-50ms latency.
+            Yes. The engine is live in production driving real e-commerce storefronts, processing live orders, verifying Stripe webhooks, handling multi-variant matrices, and serving high-frequency traffic across Cloudflare Edge networks with sub-50ms latency. Reference stores and a live demo endpoint are available to qualified investors under NDA.
           </div>
         </div>
 
@@ -1175,7 +1237,6 @@
             <li><a href="https://github.com/KhizarJamshaidIqbal/custom-store-management" target="_blank" class="hover:text-white transition-colors">GitHub Repository</a></li>
             <li><a href="#" class="open-waitlist-btn hover:text-white transition-colors">Alpha MCP Token</a></li>
             <li><a href="#faq" class="hover:text-white transition-colors">Documentation</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Status Dashboard</a></li>
           </ul>
         </div>
 
@@ -1184,9 +1245,9 @@
       <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 font-mono text-[11px]">
         <div>© 2026 CSM Engine Inc. All rights reserved. Sovereign E-Commerce Infrastructure.</div>
         <div class="flex items-center gap-6">
-          <a href="#" class="hover:text-slate-400">Security & Compliance</a>
-          <a href="#" class="hover:text-slate-400">Privacy Policy</a>
-          <a href="#" class="hover:text-slate-400">Terms of Service</a>
+          <a href="privacy.html#security" class="hover:text-slate-400">Security &amp; Compliance</a>
+          <a href="privacy.html" class="hover:text-slate-400">Privacy Policy</a>
+          <a href="terms.html" class="hover:text-slate-400">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -1195,7 +1256,7 @@
   <!-- ====================================================================
        MODAL 1: EARLY ACCESS & INVESTOR WAITLIST MODAL
   ==================================================================== -->
-  <div id="waitlist-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+  <div id="waitlist-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
     <div class="glass-card rounded-2xl border border-white/15 max-w-md w-full p-6 sm:p-8 relative shadow-2xl bg-[#090D18]">
       
       <!-- Close button -->
@@ -1205,11 +1266,13 @@
 
       <!-- Form View -->
       <form id="waitlist-form" class="space-y-4">
+        <!-- Honeypot anti-spam field (hidden from humans) -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off">
         <div class="text-center mb-6">
           <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mx-auto mb-3">
             <i data-lucide="sparkles" class="w-5 h-5"></i>
           </div>
-          <h4 class="text-xl font-bold text-white">Join Early Access Waitlist</h4>
+          <h4 id="waitlist-title" class="text-xl font-bold text-white">Join Early Access Waitlist</h4>
           <p class="text-xs text-slate-400 mt-1">Get priority alpha MCP API access & founder updates</p>
         </div>
 
@@ -1259,6 +1322,8 @@
           </select>
         </div>
 
+        <div class="form-error hidden p-3 rounded-lg bg-red-950/40 border border-red-500/30 text-red-300 text-xs leading-relaxed"></div>
+
         <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:opacity-95 text-white font-bold text-xs shadow-lg transition-all mt-4">
           Reserve Priority Spot
         </button>
@@ -1271,7 +1336,7 @@
         </div>
         <h4 class="text-xl font-bold text-white">You're On The VIP Waitlist!</h4>
         <p class="text-xs text-slate-300">
-          Your priority ticket has been reserved. Check your inbox for confirmation and our developer onboarding packet.
+          Your priority ticket has been reserved. Our team will reach out at the email you provided with confirmation and the developer onboarding packet.
         </p>
 
         <div class="p-4 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-center font-mono my-4">
@@ -1279,7 +1344,7 @@
           <span id="waitlist-ticket-number" class="text-2xl font-extrabold text-cyan-300">#1,421 VIP</span>
         </div>
 
-        <button onclick="document.getElementById('waitlist-modal').classList.add('hidden'); document.body.style.overflow='';" class="w-full py-2.5 rounded-lg bg-white/10 text-white font-semibold text-xs hover:bg-white/20 transition-all">
+        <button id="waitlist-success-close" class="w-full py-2.5 rounded-lg bg-white/10 text-white font-semibold text-xs hover:bg-white/20 transition-all">
           Close Window
         </button>
       </div>
@@ -1290,7 +1355,7 @@
   <!-- ====================================================================
        MODAL 2: INVESTOR PITCH DECK REQUEST MODAL
   ==================================================================== -->
-  <div id="deck-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+  <div id="deck-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="deck-title">
     <div class="glass-card rounded-2xl border border-white/15 max-w-md w-full p-6 sm:p-8 relative shadow-2xl bg-[#090D18]">
       
       <button id="close-deck-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1" aria-label="Close Modal">
@@ -1303,7 +1368,7 @@
           <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mx-auto mb-3">
             <i data-lucide="file-text" class="w-5 h-5"></i>
           </div>
-          <h4 class="text-xl font-bold text-white">Request Confidential Pitch Deck</h4>
+          <h4 id="deck-title" class="text-xl font-bold text-white">Request Confidential Pitch Deck</h4>
           <p class="text-xs text-slate-400 mt-1">CSM Seed Round • Financial Model • 317 MCP Tools Architecture</p>
         </div>
 
@@ -1317,6 +1382,8 @@
           <input id="deck-email" type="email" required placeholder="partner@fund.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-purple-400 font-mono">
         </div>
 
+        <div class="form-error hidden p-3 rounded-lg bg-red-950/40 border border-red-500/30 text-red-300 text-xs leading-relaxed"></div>
+
         <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-95 text-white font-bold text-xs shadow-lg transition-all mt-4">
           Access Pitch Deck
         </button>
@@ -1329,10 +1396,10 @@
         </div>
         <h4 class="text-xl font-bold text-white">Investor Request Received</h4>
         <p class="text-xs text-slate-300">
-          The confidential pitch summary and founder data room link have been sent to your verified email.
+          Request received. The founder team will send the confidential pitch summary and data room link to the email you provided.
         </p>
 
-        <button onclick="document.getElementById('deck-modal').classList.add('hidden'); document.body.style.overflow='';" class="w-full py-2.5 rounded-lg bg-white/10 text-white font-semibold text-xs hover:bg-white/20 transition-all">
+        <button id="deck-success-close" class="w-full py-2.5 rounded-lg bg-white/10 text-white font-semibold text-xs hover:bg-white/20 transition-all">
           Return to Site
         </button>
       </div>

@@ -16,6 +16,7 @@ function initCalculator() {
   const capitalSavedDisplay = document.getElementById("calc-capital-saved");
   const speedupDisplay = document.getElementById("calc-speedup");
   const platformTaxSavedDisplay = document.getElementById("calc-tax-saved");
+  const fteDisplay = document.getElementById("calc-fte");
 
   if (!storesSlider || !rateSlider || !gmvSlider) return;
 
@@ -57,6 +58,10 @@ function initCalculator() {
     }
     if (platformTaxSavedDisplay) {
       platformTaxSavedDisplay.textContent = `$${platformTaxSaved.toLocaleString()}`;
+    }
+    if (fteDisplay) {
+      const fteEquivalent = totalHoursSaved / 2080; // 2,080 hrs = 1 full-time year
+      fteDisplay.textContent = fteEquivalent >= 10 ? Math.round(fteEquivalent).toLocaleString() : fteEquivalent.toFixed(1);
     }
   }
 
