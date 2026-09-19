@@ -89,10 +89,12 @@ curl.exe -L -o tailwindcss.exe https://github.com/tailwindlabs/tailwindcss/relea
 
 ## 📮 Activating Lead Capture (Forms)
 
-Both the waitlist and pitch-deck forms post to **Web3Forms** (`api.web3forms.com/submit`):
+Both the waitlist and pitch-deck forms post to the site's own PHP mail gateway:
 
-1. Create a free account at https://web3forms.com and copy your access key.
-2. Paste it into `js/app.js` → `LEAD_CAPTURE.accessKey`.
+- Endpoint: `POST /php/mailgate.php` with `type: "waitlist" | "deck"`
+- Sends via authenticated SMTP through PHPMailer (`php/PHPMailer/`)
+- Credentials live in `php/config.creds.php` — **gitignored**, created once on the server via Hostinger hPanel File Manager
+- `php/config.php` is the safe, committable loader (contains no secrets). If `config.creds.php` is absent, the endpoint returns a clean `{ ok:false, code:"not_configured" }` JSON error instead of a PHP fatal.
+- Server controls the subject line; the client cannot override it. A per-IP rate limit and spam honeypot are enforced, and every submission is appended to `php/submissions.log` on success *and* failure.
 
-Until the key is set, submissions are backed up to `localStorage` and the forms show
-an honest "temporarily unavailable" message.
+See README.md for the full setup steps.

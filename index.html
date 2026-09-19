@@ -21,7 +21,7 @@
 
   <!-- Open Graph / Meta -->
   <meta property="og:title" content="CSM Engine — Autonomous E-Commerce Backend for AI Builders">
-  <meta property="og:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a production-grade 317-tool backend instantly. Zero backend code required.">
+  <meta property="og:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a 317-tool commerce backend instantly. Zero backend code required.">
   <meta property="og:image" content="https://csmengine.epsoldev.com/assets/images/hero-agent-mesh.jpg">
   <meta property="og:url" content="https://csmengine.epsoldev.com/">
   <meta property="og:site_name" content="CSM Engine">
@@ -30,7 +30,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CSM Engine — Autonomous E-Commerce Backend for AI Builders">
-  <meta name="twitter:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a production-grade 317-tool backend instantly. Zero backend code required.">
+  <meta name="twitter:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a 317-tool commerce backend instantly. Zero backend code required.">
   <meta name="twitter:image" content="https://csmengine.epsoldev.com/assets/images/hero-agent-mesh.jpg">
 
   <!-- Structured Data: Organization -->
@@ -82,7 +82,7 @@
         "name": "What is the current business model and monetization strategy?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "CSM follows a proven open-core + managed cloud model: a free self-hosted WordPress plugin for individual developers and small merchants drives viral bottom-up adoption; the CSM Cloud Gateway ($49–$299/mo) adds a managed zero-setup MCP streaming proxy, multi-store orchestration, and automatic latency routing; and Enterprise Sovereign Fleet ($999+/mo) provides dedicated high-concurrency instances with automated disaster recovery, SLA, and custom ERP connectors."
+          "text": "CSM follows a proven open-core + managed cloud model: a free self-hosted WordPress plugin for individual developers and small merchants drives viral bottom-up adoption; the managed CSM Cloud Gateway adds a zero-setup MCP streaming proxy, multi-store orchestration, and latency routing; and the Enterprise Sovereign Fleet provides dedicated high-concurrency instances with automated disaster recovery and custom ERP connectors."
         }
       },
       {
@@ -90,7 +90,7 @@
         "name": "Is CSM already deployed in production?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. The engine is live in production driving real e-commerce storefronts, processing live orders, verifying Stripe webhooks, handling multi-variant matrices, and serving high-frequency traffic across Cloudflare Edge networks with sub-50ms latency. Reference stores and a live demo endpoint are available to qualified investors under NDA."
+          "text": "The engine is a shipping WordPress plugin (v1.76.9) with 317 registered MCP tools, used by our named headless storefront client and available for evaluation. Live reference deployments and a demo endpoint are available to qualified parties under NDA."
         }
       }
     ]
@@ -114,13 +114,8 @@
         "url": "https://csmengine.epsoldev.com/",
         "description": "Autonomous e-commerce backend engine exposing 317+ production Model Context Protocol (MCP) tools for payments, inventory, returns, flash sales, and CRM, wireable by AI builders such as Lovable, v0, Bolt, and Cursor.",
         "softwareVersion": "1.76.9",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-          "description": "Open-core self-hosted plugin; managed CSM Cloud Gateway from $49/mo"
-        },
-        "featureList": "317+ MCP tools, Stripe/PayPal tokenization, atomic inventory reservation, RMA returns engine, cart CSRF protection, flash sales, WhatsApp AI CRM, audit logging, RBAC",
+        "isAccessibleForFree": true,
+        "featureList": "317 MCP tools, Stripe/PayPal tokenization, atomic inventory reservation, RMA returns engine, cart CSRF protection, flash sales, WhatsApp AI CRM, audit logging, RBAC",
         "author": {
           "@type": "Organization",
           "name": "Epsol Development"
@@ -147,6 +142,8 @@
 </head>
 <body class="bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-white bg-grid-pattern relative">
 
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-cyan-500 focus:text-white focus:font-bold focus:text-xs">Skip to main content</a>
+
   <!-- ====================================================================
        STICKY HEADER: ANNOUNCEMENT BAR + NAVIGATION (single sticky unit)
   ==================================================================== -->
@@ -158,7 +155,7 @@
         SEED ROUND OPEN
       </span>
       <span class="text-slate-300">
-        Building the "Stripe + AWS" layer for AI Storefronts. <strong>317+ MCP Tools Live in Production</strong>.
+        Building the "Stripe + AWS" layer for AI Storefronts. <strong>317 Registered MCP Tools</strong>.
       </span>
       <button class="open-deck-btn text-cyan-400 hover:text-cyan-300 font-semibold underline underline-offset-4 flex items-center gap-1 transition-colors">
         Request Confidential Deck <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -234,7 +231,7 @@
   <!-- ====================================================================
        HERO SECTION: THE PITCH TO INVESTORS & BUILDERS
   ==================================================================== -->
-  <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden bg-radial-hero">
+  <section id="main-content" class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden bg-radial-hero">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
       
       <!-- Pre-heading Badge -->
@@ -252,7 +249,7 @@
 
       <!-- Subheadline -->
       <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-        Generative tools like <strong>Lovable</strong> and <strong>v0</strong> let anyone design a gorgeous storefront in 60 seconds. But 99% fail to launch because real stores require months of complex backend engineering. 
+        Generative tools like <strong>Lovable</strong> and <strong>v0</strong> let anyone design a gorgeous storefront in 60 seconds. But a beautiful UI is not a store — real commerce needs payments, orders, inventory, returns and support plumbing. 
         <br class="hidden sm:inline">
         <strong>CSM connects any AI-designed UI to a 317-tool enterprise backend engine</strong> via Model Context Protocol. Zero backend plumbing. Zero friction.
       </p>
@@ -285,20 +282,20 @@
           <div class="text-xs text-slate-400 mt-0.5">Production MCP Tools</div>
         </div>
         <div class="p-3">
-          <div class="text-2xl sm:text-3xl font-bold font-mono text-emerald-400">100%</div>
-          <div class="text-xs text-slate-400 mt-0.5">Agent-Autonomous Wiring</div>
+          <div class="text-2xl sm:text-3xl font-bold font-mono text-emerald-400">22</div>
+          <div class="text-xs text-slate-400 mt-0.5">Ready-Made Agent Prompts</div>
         </div>
         <div class="p-3">
           <div class="text-2xl sm:text-3xl font-bold font-mono text-purple-400">0.0%</div>
           <div class="text-xs text-slate-400 mt-0.5">Platform Take-Rate (0% fee)</div>
         </div>
         <div class="p-3">
-          <div class="text-2xl sm:text-3xl font-bold font-mono text-cyan-300">&lt;45ms</div>
-          <div class="text-xs text-slate-400 mt-0.5">REST / Stream Latency</div>
+          <div class="text-2xl sm:text-3xl font-bold font-mono text-cyan-300">36</div>
+          <div class="text-xs text-slate-400 mt-0.5">Store Tables (Full Data Model)</div>
         </div>
         <div class="col-span-2 sm:col-span-1 p-3">
           <div class="text-2xl sm:text-3xl font-bold font-mono text-amber-400">v1.76.9</div>
-          <div class="text-xs text-slate-400 mt-0.5">Live Production Engine</div>
+          <div class="text-xs text-slate-400 mt-0.5">Current Plugin Version</div>
         </div>
       </div>
 
@@ -372,13 +369,13 @@
               <li class="flex items-start gap-3">
                 <i data-lucide="x" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
                 <div>
-                  <strong class="text-white">Terrifying Complexity:</strong> E-commerce backends require 15+ microservices—PCI tokenization, Stripe webhook HMAC roundtrips, cart CSRF, and concurrent stock locking.
+                  <strong class="text-white">Terrifying Complexity:</strong> E-commerce backends require payment tokenization, webhook HMAC roundtrips, cart CSRF, and concurrency-safe stock locking — each one a specialist project.
                 </div>
               </li>
               <li class="flex items-start gap-3">
                 <i data-lucide="x" class="w-5 h-5 text-red-400 shrink-0 mt-0.5"></i>
                 <div>
-                  <strong class="text-white">$30k & 4 Months:</strong> Non-technical founders hit a brick wall and must hire expensive specialized backend contractors or abandon their vision.
+                  <strong class="text-white">Months of Engineering & Real Cost:</strong> Non-technical founders hit a brick wall and must hire specialized backend contractors — or shelve the vision.
                 </div>
               </li>
               <li class="flex items-start gap-3">
@@ -391,8 +388,8 @@
           </div>
 
           <div class="mt-8 p-4 rounded-xl bg-red-950/20 border border-red-500/20 text-xs font-mono text-red-300 flex items-center justify-between">
-            <span>Result: 99% of AI stores die in prototype phase</span>
-            <span class="font-bold">FAILURE</span>
+            <span>Result: most AI-built stores never make it past the prototype</span>
+            <span class="font-bold">PROTOTYPE TRAP</span>
           </div>
         </div>
 
@@ -409,7 +406,7 @@
               </div>
               <div>
                 <h4 class="text-lg font-bold text-white">Autonomous Commerce Deployment</h4>
-                <p class="text-xs text-cyan-400">Production-Grade in 5 Minutes</p>
+                <p class="text-xs text-cyan-400">A real backend your agent can operate</p>
               </div>
             </div>
 
@@ -442,8 +439,8 @@
           </div>
 
           <div class="mt-8 p-4 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-xs font-mono text-cyan-300 flex items-center justify-between">
-            <span>Result: From prompt to live sales in 5 minutes</span>
-            <span class="font-bold text-emerald-400">100% PRODUCTION</span>
+            <span>Result: from prompt to a fully wired store backend</span>
+            <span class="font-bold text-emerald-400">WIRED &amp; READY</span>
           </div>
         </div>
 
@@ -462,13 +459,13 @@
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-mono text-cyan-400 mb-3">
             <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
-            <span>INTERACTIVE RUNTIME BENCHMARK</span>
+            <span>ILLUSTRATIVE WALKTHROUGH — REAL TOOL NAMES, SIMULATED RUNTIME</span>
           </div>
           <h3 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             See Autonomous MCP Execution Live
           </h3>
           <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-xl">
-            Watch an AI agent interact with CSM's 317+ tools in real time. Choose an e-commerce workflow or write a custom prompt to test autonomous execution.
+            A walkthrough of how an AI agent drives CSM's real tool catalog (the tool names shown are the actual registered tools; the runtime responses below are simulated for demo purposes).
           </p>
         </div>
 
@@ -497,7 +494,7 @@
               <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
               <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
               <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-              <span class="text-xs font-mono text-slate-400 ml-2">csm-mcp-agent@live-gateway:~$</span>
+              <span class="text-xs font-mono text-slate-400 ml-2">csm-agent@simulator:~$ (illustrative)</span>
             </div>
             <div class="flex items-center gap-3">
               <span class="text-[11px] font-mono text-cyan-400">Stream: Active</span>
@@ -549,7 +546,7 @@
               </div>
               <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center justify-between">
                 <span class="text-slate-400">Gateway:</span>
-                <span id="sim-preview-payment" class="text-emerald-400 font-semibold">Stripe Live Active (0% Take)</span>
+                <span id="sim-preview-payment" class="text-emerald-400 font-semibold">Stripe/PayPal Wired (0% Take)</span>
               </div>
               <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center justify-between">
                 <span class="text-slate-400">Security:</span>
@@ -557,7 +554,7 @@
               </div>
               <div class="p-3 rounded-lg bg-white/5 border border-white/5 flex items-center justify-between">
                 <span class="text-slate-400">API Endpoint:</span>
-                <span class="text-slate-300">https://api.csmengine.dev</span>
+                <span class="text-slate-300">POST /wp-json/csm/v1/mcp</span>
               </div>
             </div>
           </div>
@@ -591,9 +588,37 @@
         </p>
       </div>
 
-      <!-- Architecture Visual Diagram -->
-      <div class="mb-16 rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl">
-        <img src="assets/images/csm-mcp-architecture.jpg" alt="CSM MCP Architecture Diagram" class="w-full h-auto object-cover">
+      <!-- Architecture Visual Diagram (inline SVG: storefront -> agent -> CSM MCP -> WordPress backend) -->
+      <div class="mb-16 rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl bg-[#070A14]">
+        <svg viewBox="0 0 960 300" role="img" aria-label="Architecture diagram: AI agent connects through the CSM MCP endpoint to the WordPress commerce backend" class="w-full h-auto block">
+          <defs>
+            <linearGradient id="flowG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#8B5CF6"/>
+            </linearGradient>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#38BDF8"/>
+            </marker>
+          </defs>
+          <rect x="0" y="0" width="960" height="300" fill="#070A14"/>
+          <text x="480" y="38" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">HOW IT WIRES TOGETHER</text>
+          <rect x="40" y="80" width="180" height="90" rx="12" fill="rgba(6,182,212,0.08)" stroke="#06B6D4" stroke-opacity="0.5"/>
+          <text x="130" y="118" text-anchor="middle" fill="#67E8F9" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">Storefront</text>
+          <text x="130" y="140" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">Lovable / v0 / Bolt / Cursor</text>
+          <rect x="290" y="80" width="180" height="90" rx="12" fill="rgba(139,92,246,0.10)" stroke="#8B5CF6" stroke-opacity="0.6"/>
+          <text x="380" y="118" text-anchor="middle" fill="#C4B5FD" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">AI Agent</text>
+          <text x="380" y="140" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">317 tools, 22 prompts</text>
+          <rect x="540" y="80" width="180" height="90" rx="12" fill="rgba(6,182,212,0.12)" stroke="#06B6D4" stroke-opacity="0.7"/>
+          <text x="630" y="112" text-anchor="middle" fill="#67E8F9" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">CSM MCP</text>
+          <text x="630" y="132" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">POST /wp-json/csm/v1/mcp</text>
+          <text x="630" y="148" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">JSON-RPC 2.0, OAuth 2.1</text>
+          <rect x="790" y="80" width="140" height="90" rx="12" fill="rgba(16,185,129,0.10)" stroke="#10B981" stroke-opacity="0.6"/>
+          <text x="860" y="118" text-anchor="middle" fill="#6EE7B7" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">WordPress</text>
+          <text x="860" y="140" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">36 tables, commerce core</text>
+          <line x1="220" y1="125" x2="286" y2="125" stroke="url(#flowG)" stroke-width="2" marker-end="url(#arrow)"/>
+          <line x1="470" y1="125" x2="536" y2="125" stroke="url(#flowG)" stroke-width="2" marker-end="url(#arrow)"/>
+          <line x1="720" y1="125" x2="786" y2="125" stroke="url(#flowG)" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="480" y="215" text-anchor="middle" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="10">Customer traffic hits the storefront and the public API. The agent operates the store through MCP - it never touches the checkout path.</text>
+        </svg>
         <div class="absolute inset-0 bg-gradient-to-t from-[#060913] via-transparent to-transparent"></div>
         <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between flex-wrap gap-4">
           <div class="glass-card px-4 py-2 rounded-xl text-xs font-mono text-slate-200">
@@ -606,23 +631,23 @@
       </div>
 
       <!-- Pillar Selector Tabs -->
-      <div class="grid grid-cols-2 md:grid-cols-6 gap-2 mb-8">
-        <button data-pillar="1" class="arch-tab-btn tab-active px-3 py-3 rounded-xl border border-cyan-500 text-xs font-mono font-semibold text-white transition-all text-center">
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-2 mb-8" role="tablist" aria-label="CSM architecture pillars">
+        <button data-pillar="1" role="tab" aria-selected="true" aria-controls="pillar-1" class="arch-tab-btn tab-active px-3 py-3 rounded-xl border border-cyan-500 text-xs font-mono font-semibold text-white transition-all text-center">
           1. Core Commerce
         </button>
-        <button data-pillar="2" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+        <button data-pillar="2" role="tab" aria-selected="false" aria-controls="pillar-2" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
           2. Multi-Payment
         </button>
-        <button data-pillar="3" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+        <button data-pillar="3" role="tab" aria-selected="false" aria-controls="pillar-3" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
           3. RMA & Returns
         </button>
-        <button data-pillar="4" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+        <button data-pillar="4" role="tab" aria-selected="false" aria-controls="pillar-4" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
           4. Flash Drops
         </button>
-        <button data-pillar="5" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+        <button data-pillar="5" role="tab" aria-selected="false" aria-controls="pillar-5" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
           5. WhatsApp AI
         </button>
-        <button data-pillar="6" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+        <button data-pillar="6" role="tab" aria-selected="false" aria-controls="pillar-6" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
           6. Sovereign Ops
         </button>
       </div>
@@ -631,13 +656,13 @@
       <div class="glass-card rounded-2xl p-8 border border-white/10">
         
         <!-- Pillar 1: Core Commerce -->
-        <div id="pillar-1" class="arch-tab-panel">
+        <div id="pillar-1" class="arch-tab-panel" role="tabpanel" aria-labelledby="">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
               <i data-lucide="shopping-cart" class="w-6 h-6"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white">Transactional Commerce Core (68 Tools)</h4>
+              <h4 class="text-xl font-bold text-white">Catalog & Transactional Core (Products 8 · Orders 11 · Inventory 6)</h4>
               <p class="text-sm text-slate-400">Inventory locking, dynamic variant matrices, cart CSRF tokenization, and multi-currency exchange.</p>
             </div>
           </div>
@@ -668,7 +693,7 @@
               <i data-lucide="credit-card" class="w-6 h-6"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white">Multi-Gateway Payment Engine (42 Tools)</h4>
+              <h4 class="text-xl font-bold text-white">Payment &amp; Checkout Engine (Payments 3 · Security 2 · Cart CSRF)</h4>
               <p class="text-sm text-slate-400">Dual credential Live/Sandbox storage, zero-leak secret masking, and automated HMAC roundtrip verification.</p>
             </div>
           </div>
@@ -699,7 +724,7 @@
               <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white">Autonomous Post-Purchase & RMA Suite (34 Tools)</h4>
+              <h4 class="text-xl font-bold text-white">Post-Purchase & RMA Suite (Returns 22 · Care 13)</h4>
               <p class="text-sm text-slate-400">Self-service returns, automated inspection logs, restocking formulas, and gateway refund dispatch.</p>
             </div>
           </div>
@@ -730,7 +755,7 @@
               <i data-lucide="flame" class="w-6 h-6"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white">Growth & Flash Sale Drop Engine (28 Tools)</h4>
+              <h4 class="text-xl font-bold text-white">Growth, Flash Drops & Marketing (Flash 8 · Coupons 5 · SEO 5)</h4>
               <p class="text-sm text-slate-400">Cycle timers, countdown status bars, coupons, personalized customer care cards, and subscriber alerts.</p>
             </div>
           </div>
@@ -757,7 +782,7 @@
               <i data-lucide="message-square" class="w-6 h-6"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white">WhatsApp Agent Platform & AI Chat (45 Tools)</h4>
+              <h4 class="text-xl font-bold text-white">Conversational AI & Chat Assistant (Chat 23 · WhatsApp 4)</h4>
               <p class="text-sm text-slate-400">Multi-instance WhatsApp bridge, 1000-question adversarial golden-set QA test harness, and gap detection.</p>
             </div>
           </div>
@@ -784,7 +809,7 @@
               <i data-lucide="server" class="w-6 h-6"></i>
             </div>
             <div>
-              <h4 class="text-xl font-bold text-white">Enterprise Sovereign Operations (100 Tools)</h4>
+              <h4 class="text-xl font-bold text-white">Sovereign Ops &amp; Shipping (Frontend 19 · Audit 4 · Roles 8)</h4>
               <p class="text-sm text-slate-400">Granular role capability cloning, session revocation, audit logs, auto cache purging, and Cloudflare routes.</p>
             </div>
           </div>
@@ -944,7 +969,7 @@
               <tr>
                 <td class="p-4 text-white font-semibold">10. Headless Integration Code Lines</td>
                 <td class="p-4 text-emerald-400 font-bold bg-cyan-950/20">0 Lines (AI Agent wires via MCP)</td>
-                <td class="p-4 text-slate-400">5,000+ Lines Liquid &amp; App Bridges</td>
+                <td class="p-4 text-slate-400">Liquid themes + app bridges</td>
                 <td class="p-4 text-slate-400">10,000+ Lines NestJS &amp; DB Plumbing</td>
                 <td class="p-4 text-red-400">100% Custom Backend Needed</td>
               </tr>
@@ -959,7 +984,7 @@
           <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-semibold text-[10px] font-mono mb-2">
             CONFIDENTIAL INVESTOR DATA ROOM
           </div>
-          <h4 class="text-xl font-bold text-white">Seed Round Now Open ($1.5M Allocation)</h4>
+          <h4 class="text-xl font-bold text-white">Seed Round Now Open</h4>
           <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl font-light">
             We are actively raising our Seed Round to accelerate cloud-hosted MCP runtimes, Lovable / v0 official integrations, and sovereign enterprise nodes.
           </p>
@@ -974,15 +999,15 @@
   </section>
 
   <!-- ====================================================================
-       SECTION 6: INTERACTIVE ROI / TIME-TO-MARKET CALCULATOR
+       SECTION 6: EDITABLE BUILD-VS-BUY ASSUMPTIONS WORKSHEET
   ==================================================================== -->
   <section id="calculator" class="py-20 lg:py-32 relative border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-xs font-mono uppercase tracking-widest text-cyan-400 font-semibold mb-3">Unit Economics & Savings</h2>
+        <h2 class="text-xs font-mono uppercase tracking-widest text-cyan-400 font-semibold mb-3">Editable Assumptions Worksheet</h2>
         <h3 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-          Quantify Your Engineering Savings
+          Model Your Own Build-vs-Buy Numbers
         </h3>
         <p class="text-base sm:text-lg text-slate-300 font-light">
           Calculate the time and capital saved by replacing traditional custom backend development with the autonomous CSM MCP engine.
@@ -1084,7 +1109,7 @@
           Reserve Your Early Access Seat
         </h3>
         <p class="text-base sm:text-lg text-slate-300 font-light">
-          Join <strong id="dynamic-waitlist-count" class="text-cyan-400 font-mono">1,420</strong> founders, angel investors, venture funds, and autonomous commerce builders on the priority waitlist.
+          Join founders, agencies and merchants on the early access list —gel investors, venture funds, and autonomous commerce builders on the priority waitlist.
         </p>
       </div>
 
@@ -1241,7 +1266,7 @@
             CSM follows a proven open-core + managed cloud model:
             <ul class="list-disc pl-5 mt-2 space-y-1">
               <li><strong>Open Core:</strong> Free self-hosted WordPress plugin for individual developers and small merchants to drive viral bottom-up adoption.</li>
-              <li><strong>CSM Cloud Gateway ($49 – $299/mo):</strong> Managed zero-setup MCP streaming proxy, multi-store orchestration, and automatic latency routing.</li>
+              <li><strong>CSM Cloud Gateway (managed subscription tiers):</strong> Managed zero-setup MCP streaming proxy, multi-store orchestration, and automatic latency routing.</li>
               <li><strong>Enterprise Sovereign Fleet ($999+/mo):</strong> Dedicated high-concurrency instances with automated disaster recovery, SLA, and custom ERP connectors.</li>
             </ul>
           </div>
@@ -1254,7 +1279,7 @@
             <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 transition-transform"></i>
           </button>
           <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed font-light border-t border-white/5 pt-3">
-            Yes. The engine is live in production driving real e-commerce storefronts, processing live orders, verifying Stripe webhooks, handling multi-variant matrices, and serving high-frequency traffic across Cloudflare Edge networks with sub-50ms latency. Reference stores and a live demo endpoint are available to qualified investors under NDA.
+            The engine is a shipping WordPress plugin (v1.76.9) covering products, orders, returns, payments and support through 317 registered MCP tools, proven on a named headless storefront client. Reference stores and a live demo endpoint are available to qualified investors under NDA.
           </div>
         </div>
 
@@ -1284,7 +1309,7 @@
           </p>
           <div class="flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span class="font-mono text-[11px] text-slate-300">All 317 Tools Operational • 99.98% Uptime</span>
+            <span class="font-mono text-[11px] text-slate-300">317 Tools • 22 Prompts • 5 Resources</span>
           </div>
         </div>
 
@@ -1307,7 +1332,7 @@
             <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
             <li><a href="security.html" class="hover:text-white transition-colors">Security Whitepaper</a></li>
             <li><a href="#faq" class="hover:text-white transition-colors">System Status</a></li>
-            <li><a href="https://api.csmengine.dev" target="_blank" rel="noopener" class="hover:text-white transition-colors">Live API Endpoint</a></li>
+            <li><span class="text-slate-500">MCP Endpoint: POST /wp-json/csm/v1/mcp</span></li>
           </ul>
         </div>
 
@@ -1329,7 +1354,7 @@
             <li><a href="#" class="open-deck-btn hover:text-white transition-colors">Confidential Pitch Deck</a></li>
             <li><a href="https://github.com/KhizarJamshaidIqbal/csm-site" target="_blank" rel="noopener" class="hover:text-white transition-colors">GitHub Repository</a></li>
             <li><a href="#" class="open-waitlist-btn hover:text-white transition-colors">Alpha MCP Token</a></li>
-            <li><a href="mailto:investors@csmengine.io" class="hover:text-white transition-colors">Founder Briefing</a></li>
+            <li><a href="mailto:info@epsoldev.com" class="hover:text-white transition-colors">Founder Briefing</a></li>
           </ul>
         </div>
 
@@ -1419,7 +1444,7 @@
           </select>
         </div>
 
-        <div class="form-error hidden p-3 rounded-lg bg-red-950/40 border border-red-500/30 text-red-300 text-xs leading-relaxed"></div>
+        <div aria-live="polite" class="form-error hidden p-3 rounded-lg bg-red-950/40 border border-red-500/30 text-red-300 text-xs leading-relaxed"></div>
 
         <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:opacity-95 text-white font-bold text-xs shadow-lg transition-all mt-4">
           Reserve Priority Spot
@@ -1431,14 +1456,14 @@
         <div class="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto mb-2">
           <i data-lucide="check" class="w-8 h-8"></i>
         </div>
-        <h4 class="text-xl font-bold text-white">You're On The VIP Waitlist!</h4>
+        <h4 class="text-xl font-bold text-white">Request Received!</h4>
         <p class="text-xs text-slate-300">
           Your priority ticket has been reserved. Our team will reach out at the email you provided with confirmation and the developer onboarding packet.
         </p>
 
         <div class="p-4 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-center font-mono my-4">
-          <span class="text-xs text-slate-400 block mb-1">YOUR VIP PRIORITY TICKET</span>
-          <span id="waitlist-ticket-number" class="text-2xl font-extrabold text-cyan-300">#1,421 VIP</span>
+          <span class="text-xs text-slate-400 block mb-1">YOUR SPOT IS RESERVED</span>
+          <span id="waitlist-ticket-number" class="text-2xl font-extrabold text-cyan-300">✓ Confirmed</span>
         </div>
 
         <button id="waitlist-success-close" class="w-full py-2.5 rounded-lg bg-white/10 text-white font-semibold text-xs hover:bg-white/20 transition-all">
@@ -1479,7 +1504,7 @@
           <input id="deck-email" type="email" required placeholder="partner@fund.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-purple-400 font-mono">
         </div>
 
-        <div class="form-error hidden p-3 rounded-lg bg-red-950/40 border border-red-500/30 text-red-300 text-xs leading-relaxed"></div>
+        <div aria-live="polite" class="form-error hidden p-3 rounded-lg bg-red-950/40 border border-red-500/30 text-red-300 text-xs leading-relaxed"></div>
 
         <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-95 text-white font-bold text-xs shadow-lg transition-all mt-4">
           Access Pitch Deck

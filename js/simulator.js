@@ -69,7 +69,7 @@ const simulatorPresets = {
       },
       {
         phase: "COMPLETE",
-        text: "✓ Store fully wired & live! 12 products, 48 variants, Stripe live checkout, and 48h countdown active in 4.2 seconds.",
+        text: "✓ Store backend wired: 12 products, 48 variants, payment gateway configured, and a 48h flash-drop cycle set. (Simulated runtime — tool names above are the real registered tools.)",
         status: "DEPLOYED",
         delay: 400
       }
@@ -78,7 +78,7 @@ const simulatorPresets = {
       headline: "CyberDrip Studio — Midnight Drop",
       badge: "LIVE DROP • 48H FLASH SALE",
       productCount: "12 Products (48 Variants)",
-      paymentStatus: "Stripe Live Active (0% Take Rate)",
+      paymentStatus: "Stripe/PayPal Wired (0% Take Rate)",
       security: "Cart-CSRF Enforced"
     }
   },
@@ -158,7 +158,7 @@ const simulatorPresets = {
         phase: "MCP_CALL",
         tool: "chat_goldenset_run",
         payload: { suite: "ecom_adversarial_v2", test_cases: 50, hallucination_threshold: 0.01 },
-        response: { tests_passed: 50, failed: 0, accuracy: "100.0%", avg_latency: "42ms" },
+        response: { tests_passed: 50, failed: 0, note: "golden-set run complete" },
         delay: 950
       },
       {

@@ -28,10 +28,23 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function json($data) {
+function json($data, int $status = 200) {
+    http_response_code($status);
     echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
 }
+
+// Simple per-IP sliding-window rate limit: 10 requests / 60 seconds
+$rlFile = sys_get_temp_dir() . '/csm_rl_' . md5($_SERVER['REMOTE_ADDR'] ?? 'unknown') . '.json';
+$now = time();
+$hits = is_readable($rlFile) ? json_decode((string)file_get_contents($rlFile), true) : [];
+if (!is_array($hits)) { $hits = []; }
+$hits = array_values(array_filter($hits, fn($t) => ($now - (int)$t) < 60));
+if (count($hits) >= 10) {
+    json(['ok' => false, 'code' => 'rate_limited', 'message' => 'Too many requests. Please wait a minute and try again.'], 429);
+}
+$hits[] = $now;
+@file_put_contents($rlFile, json_encode($hits), LOCK_EX);
 
 // Fail gracefully (not a PHP fatal) when server creds are not yet configured
 if (!$mailConfigured) {
@@ -48,7 +61,7 @@ function spamCheck($botcheck) {
 
 // Only POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    json(['ok' => false, 'message' => 'Method not allowed']);
+    json(['ok' => false, 'message' => 'Method not allowed'], 405);
 }
 
 $raw = file_get_contents('php://input');
@@ -56,14 +69,13 @@ $body = json_decode($raw, true) ?: $_POST;
 
 // Spam honeypot
 if (isset($body['botcheck']) && !empty($body['botcheck'])) {
-    json(['ok' => false, 'message' => 'Spam detected']);
+    json(['ok' => false, 'message' => 'Spam detected'], 400);
 }
 
 // Normalize payload
 $payload = [];
 $allowed = [
-    'name','email','company','role','builder_tool','fund','ticketNumber','timestamp',
-    'access_key','subject','from_name','type'
+    'name','email','company','role','builder_tool','fund','timestamp','type'
 ];
 foreach ($body as $k => $v) {
     $key = (string)$k;
@@ -75,11 +87,11 @@ foreach ($body as $k => $v) {
 // Validate required pieces
 $type = $payload['type'] ?? '';
 if (!in_array($type, ['waitlist', 'deck'], true)) {
-    json(['ok' => false, 'message' => 'Invalid form type.']);
+    json(['ok' => false, 'message' => 'Invalid form type.'], 400);
 }
 
 if (empty($payload['email']) || !filter_var($payload['email'], FILTER_VALIDATE_EMAIL)) {
-    json(['ok' => false, 'message' => 'Please enter a valid email address.']);
+    json(['ok' => false, 'message' => 'Please enter a valid email address.'], 400);
 }
 
 // Subject + from_name based on type
@@ -94,8 +106,9 @@ switch ($type) {
         $defaultFromName = 'CSM Engine Investor Portal';
 }
 
-$subject = $payload['subject'] ?: $defaultSubject;
-$fromName = $payload['from_name'] ?: $defaultFromName;
+// Subject is server-controlled; client cannot override it.
+$subject = $defaultSubject;
+$fromName = $defaultFromName;
 
 // Build body
 $rows = [];
@@ -151,11 +164,15 @@ try {
         // still ok — email went through
     }
 
+    // Durable local backup on success AND failure so no lead is ever lost
+    @file_put_contents($logFile, $logEntry, FILE_APPEND | LOCK_EX);
+
     json(['ok' => true, 'message' => 'Submission received.']);
 } catch (Exception $e) {
+    @file_put_contents($logFile, $logEntry, FILE_APPEND | LOCK_EX);
     json([
         'ok' => false,
         'message' => 'Could not send your message. Please try again, or email us directly.',
         'debug' => $gDebug > 0 ? $mail->ErrorInfo : null
-    ]);
+    ], 502);
 }

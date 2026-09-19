@@ -24,7 +24,7 @@ Operating guidelines, deployment contracts, and architecture rules for agents wo
 2. **Instant Sync:**  
    Whenever an agent commits and executes `git push origin main`, Hostinger triggers the auto-deployment webhook instantly.
 3. **Zero Build Step:**  
-   The site uses modern vanilla web standards (HTML5, Tailwind CSS CDN, JetBrains Mono/Plus Jakarta Sans, ES2023). There is no heavy node compilation step required for deployment. Pushing to `main` updates the live site in seconds.
+   The site uses modern vanilla web standards (HTML5, compiled Tailwind CSS, JetBrains Mono/Plus Jakarta Sans, ES2023). Tailwind is pre-compiled into `css/tailwind.css` — no server-side build runs on deploy; just commit the compiled file. Pushing to `main` updates the live site in seconds.
 
 ---
 

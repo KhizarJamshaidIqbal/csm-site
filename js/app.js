@@ -234,17 +234,13 @@ function initModals() {
       const role = document.querySelector('input[name="user_role"]:checked')?.value || "builder";
       const builderTool = document.getElementById("wl-builder")?.value || "lovable";
 
-      // Generate VIP ticket number (vanity number, also used locally)
       const existingWaitlist = safeReadArray("csm_waitlist");
-      const ticketNumber = 1420 + existingWaitlist.length + 1;
-
       const record = {
         name,
         email,
         company,
         role,
         builderTool,
-        ticketNumber,
         timestamp: new Date().toISOString()
       };
 
@@ -259,10 +255,8 @@ function initModals() {
       const submitBtn = waitlistForm.querySelector('button[type="submit"]');
       const result = await submitLead({
         type: "waitlist",
-        ticketNumber: ticketNumber,
         timestamp: new Date().toISOString(),
         subject: "New CSM Engine Waitlist Signup",
-        from_name: "CSM Engine Waitlist",
         name: name,
         email: email,
         company: company,
@@ -278,10 +272,6 @@ function initModals() {
           showFormError(waitlistForm, result.message || "Something went wrong sending your request. Please try again, or email founders@csmengine.dev directly.");
         }
         return;
-      }
-
-      if (waitlistTicketNum) {
-        waitlistTicketNum.textContent = `#${ticketNumber.toLocaleString()}`;
       }
 
       waitlistForm.classList.add("hidden");
@@ -381,9 +371,7 @@ function initWaitlistCounter() {
   const counterEl = document.getElementById("dynamic-waitlist-count");
   if (!counterEl) return;
 
-  const stored = safeReadArray("csm_waitlist");
-  const count = 1420 + stored.length;
-  counterEl.textContent = count.toLocaleString();
+  /* fabricated count removed */
 }
 
 /* -------------------------------------------------------------
