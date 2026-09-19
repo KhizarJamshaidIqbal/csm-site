@@ -1,0 +1,90 @@
+  <!-- MODALS -->
+  <div id="waitlist-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="waitlist-title">
+    <div class="glass-card rounded-2xl border border-white/15 max-w-md w-full p-6 sm:p-8 relative shadow-2xl bg-[#090D18]">
+      <button id="close-waitlist-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1" aria-label="Close Modal">✕</button>
+      <form id="waitlist-form" class="space-y-4">
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off">
+        <div class="text-center mb-6">
+          <h4 id="waitlist-title" class="text-xl font-bold text-white">Join Early Access Waitlist</h4>
+          <p class="text-xs text-slate-400 mt-1">Get priority alpha MCP API access &amp; founder updates</p>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-300 block mb-2">I am applying as a:</label>
+          <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+            <label class="p-2 rounded-lg border border-white/10 bg-white/5 cursor-pointer has-[:checked]:border-cyan-400 has-[:checked]:bg-cyan-950/40">
+              <input type="radio" name="user_role" value="investor" class="sr-only"><span class="block font-semibold">VC / Angel</span>
+            </label>
+            <label class="p-2 rounded-lg border border-white/10 bg-white/5 cursor-pointer has-[:checked]:border-cyan-400 has-[:checked]:bg-cyan-950/40">
+              <input type="radio" name="user_role" value="builder" checked class="sr-only"><span class="block font-semibold">AI Builder</span>
+            </label>
+            <label class="p-2 rounded-lg border border-white/10 bg-white/5 cursor-pointer has-[:checked]:border-cyan-400 has-[:checked]:bg-cyan-950/40">
+              <input type="radio" name="user_role" value="merchant" class="sr-only"><span class="block font-semibold">Brand Owner</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <label for="wl-name" class="text-xs font-semibold text-slate-300 block mb-1">Full Name</label>
+          <input id="wl-name" type="text" required placeholder="Satya Nadella" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-400 font-mono">
+        </div>
+        <div>
+          <label for="wl-email" class="text-xs font-semibold text-slate-300 block mb-1">Work Email</label>
+          <input id="wl-email" type="email" required placeholder="satya@venture.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-400 font-mono">
+        </div>
+        <div>
+          <label for="wl-company" class="text-xs font-semibold text-slate-300 block mb-1">Company / Venture Fund</label>
+          <input id="wl-company" type="text" placeholder="Sequoia / Independent / Studio" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-cyan-400 font-mono">
+        </div>
+        <div>
+          <label for="wl-builder" class="text-xs font-semibold text-slate-300 block mb-1">Primary Frontend Builder</label>
+          <select id="wl-builder" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white text-xs focus:outline-none focus:border-cyan-400 font-mono">
+            <option value="lovable">Lovable.dev</option>
+            <option value="v0">v0 by Vercel</option>
+            <option value="bolt">Bolt.new</option>
+            <option value="cursor">Cursor / Claude Code</option>
+            <option value="nextjs">Custom Next.js / React</option>
+            <option value="investor">N/A (Evaluating as Investor)</option>
+          </select>
+        </div>
+        <div class="form-error hidden p-3 rounded-lg bg-red-950/40 border border-red-500/30 text-red-300 text-xs leading-relaxed" aria-live="polite"></div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:opacity-95 text-white font-bold text-xs shadow-lg transition-all mt-4">
+          Reserve Priority Spot
+        </button>
+      </form>
+      <div id="waitlist-success" class="hidden text-center py-6 space-y-4">
+        <div class="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto mb-2 text-2xl font-bold">✓</div>
+        <h4 class="text-xl font-bold text-white">You're On The VIP Waitlist!</h4>
+        <p class="text-xs text-slate-300">Your priority application has been received. Our team will reach out with developer onboarding materials.</p>
+        <button id="waitlist-success-close" class="w-full py-2.5 rounded-lg bg-white/10 text-white font-semibold text-xs hover:bg-white/20 transition-all">Close Window</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="deck-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="deck-title">
+    <div class="glass-card rounded-2xl border border-white/15 max-w-md w-full p-6 sm:p-8 relative shadow-2xl bg-[#090D18]">
+      <button id="close-deck-btn" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1" aria-label="Close Modal">✕</button>
+      <form id="deck-form" class="space-y-4">
+        <div class="text-center mb-6">
+          <h4 id="deck-title" class="text-xl font-bold text-white">Request Confidential Pitch Deck</h4>
+          <p class="text-xs text-slate-400 mt-1">Seed Round Thesis • Financial Plan • 317 MCP Tools Architecture</p>
+        </div>
+        <div>
+          <label for="deck-fund" class="text-xs font-semibold text-slate-300 block mb-1">Fund or Angel Name</label>
+          <input id="deck-fund" type="text" required placeholder="Founders Fund / Khosla / Angel" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-purple-400 font-mono">
+        </div>
+        <div>
+          <label for="deck-email" class="text-xs font-semibold text-slate-300 block mb-1">Investor Email Address</label>
+          <input id="deck-email" type="email" required placeholder="partner@fund.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-900 border border-white/10 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-purple-400 font-mono">
+        </div>
+        <div class="form-error hidden p-3 rounded-lg bg-red-950/40 border border-red-500/30 text-red-300 text-xs leading-relaxed" aria-live="polite"></div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:opacity-95 text-white font-bold text-xs shadow-lg transition-all mt-4">
+          Access Pitch Deck
+        </button>
+      </form>
+      <div id="deck-success" class="hidden text-center py-6 space-y-4">
+        <div class="w-14 h-14 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto mb-2 text-2xl font-bold">✓</div>
+        <h4 class="text-xl font-bold text-white">Investor Request Received</h4>
+        <p class="text-xs text-slate-300">Request received. The founding team will send the confidential pitch summary and data room access link.</p>
+        <button id="deck-success-close" class="w-full py-2.5 rounded-lg bg-white/10 text-white font-semibold text-xs hover:bg-white/20 transition-all">Return to Site</button>
+      </div>
+    </div>
+  </div>
