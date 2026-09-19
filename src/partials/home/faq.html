@@ -1,0 +1,87 @@
+  <!-- ====================================================================
+       SECTION 8: TECHNICAL & INVESTOR FAQ
+  ==================================================================== -->
+  <section id="faq" class="py-20 lg:py-32 relative border-t border-white/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-16">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-cyan-400 font-semibold mb-3">Frequently Asked Questions</h2>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4">
+          Everything You Need to Know
+        </h3>
+        <p class="text-slate-400 text-sm sm:text-base font-light">
+          Detailed technical and business answers for founders, investors, and engineers.
+        </p>
+      </div>
+
+      
+<div class="space-y-4">
+        
+        <!-- FAQ 1 -->
+        <div class="faq-item glass-card rounded-xl border border-white/10 overflow-hidden">
+          <button class="faq-question w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-white text-sm sm:text-base hover:text-cyan-400 transition-colors" aria-expanded="false">
+            <span>How does CSM connect with frontend builders like Lovable and v0?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed font-light border-t border-white/5 pt-3">
+            CSM exposes a native streaming Model Context Protocol (MCP) HTTP server (`/wp-json/csm/v1/mcp`). When building on Lovable, Cursor, Bolt, or v0, the developer or merchant supplies the MCP endpoint and Bearer token. The AI agent inspects CSM’s tool catalog and autonomously wires every button, cart hook, product grid, and checkout form to production backend endpoints with zero manual coding.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item glass-card rounded-xl border border-white/10 overflow-hidden">
+          <button class="faq-question w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-white text-sm sm:text-base hover:text-cyan-400 transition-colors" aria-expanded="false">
+            <span>How do you guarantee security for payments and cart data?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed font-light border-t border-white/5 pt-3">
+            CSM never stores raw credit card credentials in plain text. It leverages strict client-side tokenization via Stripe Elements / PayPal SDK, combined with strict server-side HMAC webhook signature validation (`CSM_Stripe::check_webhook()`). Furthermore, checkout enforces per-cart cryptographic CSRF tokens (`X-CSM-Cart-CSRF`) to prevent session forgery and request hijacking.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        
+<div class="faq-item glass-card rounded-xl border border-white/10 overflow-hidden">
+          <button class="faq-question w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-white text-sm sm:text-base hover:text-cyan-400 transition-colors" aria-expanded="false">
+            <span>Why choose CSM over building directly on Shopify?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed font-light border-t border-white/5 pt-3">
+            Shopify is a closed SaaS walled-garden that charges monthly subscription fees, takes up to 2.0% transaction surcharges on non-Shopify-Payments, and restricts database access. CSM is 100% agent-native from day one, offers complete sovereign database ownership, charges 0% transaction fees, and provides 317+ specialized MCP tools allowing AI agents to fully manage your inventory, returns, flash sales, and customer service.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        
+<div class="faq-item glass-card rounded-xl border border-white/10 overflow-hidden">
+          <button class="faq-question w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-white text-sm sm:text-base hover:text-cyan-400 transition-colors" aria-expanded="false">
+            <span>What is the current business model and monetization strategy?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed font-light border-t border-white/5 pt-3">
+            CSM follows a proven open-core + managed cloud model:
+            <ul class="list-disc pl-5 mt-2 space-y-1">
+              <li><strong>Open Core:</strong> Free self-hosted WordPress plugin for individual developers and small merchants to drive viral bottom-up adoption.</li>
+              <li><strong>CSM Cloud Gateway (managed subscription tiers):</strong> Managed zero-setup MCP streaming proxy, multi-store orchestration, and automatic latency routing.</li>
+              <li><strong>Enterprise Sovereign Fleet:</strong> Dedicated high-concurrency instances with automated disaster recovery, SLA, and custom ERP connectors.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        
+<div class="faq-item glass-card rounded-xl border border-white/10 overflow-hidden">
+          <button class="faq-question w-full p-5 text-left flex items-center justify-between gap-4 font-semibold text-white text-sm sm:text-base hover:text-cyan-400 transition-colors" aria-expanded="false">
+            <span>Is CSM already deployed in production?</span>
+            <i data-lucide="chevron-down" class="faq-icon w-4 h-4 text-slate-400 transition-transform"></i>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5 text-xs sm:text-sm text-slate-300 leading-relaxed font-light border-t border-white/5 pt-3">
+            The engine is a shipping WordPress plugin (v1.76.9) covering products, orders, returns, payments and support through 317 registered MCP tools, proven on a named headless storefront client. Reference stores and a live demo endpoint are available to qualified investors under NDA.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
