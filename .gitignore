@@ -11,6 +11,7 @@ desktop.ini
 *.tmp
 .env
 .env.local
+php/submissions.log
 
 # Build tooling (downloaded locally, not committed)
 tailwindcss.exe

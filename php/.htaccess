@@ -1,15 +1,4 @@
-# Hostinger/Apache: block direct access to submission logs
-<FilesMatch "submissions\.log$">
+# Never serve lead logs or credentials over HTTP.
+<FilesMatch "^(submissions\.log|config\.creds\.php)$">
   Require all denied
-</FilesMatch>
-
-# Block direct access to credential files (defense in depth; file is gitignored anyway)
-<FilesMatch "config\.creds\.php$">
-  <IfModule mod_authz_core.c>
-    Require all denied
-  </IfModule>
-  <IfModule !mod_authz_core.c>
-    Order allow,deny
-    Deny from all
-  </IfModule>
 </FilesMatch>

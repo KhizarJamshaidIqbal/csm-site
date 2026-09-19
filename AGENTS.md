@@ -1,87 +1,81 @@
 # AGENTS.md — CSM Engine Startup & Investor Platform
 
-Operating guidelines, deployment contracts, and architecture rules for agents working on the **CSM Engine (Commerce State Machine)** startup platform.
+Operating guidelines, deployment contracts, and architecture rules for agents working on the **CSM Engine (Commerce State Machine)** website.
 
 ---
 
-## 🚀 Live Production & Infrastructure
+## Live production & infrastructure
 
 * **Live URL:** `https://csmengine.epsoldev.com`
 * **GitHub Repository:** `https://github.com/KhizarJamshaidIqbal/csm-site`
 * **Tracking Branch:** `main`
 * **Hosting Platform:** Hostinger Git Integration (`u606995444` / `csmengine.epsoldev.com`)
-* **Deployment Path:** `public_html/` (Root serving `index.html`)
+* **Deployment Path:** `public_html/` (root serves `index.html`)
 * **Edge CDN & DNS:** Cloudflare Edge + Hostinger CDN
 
 ---
 
-## ⚡ Mandatory Auto-Deployment Rule
+## Auto-deployment rule
 
-> **"git push karein ge, site automatically bina kisi click ke 1 second mein live update ho jaya karegi!"**
-
-1. **Direct GitHub Webhook Connection:**  
-   Hostinger is natively connected to GitHub repository `KhizarJamshaidIqbal/csm-site`.
-2. **Instant Sync:**  
-   Whenever an agent commits and executes `git push origin main`, Hostinger triggers the auto-deployment webhook instantly.
-3. **Zero Build Step:**  
-   The site uses modern vanilla web standards (HTML5, compiled Tailwind CSS, JetBrains Mono/Plus Jakarta Sans, ES2023). Tailwind is pre-compiled into `css/tailwind.css` — no server-side build runs on deploy; just commit the compiled file. Pushing to `main` updates the live site in seconds.
+1. Hostinger is connected to this repository by webhook. Every push to `main` deploys immediately.
+2. **Never push work in progress to `main`.** Work on a branch, open a PR, verify, then merge.
+3. **Zero server-side build.** The deployed files are committed: root `*.html` and `js/app.js` are generated from `src/` by `build.js`; `css/tailwind.css` is compiled by the Tailwind CLI. Run the build locally and commit the output.
 
 ---
 
-## 🔄 Post-Deployment Cache Invalidation Protocol
+## Source-of-truth rule (read before editing)
 
-When changes are pushed to `main`, execute the following cache purge sequence via **CSM MCP tools** to ensure visitors see the fresh build immediately:
+| You want to change | Edit | Then run |
+|---|---|---|
+| Any page markup or copy | `src/pages/*.html` or `src/partials/**` | `npm run build` |
+| Header / footer / modals shared by pages | `src/partials/{header,footer,modals}.html` | `npm run build` |
+| Homepage sections | `src/partials/home/*.html` | `npm run build` |
+| `js/app.js` behaviour | `src/js/app/*.js` (order in `manifest.json`) | `npm run build` |
+| Tailwind utilities | any `*.html` / `js/**` class usage | Tailwind CLI (see README) |
+| Mail gateway | `php/mailgate.php`, `php/config.php` | none |
+
+Do **not** hand-edit `index.html`, `about.html`, `product.html`, `investors.html`, `security.html`, `privacy.html`, `terms.html`, `js/app.js` or `css/tailwind.css`. `npm run check` fails when generated files drift from their sources.
+
+**Hard limit:** no hand-written source file over 500 lines (`npm run check` enforces it). Split at section boundaries into partials or modules.
+
+---
+
+## Pre-merge checklist
 
 ```bash
-# 1. Hostinger Cache Purge (via CSM MCP)
-hostinger_cache_purge { domain: "epsoldev.com" }
+npm run validate      # build check + size lint + link integrity + JSON-LD
+php -l php/mailgate.php
+```
 
-# 2. Cloudflare Edge + WP Cache Purge (via CSM MCP)
+Then verify in a browser at 375 / 768 / 1440 px: header, mobile drawer, both modals (open, Escape, focus trap, submit success + error), FAQ accordion, architecture tabs, simulator, calculator.
+
+---
+
+## Post-deployment cache invalidation
+
+After a merge to `main`, purge caches via CSM MCP tools:
+
+```bash
+hostinger_cache_purge { domain: "epsoldev.com" }
 tools_purge_cache {}
 ```
 
 ---
 
-## 🧪 Live Verification Contract (ScreenSync Operator)
+## Live verification contract (ScreenSync)
 
 Never assume a change works without visual and DOM confirmation on the live site:
 
-1. Use `screensync-operator` (`web_navigate`) to visit `https://csmengine.epsoldev.com/`.
-2. Ensure active window focus (`web_window { action: "focus" }`) before capturing screenshots.
-3. Verify interactive components:
-   * **Waitlist Modal:** Role switching, form input, and dynamic VIP ticket generation (`#1,421 VIP`).
-   * **MCP Terminal Simulator:** Streaming log execution and real-time Storefront State preview.
-   * **ROI Calculator:** Interactive sliders and mathematical value outputs.
-4. Record verified patterns via `screensync-learn` (`web_learn`).
+1. `web_navigate` to `https://csmengine.epsoldev.com/`, focus the window, capture desktop + mobile screenshots.
+2. Verify: waitlist and deck modals (role switching, submit, success view), MCP terminal simulator (scripted stream + preview), ROI calculator sliders, mobile drawer, FAQ, tabs.
+3. Check the browser console for errors and the network panel for 404s.
 
 ---
 
-## 📁 Repository Structure & File Conventions
+## Coding standards
 
-```
-d:\Local SEO\Site\Khizar\CSM-site\
-├── AGENTS.md                   # This operations contract & agent rules
-├── README.md                   # Project summary, thesis & local preview instructions
-├── index.html                  # Main investor landing page & early-access portal
-├── css/
-│   └── styles.css              # Custom styling, animations, glow effects, terminal theme
-├── js/
-│   ├── app.js                  # Modals, mobile menu, accordion, waitlist persistence
-│   ├── simulator.js            # Live MCP terminal simulator engine
-│   └── calculator.js           # Interactive ROI savings calculator
-└── assets/
-    ├── icons/
-    │   └── csm-logo.svg        # Scalable vector brand logo
-    └── images/
-        ├── hero-agent-mesh.jpg # 3D hero render (Frontend Builder -> CSM Core -> Backend)
-        └── csm-mcp-architecture.jpg # 3D schematic of MCP Agent Hub & Database
-```
-
----
-
-## 🛡️ Coding Standards (Ponytail Protocol)
-
-* **Boring over clever:** Shortest working diff wins.
-* **Semantic HTML:** Keep DOM clean and accessible with proper ARIA attributes.
-* **No broken assets:** Verify every relative path (`assets/images/`, `assets/icons/`, `css/`, `js/`) before pushing.
-* **Defensive DOM queries:** Always use optional chaining or presence guards (`document.getElementById(...)`) to prevent unhandled runtime exceptions.
+* **Boring over clever:** shortest working diff wins.
+* **Semantic HTML** with correct ARIA; keep the design system (dark theme, cyan/violet accents, Plus Jakarta Sans + JetBrains Mono) untouched unless the task is a design change.
+* **No broken assets:** verify every relative path before pushing. The only images in the repo are `assets/icons/csm-logo.svg` and `assets/images/hero-agent-mesh.jpg`.
+* **Defensive DOM queries:** presence-guard every `getElementById` result; `js/app.js` is shared by all pages and not every element exists on every page.
+* **Never commit secrets.** `php/config.creds.php` and `php/submissions.log` are gitignored and blocked by `php/.htaccess`.

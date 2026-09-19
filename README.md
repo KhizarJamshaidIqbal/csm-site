@@ -1,100 +1,102 @@
-# CSM Engine — Autonomous E-Commerce Backend Platform
+# CSM Engine — Startup & Investor Site
 > **The Autonomous E-Commerce Backend for the AI Builder Era.**
-> Bridging Generative UI Builders (Lovable, v0, Bolt, Cursor) to a Battle-Tested 317-Tool MCP Commerce OS.
+> Bridging generative UI builders (Lovable, v0, Bolt, Cursor) to a 317-tool MCP commerce backend.
 
 ---
 
-## 🚀 Overview
+## Overview
 
-**CSM Engine (Commerce State Machine)** is an enterprise e-commerce operating system powered by the **Model Context Protocol (MCP)**. While generative AI frontend tools allow creators to build stunning storefronts in 60 seconds, **99% cannot launch** because real commerce requires an immense, mission-critical backend stack.
-
-CSM bridges this gap by letting AI agents autonomously wire frontends to over **317 production-grade MCP tools**—covering Stripe/PayPal payment tokenization, atomic inventory reservation, RMA returns, cart CSRF protection, flash drops, and official WhatsApp CRM.
+**CSM Engine (Commerce State Machine)** is a headless commerce backend for WordPress with a React admin, a public `csm/v1` REST API and an MCP server exposing 317 tools, 5 resources and curated prompts to AI agents. This repository is the public marketing and investor website for it.
 
 ---
 
-## 💎 Key Features of this Platform
+## Architecture of this repository
 
-- **Seed Round & Investor Data Room Portal**: High-converting pitch narrative showcasing the $6.3T global TAM, unit economics, defensibility moat, and seed allocation.
-- **Interactive Live MCP Terminal Simulator**: Real-time interactive playground simulating prompt-to-MCP tool execution for Streetwear Drops, Post-Purchase RMA returns, and WhatsApp AI bridges (XSS-hardened output rendering).
-- **Interactive Engineering ROI Calculator**: Quantifies developer hours, capital saved, and speed-to-market advantages with a dynamic full-time-equivalent estimate.
-- **Multi-Tier Early Access Waitlist**: Segmented lead capture for VC/Angel investors, AI builders/agencies, and merchants — delivered via Web3Forms with local backup.
-- **6 Architectural Pillars**: Comprehensive technical breakdown of the 317+ MCP tool catalog.
-- **Production SEO & A11y**: Canonical URLs, Open Graph + Twitter cards, Organization & FAQPage JSON-LD, sitemap/robots, accessible modals with focus trapping.
-- **Sleek Enterprise Design**: Dark glassmorphic aesthetic inspired by Linear, Supabase, and Stripe with a compiled Tailwind production build.
-
----
-
-## 📁 Directory Layout
+The deployed site is plain static HTML + compiled Tailwind + vanilla JS + a small PHP mail gateway. To keep every source file small and shared chrome in one place, the HTML and `js/app.js` are **compiled from `src/`** by `build.js` and the generated output is committed (same policy as `css/tailwind.css`). Hostinger serves the committed files; no server-side build runs on deploy.
 
 ```
-d:\Local SEO\Site\Khizar\CSM-site\
-├── index.html                  # Main investor landing page & early access portal
-├── about.html                  # About Us — thesis, origin, milestones, investor CTA
-├── security.html               # Security whitepaper & trust center (CSRF, HMAC, RBAC, audit)
-├── privacy.html                # Privacy Policy — enterprise sovereign data policy
-├── terms.html                  # Terms of Service — licensing, SLA, fair compute
-├── robots.txt                  # Crawler directives incl. AI search bots (GPTBot, ClaudeBot, PerplexityBot)
-├── sitemap.xml                 # 5-URL canonical sitemap (csmengine.epsoldev.com)
-├── tailwind.config.js          # Tailwind content scan + safelist for JS-injected classes
-├── css/
-│   ├── input.css               # Tailwind source entry (@tailwind directives)
-│   ├── tailwind.css            # COMPILED production CSS (do not hand-edit)
-│   └── styles.css              # Custom styling, animations, glow effects, terminal theme
+├── build.js                    # Page compiler + JS bundler + size lint (Node >= 18, no dependencies)
+├── package.json                # npm scripts: build, check, validate, tailwind
+├── src/                        # SOURCES (edit these)
+│   ├── pages/*.html            # One file per page; JSON front-matter + {{> partial}} includes
+│   ├── partials/
+│   │   ├── header.html         # Shared header + mobile drawer for secondary pages
+│   │   ├── footer.html         # Shared footer for secondary pages
+│   │   ├── modals.html         # Waitlist + pitch-deck modals
+│   │   ├── scripts.html        # Script tags + closing body/html
+│   │   ├── legal/              # Reduced chrome for privacy/terms
+│   │   ├── home/               # Homepage sections (hero, simulator, architecture, ...)
+│   │   ├── product/            # Architecture page sections
+│   │   └── investors/          # Investors page specific modals
+│   └── js/app/                 # app.js modules, concatenated in manifest.json order
+├── index.html, about.html, product.html, investors.html,
+│   security.html, privacy.html, terms.html   # GENERATED (do not hand-edit)
 ├── js/
-│   ├── app.js                  # Modals, mobile menu, accordion, tabs, lead capture (Web3Forms), waitlist persistence
-│   ├── simulator.js            # Live MCP terminal simulator engine (XSS-hardened rendering)
-│   └── calculator.js           # Interactive ROI savings calculator (dynamic FTE estimate)
-├── assets/
-│   └── icons/
-│       └── csm-logo.svg        # Scalable vector logo (also used as favicon)
-└── README.md                   # Project documentation & overview
+│   ├── app.js                  # GENERATED from src/js/app
+│   ├── simulator.js            # Scripted MCP terminal demo (homepage only)
+│   └── calculator.js           # ROI worksheet (homepage only)
+├── css/
+│   ├── input.css               # Tailwind entry
+│   ├── tailwind.css            # COMPILED Tailwind (do not hand-edit)
+│   └── styles.css              # Custom styling, animations, terminal theme
+├── php/
+│   ├── mailgate.php            # Lead gateway (waitlist | deck) -> SMTP via PHPMailer
+│   ├── config.php              # Credential loader (no secrets)
+│   ├── .htaccess               # Blocks web access to submissions.log / config.creds.php
+│   └── PHPMailer/              # Vendored library
+├── assets/                     # Logo + hero image
+├── validate-links.js           # Internal link + anchor integrity
+├── validate-ld.js              # JSON-LD parse check
+├── robots.txt, sitemap.xml, tailwind.config.js
+└── AGENTS.md                   # Operations contract for agents
 ```
+
+### Template syntax (`src/`)
+
+| Syntax | Meaning |
+|---|---|
+| `---` JSON `---` | Front-matter at the top of a page, e.g. `{"page":"about"}` |
+| `{{> header.html}}` | Include `src/partials/header.html` (nested includes allowed) |
+| `{{desknav about}}` | Desktop nav link attributes; active when `page` matches |
+| `{{mobnav about}}` | Mobile drawer link attributes |
+| `{{footnav about}}` | Footer link attributes |
+| `{{page}}` | Any front-matter variable |
+
+### Rules
+
+- Edit files under `src/`, then run `npm run build`. Commit both the source and the regenerated output.
+- No hand-written source file may exceed **500 lines**. `npm run check` fails the build otherwise.
+- `npm run check` also fails when a committed generated file no longer matches its sources.
 
 ---
 
-## ⚡ How to Preview Locally
-
-You can open `index.html` directly in any modern browser:
+## Local workflow
 
 ```powershell
-# Option 1: Start a lightweight Python HTTP server
-cd "d:\Local SEO\Site\Khizar\CSM-site"
-python -m http.server 8080
-
-# Option 2: Open directly in Chrome/Edge
-Start-Process "d:\Local SEO\Site\Khizar\CSM-site\index.html"
+npm run build            # regenerate root HTML + js/app.js from src/
+npm run check            # generated output up to date + size lint
+npm run validate         # check + link integrity + JSON-LD
+python -m http.server 8080   # preview at http://localhost:8080 (forms need PHP)
 ```
 
-Then visit: `http://localhost:8080`
-
----
-
-## 🛠 Rebuilding Tailwind CSS
-
-The site uses a **compiled Tailwind production build** (no CDN runtime). After editing
-HTML classes or JS-injected classes, regenerate `css/tailwind.css`:
+### Rebuilding Tailwind CSS
 
 ```powershell
-# One-time: download the standalone CLI (no Node.js needed)
+# One-time: standalone CLI, no Node needed
 curl.exe -L -o tailwindcss.exe https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-windows-x64.exe
-
-# Rebuild (minified)
 .\tailwindcss.exe -i css/input.css -o css/tailwind.css --minify
 ```
 
-`tailwind.config.js` scans `*.html` + `js/**/*.js` and safelists the classes that
-`app.js` toggles at runtime — add any new runtime-toggled classes there.
+`tailwind.config.js` scans `*.html` (generated pages) and `js/**/*.js`, and safelists classes toggled at runtime by `src/js/app/navbar.js` and `widgets.js`.
 
 ---
 
-## 📮 Activating Lead Capture (Forms)
+## Lead capture (forms)
 
-Both the waitlist and pitch-deck forms post to the site's own PHP mail gateway:
+Both forms POST JSON to `/php/mailgate.php` with `type: "waitlist" | "deck"`.
 
-- Endpoint: `POST /php/mailgate.php` with `type: "waitlist" | "deck"`
-- Sends via authenticated SMTP through PHPMailer (`php/PHPMailer/`)
-- Credentials live in `php/config.creds.php` — **gitignored**, created once on the server via Hostinger hPanel File Manager
-- `php/config.php` is the safe, committable loader (contains no secrets). If `config.creds.php` is absent, the endpoint returns a clean `{ ok:false, code:"not_configured" }` JSON error instead of a PHP fatal.
-- Server controls the subject line; the client cannot override it. A per-IP rate limit and spam honeypot are enforced, and every submission is appended to `php/submissions.log` on success *and* failure.
-
-See README.md for the full setup steps.
+- Delivery: authenticated SMTP via PHPMailer.
+- Credentials: `php/config.creds.php` (gitignored, created once on the server via hPanel). If absent the endpoint returns `503 { ok:false, code:"not_configured" }`.
+- Server controls subject and sender name. Per-IP rate limit (10/min), honeypot, strict field allow-list.
+- Every validated submission is appended to `php/submissions.log` **before** SMTP is attempted, so a delivery failure never loses a lead. The log is blocked from HTTP by `php/.htaccess`.
+- Status codes: `200` ok, `400` validation, `405` method, `429` rate limited, `502` SMTP failure, `503` not configured.
