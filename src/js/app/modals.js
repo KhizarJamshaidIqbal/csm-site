@@ -173,7 +173,6 @@ function initModals() {
   });
 
   // Open Deck Modal
-  document.querelectorAllSafe;
   document.querySelectorAll(".open-deck-btn").forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();

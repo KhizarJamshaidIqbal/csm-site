@@ -1,16 +1,12 @@
 /**
  * CSM Startup Landing & Investor Portal - Main Application Logic
+ *
+ * GENERATED FILE. Do not edit directly.
+ * Sources: src/js/app/*.js (order defined in src/js/app/manifest.json)
+ * Rebuild:  npm run build
  */
 
-document.addEventListener("DOMContentLoaded", () => {
-  initNavbar();
-  initModals();
-  initFaqAccordion();
-  initArchitectureTabs();
-  initCopySnippets();
-  initWaitlistCounter();
-});
-
+/* ---- src/js/app/lead-capture.js ---- */
 /* -------------------------------------------------------------
  * Lead capture configuration
  * Points at your own Gmail SMTP mail gateway (/php/mailgate.php).
@@ -28,6 +24,16 @@ function safeReadArray(key) {
     return Array.isArray(parsed) ? parsed : [];
   } catch (err) {
     return [];
+  }
+}
+
+function rememberLocally(key, record) {
+  const existing = safeReadArray(key);
+  existing.push(record);
+  try {
+    localStorage.setItem(key, JSON.stringify(existing));
+  } catch (err) {
+    /* storage unavailable — remote delivery is still attempted */
   }
 }
 
@@ -75,21 +81,36 @@ function hideFormError(form) {
   }
 }
 
+function leadFailureMessage(result, unavailableMessage) {
+  if (result.reason === "not_configured") {
+    return unavailableMessage;
+  }
+  return result.message || "Something went wrong sending your request. Please try again, or email info@epsoldev.com directly.";
+}
+
+/* ---- src/js/app/navbar.js ---- */
 /* -------------------------------------------------------------
  * Navbar & Mobile Menu
  * ----------------------------------------------------------- */
+
+const SCROLLED_HEADER_CLASSES = ["bg-[#060913]/90", "backdrop-blur-md", "border-b", "border-white/10", "shadow-xl"];
+
 function initNavbar() {
   const header = document.getElementById("main-header");
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 20) {
-      header.classList.add("bg-[#060913]/90", "backdrop-blur-md", "border-b", "border-white/10", "shadow-xl");
-    } else {
-      header.classList.remove("bg-[#060913]/90", "backdrop-blur-md", "border-b", "border-white/10", "shadow-xl");
-    }
-  });
+  // Only the homepage has a transparent header that gains a backdrop on scroll.
+  // Secondary pages ship a permanently styled header without #main-header.
+  if (header) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) {
+        header.classList.add(...SCROLLED_HEADER_CLASSES);
+      } else {
+        header.classList.remove(...SCROLLED_HEADER_CLASSES);
+      }
+    });
+  }
 
   if (mobileMenuBtn && mobileMenu) {
     mobileMenuBtn.addEventListener("click", () => {
@@ -108,222 +129,19 @@ function initNavbar() {
     });
 
     // Close mobile menu on anchor click
-    const mobileLinks = mobileMenu.querySelectorAll ? mobileMenu.querySelectorAll("a") : [];
-    mobileLinks.forEach(link => {
+    mobileMenu.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         mobileMenu.classList.add("hidden");
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
       });
     });
   }
 }
 
+/* ---- src/js/app/modals.js ---- */
 /* -------------------------------------------------------------
  * Modals: Early Access Waitlist & Investor Pitch Deck
  * ----------------------------------------------------------- */
-function initModals() {
-  // Waitlist Modal
-  const waitlistModal = document.getElementById("waitlist-modal");
-  const waitlistTriggers = document.querySelectorAll(".open-waitlist-btn");
-  const waitlistClose = document.getElementById("close-waitlist-btn");
-  const waitlistForm = document.getElementById("waitlist-form");
-  const waitlistSuccess = document.getElementById("waitlist-success");
-  const waitlistTicketNum = document.getElementById("waitlist-ticket-number");
-
-  // Investor Deck Modal
-  const deckModal = document.getElementById("deck-modal");
-  const deckTriggers = document.querySelectorAll(".open-deck-btn");
-  const deckClose = document.getElementById("close-deck-btn");
-  const deckForm = document.getElementById("deck-form");
-  const deckSuccess = document.getElementById("deck-success");
-
-  // Open Waitlist
-  waitlistTriggers.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const preselectedRole = btn.getAttribute("data-role");
-      if (preselectedRole) {
-        const roleRadio = document.querySelector(`input[name="user_role"][value="${preselectedRole}"]`);
-        if (roleRadio) roleRadio.checked = true;
-      }
-      openModal(waitlistModal);
-    });
-  });
-
-  // Open Deck Modal
-  deckTriggers.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      openModal(deckModal);
-    });
-  });
-
-  // Close buttons
-  if (waitlistClose) {
-    waitlistClose.addEventListener("click", () => closeModal(waitlistModal));
-  }
-  if (deckClose) {
-    deckClose.addEventListener("click", () => closeModal(deckModal));
-  }
-
-  // Backdrop click & Escape key
-  [waitlistModal, deckModal].forEach(modal => {
-    if (!modal) return;
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal(modal);
-      }
-    });
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (!e) return;
-
-    if (e.key === "Escape") {
-      closeModal(waitlistModal);
-      closeModal(deckModal);
-    }
-
-    // Focus trap: keep Tab cycling inside the open modal
-    if (e.key === "Tab") {
-      const activeModal = [waitlistModal, deckModal].find(m => m && !m.classList.contains("hidden"));
-      if (!activeModal) return;
-
-      const focusables = getModalFocusables(activeModal);
-      if (!focusables.length) return;
-
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-  });
-
-  // Success-view close buttons (replaces inline onclick handlers)
-  const waitlistSuccessClose = document.getElementById("waitlist-success-close");
-  const deckSuccessClose = document.getElementById("deck-success-close");
-  if (waitlistSuccessClose) {
-    waitlistSuccessClose.addEventListener("click", () => closeModal(waitlistModal));
-  }
-  if (deckSuccessClose) {
-    deckSuccessClose.addEventListener("click", () => closeModal(deckModal));
-  }
-
-  // Deep-link support: open modals when arriving from subpages
-  // e.g. about.html links to index.html#waitlist or index.html#pitch-deck
-  if (window.location.hash === "#waitlist" && waitlistModal) {
-    openModal(waitlistModal);
-  } else if (window.location.hash === "#pitch-deck" && deckModal) {
-    openModal(deckModal);
-  }
-
-  // Waitlist Form Submit
-  if (waitlistForm) {
-    waitlistForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      hideFormError(waitlistForm);
-
-      const name = document.getElementById("wl-name").value.trim();
-      const email = document.getElementById("wl-email").value.trim();
-      const company = document.getElementById("wl-company").value.trim();
-      const role = document.querySelector('input[name="user_role"]:checked')?.value || "builder";
-      const builderTool = document.getElementById("wl-builder")?.value || "lovable";
-
-      const existingWaitlist = safeReadArray("csm_waitlist");
-      const record = {
-        name,
-        email,
-        company,
-        role,
-        builderTool,
-        timestamp: new Date().toISOString()
-      };
-
-      // Always keep a local backup so no lead is ever lost
-      existingWaitlist.push(record);
-      try {
-        localStorage.setItem("csm_waitlist", JSON.stringify(existingWaitlist));
-      } catch (err) {
-        /* storage unavailable — remote delivery is still attempted */
-      }
-
-      const submitBtn = waitlistForm.querySelector('button[type="submit"]');
-      const result = await submitLead({
-        type: "waitlist",
-        timestamp: new Date().toISOString(),
-        subject: "New CSM Engine Waitlist Signup",
-        name: name,
-        email: email,
-        company: company,
-        role: role,
-        builder_tool: builderTool,
-        botcheck: ""
-      }, submitBtn);
-
-      if (!result.ok) {
-        if (result.reason === "not_configured") {
-          showFormError(waitlistForm, "Online signup is temporarily unavailable. Please email info@epsoldev.com and we will reserve your spot manually.");
-        } else {
-          showFormError(waitlistForm, result.message || "Something went wrong sending your request. Please try again, or email info@epsoldev.com directly.");
-        }
-        return;
-      }
-
-      waitlistForm.classList.add("hidden");
-      if (waitlistSuccess) {
-        waitlistSuccess.classList.remove("hidden");
-      }
-    });
-  }
-
-  // Deck Form Submit
-  if (deckForm) {
-    deckForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      hideFormError(deckForm);
-
-      const deckEmail = document.getElementById("deck-email").value.trim();
-      const deckFund = document.getElementById("deck-fund").value.trim();
-
-      const deckRequests = safeReadArray("csm_deck_requests");
-      deckRequests.push({ email: deckEmail, fund: deckFund, date: new Date().toISOString() });
-      try {
-        localStorage.setItem("csm_deck_requests", JSON.stringify(deckRequests));
-      } catch (err) {
-        /* storage unavailable — remote delivery is still attempted */
-      }
-
-      const submitBtn = deckForm.querySelector('button[type="submit"]');
-      const result = await submitLead({
-        type: "deck",
-        subject: "New CSM Engine Pitch Deck Request",
-        from_name: "CSM Engine Investor Portal",
-        fund: deckFund,
-        email: deckEmail,
-        botcheck: ""
-      }, submitBtn);
-
-      if (!result.ok) {
-        if (result.reason === "not_configured") {
-          showFormError(deckForm, "Online requests are temporarily unavailable. Please email info@epsoldev.com to receive the confidential deck.");
-        } else {
-          showFormError(deckForm, result.message || "Something went wrong sending your request. Please try again, or email info@epsoldev.com directly.");
-        }
-        return;
-      }
-
-      deckForm.classList.add("hidden");
-      if (deckSuccess) {
-        deckSuccess.classList.remove("hidden");
-      }
-    });
-  }
-}
 
 let lastFocusedElement = null;
 
@@ -364,19 +182,166 @@ function closeModal(modal) {
   lastFocusedElement = null;
 }
 
-/* -------------------------------------------------------------
- * Dynamic Waitlist Counter
- * ----------------------------------------------------------- */
-function initWaitlistCounter() {
-  const counterEl = document.getElementById("dynamic-waitlist-count");
-  if (!counterEl) return;
-
-  /* fabricated count removed */
+function bindModalChrome(modal, closeBtn, successCloseBtn) {
+  if (!modal) return;
+  if (closeBtn) closeBtn.addEventListener("click", () => closeModal(modal));
+  if (successCloseBtn) successCloseBtn.addEventListener("click", () => closeModal(modal));
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal(modal);
+  });
 }
 
+function bindModalKeyboard(modals) {
+  document.addEventListener("keydown", (e) => {
+    if (!e) return;
+
+    if (e.key === "Escape") {
+      modals.forEach(closeModal);
+    }
+
+    // Focus trap: keep Tab cycling inside the open modal
+    if (e.key === "Tab") {
+      const activeModal = modals.find(m => m && !m.classList.contains("hidden"));
+      if (!activeModal) return;
+
+      const focusables = getModalFocusables(activeModal);
+      if (!focusables.length) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+}
+
+function bindWaitlistForm(waitlistForm, waitlistSuccess) {
+  if (!waitlistForm) return;
+  waitlistForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    hideFormError(waitlistForm);
+
+    const name = document.getElementById("wl-name").value.trim();
+    const email = document.getElementById("wl-email").value.trim();
+    const company = document.getElementById("wl-company").value.trim();
+    const role = document.querySelector('input[name="user_role"]:checked')?.value || "builder";
+    const builderTool = document.getElementById("wl-builder")?.value || "lovable";
+
+    // Always keep a local backup so no lead is ever lost
+    rememberLocally("csm_waitlist", { name, email, company, role, builderTool, timestamp: new Date().toISOString() });
+
+    const submitBtn = waitlistForm.querySelector('button[type="submit"]');
+    const result = await submitLead({
+      type: "waitlist",
+      timestamp: new Date().toISOString(),
+      subject: "New CSM Engine Waitlist Signup",
+      name: name,
+      email: email,
+      company: company,
+      role: role,
+      builder_tool: builderTool,
+      botcheck: ""
+    }, submitBtn);
+
+    if (!result.ok) {
+      showFormError(waitlistForm, leadFailureMessage(result,
+        "Online signup is temporarily unavailable. Please email info@epsoldev.com and we will reserve your spot manually."));
+      return;
+    }
+
+    waitlistForm.classList.add("hidden");
+    if (waitlistSuccess) {
+      waitlistSuccess.classList.remove("hidden");
+    }
+  });
+}
+
+function bindDeckForm(deckForm, deckSuccess) {
+  if (!deckForm) return;
+  deckForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    hideFormError(deckForm);
+
+    const deckEmail = document.getElementById("deck-email").value.trim();
+    const deckFund = document.getElementById("deck-fund").value.trim();
+
+    rememberLocally("csm_deck_requests", { email: deckEmail, fund: deckFund, date: new Date().toISOString() });
+
+    const submitBtn = deckForm.querySelector('button[type="submit"]');
+    const result = await submitLead({
+      type: "deck",
+      subject: "New CSM Engine Pitch Deck Request",
+      from_name: "CSM Engine Investor Portal",
+      fund: deckFund,
+      email: deckEmail,
+      botcheck: ""
+    }, submitBtn);
+
+    if (!result.ok) {
+      showFormError(deckForm, leadFailureMessage(result,
+        "Online requests are temporarily unavailable. Please email info@epsoldev.com to receive the confidential deck."));
+      return;
+    }
+
+    deckForm.classList.add("hidden");
+    if (deckSuccess) {
+      deckSuccess.classList.remove("hidden");
+    }
+  });
+}
+
+function initModals() {
+  const waitlistModal = document.getElementById("waitlist-modal");
+  const deckModal = document.getElementById("deck-modal");
+
+  // Open Waitlist (optionally preselecting a role via data-role)
+  document.querySelectorAll(".open-waitlist-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const preselectedRole = btn.getAttribute("data-role");
+      if (preselectedRole) {
+        const roleRadio = document.querySelector(`input[name="user_role"][value="${preselectedRole}"]`);
+        if (roleRadio) roleRadio.checked = true;
+      }
+      openModal(waitlistModal);
+    });
+  });
+
+  // Open Deck Modal
+  document.querySelectorAll(".open-deck-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal(deckModal);
+    });
+  });
+
+  bindModalChrome(waitlistModal, document.getElementById("close-waitlist-btn"), document.getElementById("waitlist-success-close"));
+  bindModalChrome(deckModal, document.getElementById("close-deck-btn"), document.getElementById("deck-success-close"));
+  bindModalKeyboard([waitlistModal, deckModal]);
+
+  // Deep-link support: open modals when arriving from subpages
+  // e.g. about.html links to index.html#waitlist or index.html#pitch-deck
+  if (window.location.hash === "#waitlist" && waitlistModal) {
+    openModal(waitlistModal);
+  } else if (window.location.hash === "#pitch-deck" && deckModal) {
+    openModal(deckModal);
+  }
+
+  bindWaitlistForm(document.getElementById("waitlist-form"), document.getElementById("waitlist-success"));
+  bindDeckForm(document.getElementById("deck-form"), document.getElementById("deck-success"));
+}
+
+/* ---- src/js/app/widgets.js ---- */
 /* -------------------------------------------------------------
  * FAQ Accordion
  * ----------------------------------------------------------- */
+
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll(".faq-item");
 
@@ -414,6 +379,7 @@ function initFaqAccordion() {
 /* -------------------------------------------------------------
  * Architecture 6 Pillars Tabs
  * ----------------------------------------------------------- */
+
 function initArchitectureTabs() {
   const tabButtons = document.querySelectorAll(".arch-tab-btn");
   const tabPanels = document.querySelectorAll(".arch-tab-panel");
@@ -446,52 +412,62 @@ function initArchitectureTabs() {
 /* -------------------------------------------------------------
  * Copy Snippets
  * ----------------------------------------------------------- */
-function initCopySnippets() {
-  const copyButtons = document.querySelectorAll(".copy-snippet-btn");
 
-  function copyTextToClipboard(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text);
-    }
-    // Fallback for non-secure contexts / older browsers
-    return new Promise((resolve, reject) => {
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      textarea.setAttribute("readonly", "");
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
-      document.body.appendChild(textarea);
-      textarea.select();
-      try {
-        const ok = document.execCommand("copy");
-        document.body.removeChild(textarea);
-        ok ? resolve() : reject(new Error("copy_failed"));
-      } catch (err) {
-        document.body.removeChild(textarea);
-        reject(err);
-      }
-    });
+function copyTextToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text);
   }
+  // Fallback for non-secure contexts / older browsers
+  return new Promise((resolve, reject) => {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      const ok = document.execCommand("copy");
+      document.body.removeChild(textarea);
+      ok ? resolve() : reject(new Error("copy_failed"));
+    } catch (err) {
+      document.body.removeChild(textarea);
+      reject(err);
+    }
+  });
+}
 
-  copyButtons.forEach(btn => {
+function flashButtonLabel(btn, html, ms) {
+  const originalText = btn.innerHTML;
+  btn.innerHTML = html;
+  setTimeout(() => {
+    btn.innerHTML = originalText;
+  }, ms);
+}
+
+function initCopySnippets() {
+  document.querySelectorAll(".copy-snippet-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const targetId = btn.getAttribute("data-copy-target");
       const targetEl = document.getElementById(targetId);
       if (!targetEl) return;
 
-      copyTextToClipboard(targetEl.textContent.trim()).then(() => {
-        const originalText = btn.innerHTML;
-        btn.innerHTML = `<span class="text-emerald-400">✓ Copied!</span>`;
-        setTimeout(() => {
-          btn.innerHTML = originalText;
-        }, 2000);
-      }).catch(() => {
-        const originalText = btn.innerHTML;
-        btn.innerHTML = `<span class="text-amber-400">⚠ Copy blocked — select manually</span>`;
-        setTimeout(() => {
-          btn.innerHTML = originalText;
-        }, 2500);
-      });
+      copyTextToClipboard(targetEl.textContent.trim())
+        .then(() => flashButtonLabel(btn, `<span class="text-emerald-400">✓ Copied!</span>`, 2000))
+        .catch(() => flashButtonLabel(btn, `<span class="text-amber-400">⚠ Copy blocked — select manually</span>`, 2500));
     });
   });
 }
+
+/* ---- src/js/app/bootstrap.js ---- */
+/* -------------------------------------------------------------
+ * Bootstrap: single entry point
+ * ----------------------------------------------------------- */
+
+document.addEventListener("DOMContentLoaded", () => {
+  initNavbar();
+  initModals();
+  initFaqAccordion();
+  initArchitectureTabs();
+  initCopySnippets();
+});
