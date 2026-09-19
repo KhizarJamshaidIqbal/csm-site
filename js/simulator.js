@@ -10,7 +10,7 @@ const simulatorPresets = {
     steps: [
       {
         phase: "CONNECT",
-        text: "Connecting to CSM MCP Gateway [https://api.csmengine.dev/wp-json/csm/v1/mcp]...",
+        text: "Connecting to CSM MCP Gateway [https://store.epsoldev.com/wp-json/csm/v1/mcp]...",
         status: "OK",
         delay: 400
       },

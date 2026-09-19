@@ -267,9 +267,9 @@ function initModals() {
 
       if (!result.ok) {
         if (result.reason === "not_configured") {
-          showFormError(waitlistForm, "Online signup is temporarily unavailable. Please email founders@csmengine.dev and we will reserve your spot manually.");
+          showFormError(waitlistForm, "Online signup is temporarily unavailable. Please email info@epsoldev.com and we will reserve your spot manually.");
         } else {
-          showFormError(waitlistForm, result.message || "Something went wrong sending your request. Please try again, or email founders@csmengine.dev directly.");
+          showFormError(waitlistForm, result.message || "Something went wrong sending your request. Please try again, or email info@epsoldev.com directly.");
         }
         return;
       }
@@ -310,9 +310,9 @@ function initModals() {
 
       if (!result.ok) {
         if (result.reason === "not_configured") {
-          showFormError(deckForm, "Online requests are temporarily unavailable. Please email founders@csmengine.dev to receive the confidential deck.");
+          showFormError(deckForm, "Online requests are temporarily unavailable. Please email info@epsoldev.com to receive the confidential deck.");
         } else {
-          showFormError(deckForm, result.message || "Something went wrong sending your request. Please try again, or email founders@csmengine.dev directly.");
+          showFormError(deckForm, result.message || "Something went wrong sending your request. Please try again, or email info@epsoldev.com directly.");
         }
         return;
       }

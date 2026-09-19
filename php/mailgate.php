@@ -48,7 +48,7 @@ $hits[] = $now;
 
 // Fail gracefully (not a PHP fatal) when server creds are not yet configured
 if (!$mailConfigured) {
-    json(['ok' => false, 'code' => 'not_configured', 'message' => 'Online signup is temporarily unavailable. Please email founders@csmengine.dev.']);
+    json(['ok' => false, 'code' => 'not_configured', 'message' => 'Online signup is temporarily unavailable. Please email info@epsoldev.com.']);
 }
 
 function sanitize($v) {
