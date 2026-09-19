@@ -49,7 +49,7 @@ async function submitLead(payload, submitBtn) {
       body: JSON.stringify(payload)
     });
     const data = await res.json().catch(() => ({}));
-    return { ok: !!data.ok, reason: data.message || "request_failed" };
+    return { ok: !!data.ok, reason: data.code || data.message || "request_failed", message: data.message || "" };
   } catch (err) {
     return { ok: false, reason: "network" };
   } finally {
@@ -275,7 +275,7 @@ function initModals() {
         if (result.reason === "not_configured") {
           showFormError(waitlistForm, "Online signup is temporarily unavailable. Please email founders@csmengine.dev and we will reserve your spot manually.");
         } else {
-          showFormError(waitlistForm, "Something went wrong sending your request. Please try again, or email founders@csmengine.dev directly.");
+          showFormError(waitlistForm, result.message || "Something went wrong sending your request. Please try again, or email founders@csmengine.dev directly.");
         }
         return;
       }
@@ -322,7 +322,7 @@ function initModals() {
         if (result.reason === "not_configured") {
           showFormError(deckForm, "Online requests are temporarily unavailable. Please email founders@csmengine.dev to receive the confidential deck.");
         } else {
-          showFormError(deckForm, "Something went wrong sending your request. Please try again, or email founders@csmengine.dev directly.");
+          showFormError(deckForm, result.message || "Something went wrong sending your request. Please try again, or email founders@csmengine.dev directly.");
         }
         return;
       }
