@@ -29,10 +29,12 @@ CSM bridges this gap by letting AI agents autonomously wire frontends to over **
 ```
 d:\Local SEO\Site\Khizar\CSM-site\
 ├── index.html                  # Main investor landing page & early access portal
-├── privacy.html                # Privacy Policy (GDPR/CCPA-aware)
-├── terms.html                  # Terms of Service (incl. no-investment-advice clause)
-├── robots.txt                  # Crawler directives
-├── sitemap.xml                 # Search engine sitemap
+├── about.html                  # About Us — thesis, origin, milestones, investor CTA
+├── security.html               # Security whitepaper & trust center (CSRF, HMAC, RBAC, audit)
+├── privacy.html                # Privacy Policy — enterprise sovereign data policy
+├── terms.html                  # Terms of Service — licensing, SLA, fair compute
+├── robots.txt                  # Crawler directives incl. AI search bots (GPTBot, ClaudeBot, PerplexityBot)
+├── sitemap.xml                 # 5-URL canonical sitemap (csmengine.epsoldev.com)
 ├── tailwind.config.js          # Tailwind content scan + safelist for JS-injected classes
 ├── css/
 │   ├── input.css               # Tailwind source entry (@tailwind directives)
