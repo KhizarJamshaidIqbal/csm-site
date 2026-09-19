@@ -1,0 +1,60 @@
+---
+{"page":"overview"}
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSM Engine — The Autonomous E-Commerce Backend for the AI Builder Era</title>
+  <meta name="description" content="Connect AI frontend builders like Lovable and v0 directly to a battle-tested e-commerce backend engine. Powered by 317+ Model Context Protocol (MCP) tools.">
+
+  <!-- Canonical & SEO -->
+  <link rel="canonical" href="https://csmengine.epsoldev.com/">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#060913">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/csm-logo.svg">
+
+  <!-- Resource preconnects (fonts + icon CDN) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="CSM Engine — Autonomous E-Commerce Backend for AI Builders">
+  <meta property="og:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a 317-tool commerce backend instantly. Zero backend code required.">
+  <meta property="og:image" content="https://csmengine.epsoldev.com/assets/images/hero-agent-mesh.jpg">
+  <meta property="og:url" content="https://csmengine.epsoldev.com/">
+  <meta property="og:site_name" content="CSM Engine">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CSM Engine — Autonomous E-Commerce Backend for AI Builders">
+  <meta name="twitter:description" content="AI tools generate frontend storefronts in 60s. CSM gives them a 317-tool commerce backend instantly. Zero backend code required.">
+  <meta name="twitter:image" content="https://csmengine.epsoldev.com/assets/images/hero-agent-mesh.jpg">
+
+  <!-- Structured Data: Organization -->
+  
+{{> home/jsonld-organization.html}}
+  <!-- Structured Data: FAQ -->
+{{> home/jsonld-faq.html}}
+  <!-- Tailwind CSS (compiled production build — regenerate with: .\tailwindcss.exe -i css/input.css -o css/tailwind.css --minify) -->
+  <link rel="stylesheet" href="css/tailwind.css">
+
+  <!-- Structured Data: SoftwareApplication + WebSite -->
+{{> home/jsonld-software.html}}
+  <!-- Lucide Icons (pinned version for supply-chain stability) -->
+  <script src="https://unpkg.com/lucide@1.47.0"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-white bg-grid-pattern relative">
+
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-cyan-500 focus:text-white focus:font-bold focus:text-xs">Skip to main content</a>
+
+{{> home/header.html}}{{> home/hero.html}}{{> home/breakthrough.html}}{{> home/simulator.html}}{{> home/architecture.html}}{{> home/investor-thesis.html}}{{> home/calculator.html}}{{> home/early-access.html}}{{> home/faq.html}}{{> home/footer.html}}{{> home/modal-waitlist.html}}{{> home/modal-deck.html}}{{> home/scripts.html}}
