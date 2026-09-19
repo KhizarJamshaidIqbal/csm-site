@@ -1,0 +1,275 @@
+  <!-- ====================================================================
+       SECTION 4: ARCHITECTURE — THE 6 PILLARS OF 317+ MCP TOOLS
+  ==================================================================== -->
+  <section id="architecture" class="py-20 lg:py-32 relative border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-mono uppercase tracking-widest text-cyan-400 font-semibold mb-3">Enterprise Deep Dive</h2>
+        <h3 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+          The 6 Pillars of CSM Architecture
+        </h3>
+        <p class="text-base sm:text-lg text-slate-300 font-light">
+          317+ specialized MCP tools organized into six mission-critical commerce systems, built to withstand real-world transaction spikes.
+        </p>
+      </div>
+
+      <!-- Architecture Visual Diagram (inline SVG: storefront -> agent -> CSM MCP -> WordPress backend) -->
+      
+<div class="mb-16 rounded-2xl overflow-hidden border border-white/10 relative shadow-2xl bg-[#070A14]">
+        <svg viewBox="0 0 960 300" role="img" aria-label="Architecture diagram: AI agent connects through the CSM MCP endpoint to the WordPress commerce backend" class="w-full h-auto block">
+          <defs>
+            <linearGradient id="flowG" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#06B6D4"/><stop offset="100%" stop-color="#8B5CF6"/>
+            </linearGradient>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,0 L10,5 L0,10 z" fill="#38BDF8"/>
+            </marker>
+          </defs>
+          <rect x="0" y="0" width="960" height="300" fill="#070A14"/>
+          <text x="480" y="38" text-anchor="middle" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">HOW IT WIRES TOGETHER</text>
+          <rect x="40" y="80" width="180" height="90" rx="12" fill="rgba(6,182,212,0.08)" stroke="#06B6D4" stroke-opacity="0.5"/>
+          <text x="130" y="118" text-anchor="middle" fill="#67E8F9" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">Storefront</text>
+          <text x="130" y="140" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">Lovable / v0 / Bolt / Cursor</text>
+          <rect x="290" y="80" width="180" height="90" rx="12" fill="rgba(139,92,246,0.10)" stroke="#8B5CF6" stroke-opacity="0.6"/>
+          <text x="380" y="118" text-anchor="middle" fill="#C4B5FD" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">AI Agent</text>
+          <text x="380" y="140" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">317 tools, 22 prompts</text>
+          <rect x="540" y="80" width="180" height="90" rx="12" fill="rgba(6,182,212,0.12)" stroke="#06B6D4" stroke-opacity="0.7"/>
+          
+<text x="630" y="112" text-anchor="middle" fill="#67E8F9" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">CSM MCP</text>
+          <text x="630" y="132" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">POST /wp-json/csm/v1/mcp</text>
+          <text x="630" y="148" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">JSON-RPC 2.0, OAuth 2.1</text>
+          <rect x="790" y="80" width="140" height="90" rx="12" fill="rgba(16,185,129,0.10)" stroke="#10B981" stroke-opacity="0.6"/>
+          <text x="860" y="118" text-anchor="middle" fill="#6EE7B7" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">WordPress</text>
+          <text x="860" y="140" text-anchor="middle" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="10">36 tables, commerce core</text>
+          <line x1="220" y1="125" x2="286" y2="125" stroke="url(#flowG)" stroke-width="2" marker-end="url(#arrow)"/>
+          <line x1="470" y1="125" x2="536" y2="125" stroke="url(#flowG)" stroke-width="2" marker-end="url(#arrow)"/>
+          <line x1="720" y1="125" x2="786" y2="125" stroke="url(#flowG)" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="480" y="215" text-anchor="middle" fill="#64748B" font-family="JetBrains Mono, monospace" font-size="10">Customer traffic hits the storefront and the public API. The agent operates the store through MCP - it never touches the checkout path.</text>
+        </svg>
+        
+<div class="absolute inset-0 bg-gradient-to-t from-[#060913] via-transparent to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between flex-wrap gap-4">
+          <div class="glass-card px-4 py-2 rounded-xl text-xs font-mono text-slate-200">
+            <span class="text-cyan-400 font-bold">SYSTEM OVERVIEW:</span> AI Agent Controller ➔ MCP Server ➔ 317 Tools ➔ Enterprise Commerce Engine
+          </div>
+          <a href="#simulator" class="glass-card px-4 py-2 rounded-xl text-xs font-mono text-cyan-300 hover:text-white transition-colors flex items-center gap-1.5">
+            Test tool calls in simulator <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+      
+<!-- Pillar Selector Tabs -->
+      <div class="grid grid-cols-2 md:grid-cols-6 gap-2 mb-8" role="tablist" aria-label="CSM architecture pillars">
+        <button data-pillar="1" role="tab" aria-selected="true" aria-controls="pillar-1" class="arch-tab-btn tab-active px-3 py-3 rounded-xl border border-cyan-500 text-xs font-mono font-semibold text-white transition-all text-center">
+          1. Core Commerce
+        </button>
+        <button data-pillar="2" role="tab" aria-selected="false" aria-controls="pillar-2" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+          2. Multi-Payment
+        </button>
+        <button data-pillar="3" role="tab" aria-selected="false" aria-controls="pillar-3" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+          3. RMA & Returns
+        </button>
+        <button data-pillar="4" role="tab" aria-selected="false" aria-controls="pillar-4" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+          4. Flash Drops
+        </button>
+        <button data-pillar="5" role="tab" aria-selected="false" aria-controls="pillar-5" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+          5. WhatsApp AI
+        </button>
+        <button data-pillar="6" role="tab" aria-selected="false" aria-controls="pillar-6" class="arch-tab-btn px-3 py-3 rounded-xl border border-transparent text-xs font-mono font-semibold text-slate-400 hover:text-white transition-all text-center">
+          6. Sovereign Ops
+        </button>
+      </div>
+
+      <!-- Pillar Content Panels -->
+      
+<div class="glass-card rounded-2xl p-8 border border-white/10">
+        
+        <!-- Pillar 1: Core Commerce -->
+        <div id="pillar-1" class="arch-tab-panel" role="tabpanel" aria-labelledby="">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-white">Catalog & Transactional Core (Products 8 · Orders 11 · Inventory 6)</h4>
+              <p class="text-sm text-slate-400">Inventory locking, dynamic variant matrices, cart CSRF tokenization, and multi-currency exchange.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs text-slate-300 mb-6">
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-cyan-400 font-bold block mb-1">`products_set_variants`</span>
+              Generates complex multi-attribute matrices (Size, Color, Material, SKU, Barcode) in a single autonomous step.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-cyan-400 font-bold block mb-1">`inventory_adjust`</span>
+              Concurrency-safe atomic stock decrementing during checkout drops to eliminate double-selling.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-cyan-400 font-bold block mb-1">`orders_timeline`</span>
+              Granular state machine tracing order lifecycles from pending ➔ payment_captured ➔ packing ➔ fulfilled.
+            </div>
+          </div>
+          
+<div class="text-xs text-slate-400 flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+            <span>Enforces strict X-CSM-Cart-CSRF tokens on every checkout to prevent cart forgery exploits.</span>
+          </div>
+        </div>
+
+        <!-- Pillar 2: Multi-Payment Engine -->
+        
+<div id="pillar-2" class="arch-tab-panel hidden">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+              <i data-lucide="credit-card" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-white">Payment &amp; Checkout Engine (Payments 3 · Security 2 · Cart CSRF)</h4>
+              <p class="text-sm text-slate-400">Dual credential Live/Sandbox storage, zero-leak secret masking, and automated HMAC roundtrip verification.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs text-slate-300 mb-6">
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-purple-400 font-bold block mb-1">`payment_methods_save`</span>
+              Saves Stripe, PayPal, Razorpay, Bank Wire, and COD settings with automated test token verification.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-purple-400 font-bold block mb-1">`payment_gateway_test`</span>
+              Simulates live checkout authorization and webhook roundtrips without touching merchant bank accounts.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-purple-400 font-bold block mb-1">Dual-Credential Vault</span>
+              Toggle between Sandbox and Live without erasing previously saved API keys or webhook secrets.
+            </div>
+          </div>
+          
+<div class="text-xs text-slate-400 flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+            <span>Zero platform transaction fee. 100% of payment gross margin stays with the merchant.</span>
+          </div>
+        </div>
+
+        <!-- Pillar 3: Post-Purchase RMA -->
+        
+<div id="pillar-3" class="arch-tab-panel hidden">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+              <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-white">Post-Purchase & RMA Suite (Returns 22 · Care 13)</h4>
+              <p class="text-sm text-slate-400">Self-service returns, automated inspection logs, restocking formulas, and gateway refund dispatch.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs text-slate-300 mb-6">
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-emerald-400 font-bold block mb-1">`returns_inspect`</span>
+              Evaluates returned physical items against warehouse condition criteria and records defects.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-emerald-400 font-bold block mb-1">`returns_refund_preview`</span>
+              Calculates proportional tax and shipping refunds with optional restocking fee deductions.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-emerald-400 font-bold block mb-1">`returns_settle`</span>
+              Dispatches automated refund via original Stripe charge ID and logs complete audit trail.
+            </div>
+          </div>
+          
+<div class="text-xs text-slate-400 flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-emerald-400"></i>
+            <span>Streamlines post-purchase RMA workflows through structured autonomous decisioning and approval tokens.</span>
+          </div>
+        </div>
+
+        
+<!-- Pillar 4: Flash Drops -->
+        <div id="pillar-4" class="arch-tab-panel hidden">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+              <i data-lucide="flame" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-white">Growth, Flash Drops & Marketing (Flash 8 · Coupons 5 · SEO 5)</h4>
+              <p class="text-sm text-slate-400">Cycle timers, countdown status bars, coupons, personalized customer care cards, and subscriber alerts.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs text-slate-300 mb-6">
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-amber-400 font-bold block mb-1">`flash_sale_set`</span>
+              Instantly schedules dynamic time-gated discounts with synchronized frontend countdown banners.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-amber-400 font-bold block mb-1">`flash_reminders_save`</span>
+              Collects high-intent customer emails and triggers pre-drop notification broadcasts automatically.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-amber-400 font-bold block mb-1">`coupons_create`</span>
+              Creates single-use, tiered, or cart-minimum discount coupons with granular usage tracking.
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 5: WhatsApp AI CRM -->
+        
+<div id="pillar-5" class="arch-tab-panel hidden">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+              <i data-lucide="message-square" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-white">Conversational AI & Chat Assistant (Chat 23 · WhatsApp 4)</h4>
+              <p class="text-sm text-slate-400">Multi-instance WhatsApp bridge, 1000-question adversarial golden-set QA test harness, and gap detection.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs text-slate-300 mb-6">
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-emerald-400 font-bold block mb-1">`whatsapp_agent_connect`</span>
+              Pairs your store with official WhatsApp Business API for interactive rich order cards and tracking updates.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-emerald-400 font-bold block mb-1">`chat_goldenset_run`</span>
+              Executes automated adversarial test suites to ensure the AI never hallucinates pricing, sizes, or return policies.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-emerald-400 font-bold block mb-1">`care_card_send`</span>
+              Dispatches visual status cards with interactive call-to-action buttons directly into customer chat threads.
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 6: Sovereign Ops -->
+        
+<div id="pillar-6" class="arch-tab-panel hidden">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <i data-lucide="server" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h4 class="text-xl font-bold text-white">Sovereign Ops &amp; Shipping (Frontend 19 · Audit 4 · Roles 8)</h4>
+              <p class="text-sm text-slate-400">Granular role capability cloning, session revocation, audit logs, auto cache purging, and Cloudflare routes.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs text-slate-300 mb-6">
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-cyan-400 font-bold block mb-1">`roles_clone` & Caps</span>
+              Define custom agent privileges (e.g. read-only catalog manager, order fulfillment bot) with zero data leak.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-cyan-400 font-bold block mb-1">`tools_purge_cache`</span>
+              Instant automated cache synchronization across Cloudflare Edge, Hostinger CDN, and WordPress object caches.
+            </div>
+            <div class="p-3 rounded-lg bg-white/5 border border-white/5">
+              <span class="text-cyan-400 font-bold block mb-1">`audit_log_list`</span>
+              Immutable append-only audit trail logging every single AI tool execution, API token call, and admin modification.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
