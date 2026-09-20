@@ -1,11 +1,13 @@
-/* Homepage hero v2 background. Decorative only; content stays z-index 10.
-   Layers, top to bottom: orbs, circuit grid, SVG traces + pulses, sweep,
-   Three.js canvas, MCP packet chips, halo, cursor spot. */
+/* Homepage ambient background effects for sections through FAQ.
+   Decorative only; section content stays z-index 10.
+   Layers: orbs, circuit grid, SVG traces + pulses, sweep,
+   MCP packet chips, halo, cursor spot, plus global fixed Three.js canvas. */
 
-#main-content .hero-fx {
+.hero-fx {
   position: absolute;
-  inset: 0 0 auto;
-  height: min(100%, 900px);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
@@ -13,13 +15,13 @@
 }
 
 /* --- Gradient orbs -------------------------------------------------- */
-#main-content .hero-fx__orbs {
+.hero-fx__orbs {
   position: absolute;
   inset: 0;
   overflow: hidden;
   mix-blend-mode: screen;
 }
-#main-content .hero-fx__orb {
+.hero-fx__orb {
   position: absolute;
   width: 520px;
   height: 520px;
@@ -28,19 +30,19 @@
   opacity: 0.35;
   will-change: transform;
 }
-#main-content .hero-fx__orb--cyan {
+.hero-fx__orb--cyan {
   background: radial-gradient(circle, #22d3ee, transparent 65%);
   top: -120px;
   left: 8%;
   animation: hero-fx-orb-a 22s ease-in-out infinite alternate;
 }
-#main-content .hero-fx__orb--indigo {
+.hero-fx__orb--indigo {
   background: radial-gradient(circle, #6366f1, transparent 65%);
   top: 60px;
   left: 42%;
   animation: hero-fx-orb-b 26s ease-in-out infinite alternate;
 }
-#main-content .hero-fx__orb--purple {
+.hero-fx__orb--purple {
   background: radial-gradient(circle, #a855f7, transparent 65%);
   top: -60px;
   right: 4%;
@@ -51,7 +53,7 @@
 @keyframes hero-fx-orb-c { to { transform: translate3d(-40px, 60px, 0) scale(1.1); } }
 
 /* --- Circuit grid + traces + light sweep ---------------------------- */
-#main-content .hero-fx__grid {
+.hero-fx__grid {
   position: absolute;
   inset: 0;
   background-image:
@@ -61,24 +63,24 @@
   mask-image: radial-gradient(ellipse at center, #000 30%, transparent 78%);
 }
 
-#main-content .hero-fx__network {
+.hero-fx__network {
   position: absolute;
   inset: -16px;
   opacity: 0.85;
   -webkit-mask-image: linear-gradient(90deg, #000, #000 12%, transparent 42%, transparent 58%, #000 88%, #000);
   mask-image: linear-gradient(90deg, #000, #000 12%, transparent 42%, transparent 58%, #000 88%, #000);
 }
-#main-content .hero-fx__network svg {
+.hero-fx__network svg {
   display: block; width: 100%; height: 100%; overflow: visible;
 }
-#main-content .hero-fx__track {
+.hero-fx__track {
   fill: none;
   stroke: #38bdf8;
   stroke-opacity: 0.35;
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
-#main-content .hero-fx__pulse {
+.hero-fx__pulse {
   fill: none;
   stroke: #67e8f9;
   stroke-width: 1.6;
@@ -88,7 +90,7 @@
   animation: hero-fx-data 9s linear infinite;
   animation-delay: var(--hero-fx-delay, 0s);
 }
-#main-content .hero-fx__node {
+.hero-fx__node {
   fill: #0b1428;
   stroke: #67e8f9;
   stroke-opacity: 0.75;
@@ -96,7 +98,7 @@
   vector-effect: non-scaling-stroke;
 }
 
-#main-content .hero-fx__sweep {
+.hero-fx__sweep {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -116,28 +118,38 @@
   100% { transform: translate3d(320%, 0, 0); }
 }
 
-/* --- Three.js canvas host ------------------------------------------- */
-#main-content .hero-fx__scene {
-  position: absolute;
+/* --- Viewport-fixed Three.js canvas host ----------------------------- */
+.hero-fx-fixed-scene {
+  position: fixed;
   inset: 0;
-  -webkit-mask-image: radial-gradient(ellipse at 50% 42%, transparent 12%, #000 55%);
-  mask-image: radial-gradient(ellipse at 50% 42%, transparent 12%, #000 55%);
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, transparent 8%, #000 52%);
+  mask-image: radial-gradient(ellipse at 50% 50%, transparent 8%, #000 52%);
 }
-#main-content .hero-fx__scene canvas {
+.hero-fx-fixed-scene canvas {
   display: block;
   width: 100% !important;
   height: 100% !important;
 }
+.hero-fx-fixed-scene.hero-fx-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
 
 /* --- MCP data packet chips (CSS Motion Path) ------------------------ */
-#main-content .hero-fx__chips {
+.hero-fx__chips {
   position: absolute;
   top: 0; left: 0;
   width: 1440px;
   height: 800px;
   transform-origin: 0 0;
 }
-#main-content .hero-fx__chip {
+.hero-fx__chip {
   position: absolute;
   top: 0; left: 0;
   padding: 2px 6px;
@@ -161,8 +173,8 @@
   100% { offset-distance: 100%; opacity: 0; }
 }
 
-/* --- Halo + cursor spot (kept from v1) ------------------------------ */
-#main-content .hero-fx__halo {
+/* --- Halo + cursor spot --------------------------------------------- */
+.hero-fx__halo {
   position: absolute;
   width: 680px;
   height: 680px;
@@ -171,7 +183,7 @@
   border-radius: 50%;
   background: radial-gradient(ellipse, rgba(139,92,246,0.14), transparent 68%);
 }
-#main-content .hero-fx__spot {
+.hero-fx__spot {
   position: absolute;
   width: 440px;
   height: 440px;
@@ -182,7 +194,7 @@
 }
 
 /* --- Pause/Resume control ------------------------------------------- */
-#main-content .hero-fx__control {
+.hero-fx__control {
   position: absolute;
   top: 10px;
   right: 16px;
@@ -195,7 +207,7 @@
   font: 11px var(--font-mono, monospace);
   cursor: pointer;
 }
-#main-content .hero-fx__control:hover { border-color: #22d3ee; color: #fff; }
+.hero-fx__control:hover { border-color: #22d3ee; color: #fff; }
 
 /* --- Rotating keyword line ------------------------------------------ */
 .hero-rotator {
@@ -260,39 +272,44 @@
   inherits: false;
 }
 
-/* --- Paused state --------------------------------------------------- */
-#main-content.hero-fx-paused .hero-fx__pulse,
-#main-content.hero-fx-paused .hero-fx__sweep,
-#main-content.hero-fx-paused .hero-fx__chip,
-#main-content.hero-fx-paused .hero-fx__orb {
+/* --- Paused state (applies to body or individual sections) ---------- */
+.hero-fx-paused .hero-fx__pulse,
+.hero-fx-paused .hero-fx__sweep,
+.hero-fx-paused .hero-fx__chip,
+.hero-fx-paused .hero-fx__orb,
+body.hero-fx-paused .hero-fx__pulse,
+body.hero-fx-paused .hero-fx__sweep,
+body.hero-fx-paused .hero-fx__chip,
+body.hero-fx-paused .hero-fx__orb {
   animation-play-state: paused;
 }
-#main-content.hero-fx-paused .hero-rotator__cursor { animation-play-state: paused; }
+.hero-fx-paused .hero-rotator__cursor,
+body.hero-fx-paused .hero-rotator__cursor { animation-play-state: paused; }
 
 @keyframes hero-fx-data { to { stroke-dashoffset: -100; } }
 
 /* --- Small screens / coarse pointers -------------------------------- */
 @media (max-width: 767px), (pointer: coarse) {
-  #main-content .hero-fx__network { opacity: 0.55; }
-  #main-content .hero-fx__spot,
-  #main-content .hero-fx__scene { display: none; }
-  #main-content .hero-fx__orb { opacity: 0.28; }
+  .hero-fx__network { opacity: 0.55; }
+  .hero-fx__spot { display: none; }
+  .hero-fx-fixed-scene { display: none !important; }
+  .hero-fx__orb { opacity: 0.28; }
   .hero-fx-tilt { perspective: none; }
   .hero-fx-tilt::before { display: none; }
 }
 
 /* --- Reduced motion ------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  #main-content .hero-fx__pulse,
-  #main-content .hero-fx__sweep,
-  #main-content .hero-fx__chip,
-  #main-content .hero-fx__orb,
+  .hero-fx__pulse,
+  .hero-fx__sweep,
+  .hero-fx__chip,
+  .hero-fx__orb,
   .hero-rotator__cursor,
   .hero-fx-tilt::before { animation: none !important; }
-  #main-content .hero-fx__chips { display: none; }
-  #main-content .hero-fx__scene { display: none; }
-  #main-content .hero-fx__network,
-  #main-content .hero-fx__halo { transform: none !important; }
-  #main-content .hero-fx__spot,
-  #main-content .hero-fx__control { display: none; }
+  .hero-fx__chips { display: none; }
+  .hero-fx-fixed-scene { display: none !important; }
+  .hero-fx__network,
+  .hero-fx__halo { transform: none !important; }
+  .hero-fx__spot,
+  .hero-fx__control { display: none; }
 }
