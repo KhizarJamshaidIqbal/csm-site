@@ -81,7 +81,6 @@ function hideFormError(form) {
   }
 }
 
-
 function leadFailureMessage(result, unavailableMessage) {
   if (result.reason === "not_configured") {
     return unavailableMessage;
@@ -192,7 +191,6 @@ function bindModalChrome(modal, closeBtn, successCloseBtn) {
   });
 }
 
-
 function bindModalKeyboard(modals) {
   document.addEventListener("keydown", (e) => {
     if (!e) return;
@@ -222,7 +220,6 @@ function bindModalKeyboard(modals) {
     }
   });
 }
-
 
 function bindWaitlistForm(waitlistForm, waitlistSuccess) {
   if (!waitlistForm) return;
@@ -265,7 +262,6 @@ function bindWaitlistForm(waitlistForm, waitlistSuccess) {
   });
 }
 
-
 function bindDeckForm(deckForm, deckSuccess) {
   if (!deckForm) return;
   deckForm.addEventListener("submit", async (e) => {
@@ -299,7 +295,6 @@ function bindDeckForm(deckForm, deckSuccess) {
     }
   });
 }
-
 
 function initModals() {
   const waitlistModal = document.getElementById("waitlist-modal");
@@ -385,7 +380,6 @@ function initFaqAccordion() {
  * Architecture 6 Pillars Tabs
  * ----------------------------------------------------------- */
 
-
 function initArchitectureTabs() {
   const tabButtons = document.querySelectorAll(".arch-tab-btn");
   const tabPanels = document.querySelectorAll(".arch-tab-panel");
@@ -450,7 +444,6 @@ function flashButtonLabel(btn, html, ms) {
     btn.innerHTML = originalText;
   }, ms);
 }
-
 
 function initCopySnippets() {
   document.querySelectorAll(".copy-snippet-btn").forEach(btn => {
