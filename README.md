@@ -34,11 +34,14 @@ The deployed site is plain static HTML + compiled Tailwind + vanilla JS + a smal
 ├── js/
 │   ├── app.js                  # GENERATED from src/js/app
 │   ├── simulator.js            # Scripted MCP terminal demo (homepage only)
-│   └── calculator.js           # ROI worksheet (homepage only)
+│   ├── calculator.js           # ROI worksheet (homepage only)
+│   ├── hero-effects.js         # Homepage hero v2 orchestrator (loaded on homepage only)
+│   └── hero-scene.js           # Three.js constellation ES module, loaded lazily by hero-effects.js
 ├── css/
 │   ├── input.css               # Tailwind entry
 │   ├── tailwind.css            # COMPILED Tailwind (do not hand-edit)
-│   └── styles.css              # Custom styling, animations, terminal theme
+│   ├── styles.css              # Custom styling, animations, terminal theme
+│   └── hero-effects.css        # Homepage hero v2 decorative layers
 ├── php/
 │   ├── mailgate.php            # Lead gateway (waitlist | deck) -> SMTP via PHPMailer
 │   ├── config.php              # Credential loader (no secrets)
@@ -67,6 +70,7 @@ The deployed site is plain static HTML + compiled Tailwind + vanilla JS + a smal
 - Edit files under `src/`, then run `npm run build`. Commit both the source and the regenerated output.
 - No hand-written source file may exceed **500 lines**. `npm run check` fails the build otherwise.
 - `npm run check` also fails when a committed generated file no longer matches its sources.
+
 
 ## Clean URLs
 

@@ -47,6 +47,7 @@ function read(file) {
 }
 
 
+
 function parseFrontMatter(source, file) {
   if (!source.startsWith('---')) return { vars: {}, body: source };
   const end = source.indexOf('\n---', 3);
@@ -95,6 +96,7 @@ function compilePages() {
 }
 
 
+
 function compileJs() {
   if (!fs.existsSync(JS_MANIFEST)) return new Map();
   const manifest = JSON.parse(read(JS_MANIFEST));
@@ -125,6 +127,7 @@ function lintSize() {
     path.join(ROOT, 'js', 'simulator.js'),
     path.join(ROOT, 'js', 'calculator.js'),
     path.join(ROOT, 'js', 'hero-effects.js'),
+    path.join(ROOT, 'js', 'hero-scene.js'),
     path.join(ROOT, 'build.js'),
     path.join(ROOT, 'validate-links.js'),
     path.join(ROOT, 'validate-ld.js'),
@@ -145,6 +148,7 @@ function firstDiffLine(a, b) {
   }
   return -1;
 }
+
 
 
 function main() {
