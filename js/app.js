@@ -73,7 +73,6 @@ function showFormError(form, message) {
   errBox.classList.remove("hidden");
 }
 
-
 function hideFormError(form) {
   const errBox = form ? form.querySelector(".form-error") : null;
   if (errBox) {
@@ -140,7 +139,6 @@ function initNavbar() {
 }
 
 /* ---- src/js/app/modals.js ---- */
-
 /* -------------------------------------------------------------
  * Modals: Early Access Waitlist & Investor Pitch Deck
  * ----------------------------------------------------------- */
@@ -348,7 +346,6 @@ function initModals() {
  * FAQ Accordion
  * ----------------------------------------------------------- */
 
-
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll(".faq-item");
 
@@ -386,7 +383,6 @@ function initFaqAccordion() {
 /* -------------------------------------------------------------
  * Architecture 6 Pillars Tabs
  * ----------------------------------------------------------- */
-
 
 function initArchitectureTabs() {
   const tabButtons = document.querySelectorAll(".arch-tab-btn");
@@ -452,7 +448,6 @@ function flashButtonLabel(btn, html, ms) {
     btn.innerHTML = originalText;
   }, ms);
 }
-
 
 function initCopySnippets() {
   document.querySelectorAll(".copy-snippet-btn").forEach(btn => {

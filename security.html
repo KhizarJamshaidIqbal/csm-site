@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Security Architecture &amp; Trust Controls — CSM Engine</title>
   <meta name="description" content="Technical verification of CSM Engine security controls: cryptographic cart CSRF tokens, PCI-DSS tokenization boundary, HMAC webhook verification, OAuth 2.1 PKCE, and permission-isolated MCP tools.">
-  <link rel="canonical" href="https://csmengine.epsoldev.com/security.html">
+  <link rel="canonical" href="https://csmengine.epsoldev.com/security">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#060913">
   <link rel="icon" type="image/svg+xml" href="assets/icons/csm-logo.svg">
   <meta property="og:title" content="CSM Engine Security Architecture — Cryptographic Cart Security &amp; Audit Logging">
   <meta property="og:description" content="Zero plain-text card storage, per-cart cryptographic CSRF tokens, dual-layer HMAC webhook verification, and append-only audit trails.">
   <meta property="og:image" content="https://csmengine.epsoldev.com/assets/images/hero-agent-mesh.jpg">
-  <meta property="og:url" content="https://csmengine.epsoldev.com/security.html">
+  <meta property="og:url" content="https://csmengine.epsoldev.com/security">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,19 +25,21 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://csmengine.epsoldev.com/" },
-      { "@type": "ListItem", "position": 2, "name": "Security Architecture", "item": "https://csmengine.epsoldev.com/security.html" }
+      { "@type": "ListItem", "position": 2, "name": "Security Architecture", "item": "https://csmengine.epsoldev.com/security" }
     ]
   }
   </script>
 </head>
+
 <body class="bg-[#060913] text-slate-100 selection:bg-cyan-500 selection:text-white bg-grid-pattern">
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- STICKY HEADER -->
   <header class="sticky top-0 z-50 bg-[#060913]/90 backdrop-blur-md border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3 group">
+    
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 group">
         <img src="assets/icons/csm-logo.svg" alt="CSM Engine Logo" class="w-10 h-10 transform group-hover:scale-105 transition-transform">
         <div class="flex flex-col">
           <div class="flex items-center gap-2">
@@ -48,12 +50,12 @@
         </div>
       </a>
       <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-        <a href="index.html" class="hover:text-white transition-colors">Overview</a>
-        <a href="product.html" class="hover:text-white transition-colors">Architecture</a>
-        <a href="investors.html" class="hover:text-white transition-colors">Investors</a>
-        <a href="index.html#comparison" class="hover:text-white transition-colors">Comparison</a>
-        <a href="about.html" class="hover:text-white transition-colors">About Us</a>
-        <a href="security.html" class="text-cyan-400 font-semibold transition-colors" aria-current="page">Security</a>
+        <a href="/" class="hover:text-white transition-colors">Overview</a>
+        <a href="/product" class="hover:text-white transition-colors">Architecture</a>
+        <a href="/investors" class="hover:text-white transition-colors">Investors</a>
+        <a href="/#comparison" class="hover:text-white transition-colors">Comparison</a>
+        <a href="/about" class="hover:text-white transition-colors">About Us</a>
+        <a href="/security" class="text-cyan-400 font-semibold transition-colors" aria-current="page">Security</a>
       </nav>
       <div class="hidden sm:flex items-center gap-3">
         <button class="open-deck-btn px-4 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/5 border border-white/10 transition-all">
@@ -63,19 +65,20 @@
           Join Early Access
         </button>
       </div>
-      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu">
+      
+<button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
     </div>
 
     <!-- Mobile Nav Drawer -->
     <div id="mobile-menu" class="hidden md:hidden bg-[#080C18] border-b border-white/10 px-4 py-6 space-y-4">
-      <a href="index.html" class="block text-slate-300 hover:text-white text-base font-medium">Overview</a>
-      <a href="product.html" class="block text-slate-300 hover:text-white text-base font-medium">Architecture</a>
-      <a href="investors.html" class="block text-slate-300 hover:text-white text-base font-medium">Investors</a>
-      <a href="index.html#comparison" class="block text-slate-300 hover:text-white text-base font-medium">Comparison</a>
-      <a href="about.html" class="block text-slate-300 hover:text-white text-base font-medium">About Us</a>
-      <a href="security.html" class="block text-cyan-400 font-semibold text-base">Security</a>
+      <a href="/" class="block text-slate-300 hover:text-white text-base font-medium">Overview</a>
+      <a href="/product" class="block text-slate-300 hover:text-white text-base font-medium">Architecture</a>
+      <a href="/investors" class="block text-slate-300 hover:text-white text-base font-medium">Investors</a>
+      <a href="/#comparison" class="block text-slate-300 hover:text-white text-base font-medium">Comparison</a>
+      <a href="/about" class="block text-slate-300 hover:text-white text-base font-medium">About Us</a>
+      <a href="/security" class="block text-cyan-400 font-semibold text-base">Security</a>
       <div class="pt-4 border-t border-white/10 flex flex-col gap-3">
         <button class="open-deck-btn w-full py-2.5 rounded-lg text-xs font-semibold text-center text-slate-300 border border-white/10">Request Pitch Deck</button>
         <button class="open-waitlist-btn w-full py-2.5 rounded-lg text-xs font-bold text-center text-white bg-gradient-to-r from-cyan-500 to-purple-600">Join Early Access Waitlist</button>
@@ -93,7 +96,8 @@
       Operating autonomous AI agents against a financial backend requires rigorous defensive controls. Every mechanism below is implemented and enforced in the core engine codebase.
     </p>
 
-    <div class="space-y-12">
+    
+<div class="space-y-12">
 
       <!-- 1. Cart CSRF -->
       <section class="glass-card rounded-2xl p-6 sm:p-8 border border-white/10">
@@ -117,7 +121,8 @@
       </section>
 
       <!-- 3. HMAC Webhooks -->
-      <section class="glass-card rounded-2xl p-6 sm:p-8 border border-white/10">
+      
+<section class="glass-card rounded-2xl p-6 sm:p-8 border border-white/10">
         <h2 class="text-xl font-bold text-white mb-3">3. HMAC Webhook Signature Verification</h2>
         <p class="text-sm text-slate-300 leading-relaxed font-light">
           Incoming payment webhooks are authenticated with dual-layer roundtrip signature checks (<code class="text-cyan-300 font-mono text-xs bg-white/5 px-1.5 py-0.5 rounded">CSM_Stripe::check_webhook()</code>). Every webhook's HMAC-SHA256 signature is verified against the gateway signing secret before processing. Events are idempotency-guarded to prevent duplicate order states or replayed transaction confirmations.
@@ -138,7 +143,8 @@
       </section>
 
       <!-- 5. Dry-Run Approval Tokens -->
-      <section class="glass-card rounded-2xl p-6 sm:p-8 border border-white/10">
+      
+<section class="glass-card rounded-2xl p-6 sm:p-8 border border-white/10">
         <h2 class="text-xl font-bold text-white mb-3">5. Two-Phase Dry-Run Approvals</h2>
         <p class="text-sm text-slate-300 leading-relaxed font-light">
           Under the recommended <code class="text-purple-300 font-mono text-xs bg-white/5 px-1.5 py-0.5 rounded">approval_required</code> permission mode, mutating tool calls do not commit immediately. CSM executes a dry-run simulation, generates a human-readable diff, and issues an ephemeral approval token bound strictly to the exact input arguments with a 600-second expiration window.
@@ -160,10 +166,10 @@
       <section class="p-5 rounded-xl bg-slate-900/80 border border-white/10 text-xs text-slate-400 font-mono leading-relaxed">
         <strong>COMPLIANCE ARCHITECTURE NOTICE:</strong> CSM Engine's open-core codebase implements defensive engineering patterns aligned with PCI-DSS non-storage rules and OWASP API Security standards. However, because CSM is a self-hostable open-core software package, individual merchant deployments must manage their own server-level hosting certifications (e.g. SOC2, ISO 27001, PCI-DSS Level 1 AoC).
       </section>
-
     </div>
 
-    <!-- BOTTOM CTA -->
+    
+<!-- BOTTOM CTA -->
     <div class="mt-16 rounded-2xl p-8 bg-gradient-to-r from-violet-950/60 via-slate-900 to-cyan-950/60 border border-white/10 text-center">
       <h2 class="text-xl font-bold text-white mb-2">Security Verification &amp; Diligence</h2>
       <p class="text-sm text-slate-300 font-light max-w-xl mx-auto mb-6">
@@ -187,13 +193,13 @@
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>&copy; 2026 CSM Engine Inc. All rights reserved. Sovereign E-Commerce Infrastructure.</div>
         <div class="flex items-center gap-6">
-          <a href="index.html" class="hover:text-white transition-colors">Home</a>
-          <a href="product.html" class="hover:text-white transition-colors">Architecture</a>
-          <a href="investors.html" class="hover:text-white transition-colors">Investors</a>
-          <a href="about.html" class="hover:text-white transition-colors">About Us</a>
-          <a href="security.html" class="text-white transition-colors">Security</a>
-          <a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a>
+          <a href="/" class="hover:text-white transition-colors">Home</a>
+          <a href="/product" class="hover:text-white transition-colors">Architecture</a>
+          <a href="/investors" class="hover:text-white transition-colors">Investors</a>
+          <a href="/about" class="hover:text-white transition-colors">About Us</a>
+          <a href="/security" class="text-white transition-colors">Security</a>
+          <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="/terms" class="hover:text-white transition-colors">Terms of Service</a>
         </div>
       </div>
     </div>
@@ -293,3 +299,4 @@
   <script src="js/app.js"></script>
 </body>
 </html>
+
