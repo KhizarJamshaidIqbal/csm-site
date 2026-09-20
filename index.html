@@ -329,6 +329,16 @@
 
       <!-- Hero Visual Representation (Interactive Multi-Screen Slider) -->
       <div id="hero-slider" class="mt-12 relative max-w-5xl mx-auto rounded-2xl p-1.5 bg-gradient-to-b from-white/15 via-white/5 to-transparent shadow-2xl group/slider">
+        <style>
+          @media (min-width: 640px) {
+            .hero-tab-short { display: none !important; }
+            .hero-tab-full { display: inline !important; }
+          }
+          @media (max-width: 639px) {
+            .hero-tab-short { display: inline !important; }
+            .hero-tab-full { display: none !important; }
+          }
+        </style>
         <div class="rounded-xl overflow-hidden border border-white/10 bg-[#070A14] relative">
           
           <!-- Slider Navigation Chrome Header -->
@@ -343,18 +353,23 @@
               <div class="flex items-center gap-1 sm:gap-1.5 shrink-0" role="tablist" aria-label="Hero Showcase Screens">
                 <button type="button" role="tab" aria-selected="true" aria-controls="hero-slide-0" data-hero-slide-tab="0" class="hero-tab-btn px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-mono font-semibold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 flex items-center gap-1 sm:gap-1.5 transition-all">
                   <span class="hero-tab-dot w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-                  <span class="sm:hidden">Admin</span>
-                  <span class="hidden sm:inline">1. Store Admin</span>
+                  <span class="hero-tab-short">Admin</span>
+                  <span class="hero-tab-full">1. Store Admin</span>
                 </button>
                 <button type="button" role="tab" aria-selected="false" aria-controls="hero-slide-1" data-hero-slide-tab="1" class="hero-tab-btn px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-mono text-slate-400 hover:text-slate-200 border border-transparent hover:border-white/10 flex items-center gap-1 sm:gap-1.5 transition-all">
                   <span class="hero-tab-dot w-1.5 h-1.5 rounded-full bg-slate-600"></span>
-                  <span class="sm:hidden">Analytics</span>
-                  <span class="hidden sm:inline">2. Sales Analytics</span>
+                  <span class="hero-tab-short">AI Copilot</span>
+                  <span class="hero-tab-full">2. AI Copilot</span>
                 </button>
                 <button type="button" role="tab" aria-selected="false" aria-controls="hero-slide-2" data-hero-slide-tab="2" class="hero-tab-btn px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-mono text-slate-400 hover:text-slate-200 border border-transparent hover:border-white/10 flex items-center gap-1 sm:gap-1.5 transition-all">
                   <span class="hero-tab-dot w-1.5 h-1.5 rounded-full bg-slate-600"></span>
-                  <span class="sm:hidden">Storefront</span>
-                  <span class="hidden sm:inline">3. AI Storefront</span>
+                  <span class="hero-tab-short">Analytics</span>
+                  <span class="hero-tab-full">3. Sales Analytics</span>
+                </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="hero-slide-3" data-hero-slide-tab="3" class="hero-tab-btn px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-mono text-slate-400 hover:text-slate-200 border border-transparent hover:border-white/10 flex items-center gap-1 sm:gap-1.5 transition-all">
+                  <span class="hero-tab-dot w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+                  <span class="hero-tab-short">Storefront</span>
+                  <span class="hero-tab-full">4. AI Storefront</span>
                 </button>
               </div>
             </div>
@@ -378,13 +393,18 @@
               <img src="assets/images/csm-dashboard-overview.png" alt="CSM Engine — Store Admin Executive Dashboard" class="w-full h-full object-cover object-top block" loading="eager">
             </div>
 
-            <!-- Slide 1: Sales Analytics -->
+            <!-- Slide 1: In-Store AI Copilot & Agent Engine -->
             <div id="hero-slide-1" role="tabpanel" data-hero-slide="1" class="hero-slide-panel absolute inset-0 w-full h-full transition-opacity duration-500 opacity-0 pointer-events-none z-0">
+              <img src="assets/images/csm-ai-agent-copilot.jpg" alt="CSM Engine — In-Store Autonomous AI Copilot and MCP Agent Engine" class="w-full h-full object-cover object-top block" loading="eager">
+            </div>
+
+            <!-- Slide 2: Sales Analytics -->
+            <div id="hero-slide-2" role="tabpanel" data-hero-slide="2" class="hero-slide-panel absolute inset-0 w-full h-full transition-opacity duration-500 opacity-0 pointer-events-none z-0">
               <img src="assets/images/csm-sales-analytics.png" alt="CSM Engine — Real-time Sales Analytics and Order State Machine" class="w-full h-full object-cover object-top block" loading="eager">
             </div>
 
-            <!-- Slide 2: AI Storefront -->
-            <div id="hero-slide-2" role="tabpanel" data-hero-slide="2" class="hero-slide-panel absolute inset-0 w-full h-full transition-opacity duration-500 opacity-0 pointer-events-none z-0">
+            <!-- Slide 3: AI Storefront -->
+            <div id="hero-slide-3" role="tabpanel" data-hero-slide="3" class="hero-slide-panel absolute inset-0 w-full h-full transition-opacity duration-500 opacity-0 pointer-events-none z-0">
               <img src="assets/images/csm-storefront-luxwearz.png" alt="Lux Wearz — Live Headless Storefront Powered by CSM" class="w-full h-full object-cover object-top block" loading="eager">
             </div>
 
@@ -395,6 +415,7 @@
             <button type="button" aria-label="Go to slide 1" data-hero-dot="0" class="w-5 h-1 rounded-full bg-cyan-400 transition-all"></button>
             <button type="button" aria-label="Go to slide 2" data-hero-dot="1" class="w-1.5 h-1 rounded-full bg-slate-600 transition-all"></button>
             <button type="button" aria-label="Go to slide 3" data-hero-dot="2" class="w-1.5 h-1 rounded-full bg-slate-600 transition-all"></button>
+            <button type="button" aria-label="Go to slide 4" data-hero-dot="3" class="w-1.5 h-1 rounded-full bg-slate-600 transition-all"></button>
           </div>
 
         </div>
@@ -1665,7 +1686,7 @@
   <!-- Scripts -->
   <script src="js/simulator.js"></script>
   <script src="js/calculator.js"></script>
-  <script src="js/app.js?v=2.0.1"></script>
+  <script src="js/app.js?v=2.0.2"></script>
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
