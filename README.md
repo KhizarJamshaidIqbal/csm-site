@@ -68,7 +68,16 @@ The deployed site is plain static HTML + compiled Tailwind + vanilla JS + a smal
 - No hand-written source file may exceed **500 lines**. `npm run check` fails the build otherwise.
 - `npm run check` also fails when a committed generated file no longer matches its sources.
 
+## Clean URLs
+
+Apache/LiteSpeed uses the root `.htaccess` file to map clean page URLs to the committed root HTML files.
+
+- Write internal page links as `/`, `/product`, `/investors`, `/about`, `/security`, `/privacy`, and `/terms`.
+- Do not author internal links as `index.html` or `about.html`.
+- `/about` is served from `about.html`, and direct requests to `about.html` redirect to `/about`.
+
 ---
+
 
 ## Local workflow
 

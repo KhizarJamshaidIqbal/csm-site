@@ -6,32 +6,32 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://csmengine.epsoldev.com/product.html</loc>
+    <loc>https://csmengine.epsoldev.com/product</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://csmengine.epsoldev.com/investors.html</loc>
+    <loc>https://csmengine.epsoldev.com/investors</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://csmengine.epsoldev.com/about.html</loc>
+    <loc>https://csmengine.epsoldev.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://csmengine.epsoldev.com/security.html</loc>
+    <loc>https://csmengine.epsoldev.com/security</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://csmengine.epsoldev.com/privacy.html</loc>
+    <loc>https://csmengine.epsoldev.com/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://csmengine.epsoldev.com/terms.html</loc>
+    <loc>https://csmengine.epsoldev.com/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
