@@ -198,7 +198,7 @@ function initHeroSlider() {
     if (reducedMotion) return;
     autoTimer = setInterval(() => {
       if (!isHovered && !document.hidden) next();
-    }, 5500);
+    }, 2800);
   };
 
   const stopAuto = () => {
