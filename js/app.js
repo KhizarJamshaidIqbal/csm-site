@@ -73,6 +73,7 @@ function showFormError(form, message) {
   errBox.classList.remove("hidden");
 }
 
+
 function hideFormError(form) {
   const errBox = form ? form.querySelector(".form-error") : null;
   if (errBox) {
@@ -139,6 +140,7 @@ function initNavbar() {
 }
 
 /* ---- src/js/app/modals.js ---- */
+
 /* -------------------------------------------------------------
  * Modals: Early Access Waitlist & Investor Pitch Deck
  * ----------------------------------------------------------- */
@@ -191,6 +193,7 @@ function bindModalChrome(modal, closeBtn, successCloseBtn) {
   });
 }
 
+
 function bindModalKeyboard(modals) {
   document.addEventListener("keydown", (e) => {
     if (!e) return;
@@ -220,6 +223,7 @@ function bindModalKeyboard(modals) {
     }
   });
 }
+
 
 function bindWaitlistForm(waitlistForm, waitlistSuccess) {
   if (!waitlistForm) return;
@@ -262,6 +266,7 @@ function bindWaitlistForm(waitlistForm, waitlistSuccess) {
   });
 }
 
+
 function bindDeckForm(deckForm, deckSuccess) {
   if (!deckForm) return;
   deckForm.addEventListener("submit", async (e) => {
@@ -296,6 +301,7 @@ function bindDeckForm(deckForm, deckSuccess) {
   });
 }
 
+
 function initModals() {
   const waitlistModal = document.getElementById("waitlist-modal");
   const deckModal = document.getElementById("deck-modal");
@@ -326,7 +332,7 @@ function initModals() {
   bindModalKeyboard([waitlistModal, deckModal]);
 
   // Deep-link support: open modals when arriving from subpages
-  // e.g. about.html links to index.html#waitlist or index.html#pitch-deck
+  // e.g. /about links to /#waitlist or /#pitch-deck
   if (window.location.hash === "#waitlist" && waitlistModal) {
     openModal(waitlistModal);
   } else if (window.location.hash === "#pitch-deck" && deckModal) {
@@ -341,6 +347,7 @@ function initModals() {
 /* -------------------------------------------------------------
  * FAQ Accordion
  * ----------------------------------------------------------- */
+
 
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll(".faq-item");
@@ -379,6 +386,7 @@ function initFaqAccordion() {
 /* -------------------------------------------------------------
  * Architecture 6 Pillars Tabs
  * ----------------------------------------------------------- */
+
 
 function initArchitectureTabs() {
   const tabButtons = document.querySelectorAll(".arch-tab-btn");
@@ -444,6 +452,7 @@ function flashButtonLabel(btn, html, ms) {
     btn.innerHTML = originalText;
   }, ms);
 }
+
 
 function initCopySnippets() {
   document.querySelectorAll(".copy-snippet-btn").forEach(btn => {

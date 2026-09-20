@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 
 const pages = [
   'index.html',
@@ -88,7 +87,7 @@ for (const page of pages) {
       continue;
     }
 
-    let file = currentPage = page;
+    let file = page;
     if (pathname || pathname === '/') {
       file = resolveInternalPath(pathname, page);
     }

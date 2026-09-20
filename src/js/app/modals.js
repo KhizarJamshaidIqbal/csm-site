@@ -50,6 +50,7 @@ function bindModalChrome(modal, closeBtn, successCloseBtn) {
   });
 }
 
+
 function bindModalKeyboard(modals) {
   document.addEventListener("keydown", (e) => {
     if (!e) return;
@@ -79,6 +80,7 @@ function bindModalKeyboard(modals) {
     }
   });
 }
+
 
 function bindWaitlistForm(waitlistForm, waitlistSuccess) {
   if (!waitlistForm) return;
@@ -121,6 +123,7 @@ function bindWaitlistForm(waitlistForm, waitlistSuccess) {
   });
 }
 
+
 function bindDeckForm(deckForm, deckSuccess) {
   if (!deckForm) return;
   deckForm.addEventListener("submit", async (e) => {
@@ -155,6 +158,7 @@ function bindDeckForm(deckForm, deckSuccess) {
   });
 }
 
+
 function initModals() {
   const waitlistModal = document.getElementById("waitlist-modal");
   const deckModal = document.getElementById("deck-modal");
@@ -185,7 +189,7 @@ function initModals() {
   bindModalKeyboard([waitlistModal, deckModal]);
 
   // Deep-link support: open modals when arriving from subpages
-  // e.g. about.html links to index.html#waitlist or index.html#pitch-deck
+  // e.g. /about links to /#waitlist or /#pitch-deck
   if (window.location.hash === "#waitlist" && waitlistModal) {
     openModal(waitlistModal);
   } else if (window.location.hash === "#pitch-deck" && deckModal) {
