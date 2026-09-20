@@ -463,6 +463,148 @@ function initCopySnippets() {
   });
 }
 
+/* -------------------------------------------------------------
+ * Hero Interactive Multi-Screen Showcase Slider
+ * ----------------------------------------------------------- */
+
+function initHeroSlider() {
+  const slider = document.getElementById("hero-slider");
+  if (!slider) return;
+
+  const tabBtns = Array.from(slider.querySelectorAll("[data-hero-slide-tab]"));
+  const slidePanels = Array.from(slider.querySelectorAll(".hero-slide-panel"));
+  const prevBtn = slider.querySelector("[data-hero-slide-prev]");
+  const nextBtn = slider.querySelector("[data-hero-slide-next]");
+  const dots = Array.from(slider.querySelectorAll("[data-hero-dot]"));
+
+  if (!slidePanels.length) return;
+
+  let current = 0;
+  const count = slidePanels.length;
+  let autoTimer = null;
+  let isHovered = false;
+
+  const showSlide = (index) => {
+    current = (index + count) % count;
+
+    // Update panels
+    slidePanels.forEach((panel, i) => {
+      const isActive = i === current;
+      panel.classList.toggle("opacity-100", isActive);
+      panel.classList.toggle("z-10", isActive);
+      panel.classList.toggle("opacity-0", !isActive);
+      panel.classList.toggle("pointer-events-none", !isActive);
+      panel.classList.toggle("z-0", !isActive);
+    });
+
+    // Update tabs
+    tabBtns.forEach((btn, i) => {
+      const isActive = i === current;
+      btn.setAttribute("aria-selected", isActive ? "true" : "false");
+      const dot = btn.querySelector(".hero-tab-dot");
+
+      if (isActive) {
+        btn.classList.add("bg-cyan-500/20", "text-cyan-300", "border-cyan-500/40");
+        btn.classList.remove("text-slate-400", "border-transparent");
+        if (dot) {
+          dot.classList.add("bg-cyan-400");
+          dot.classList.remove("bg-slate-600");
+        }
+      } else {
+        btn.classList.remove("bg-cyan-500/20", "text-cyan-300", "border-cyan-500/40");
+        btn.classList.add("text-slate-400", "border-transparent");
+        if (dot) {
+          dot.classList.remove("bg-cyan-400");
+          dot.classList.add("bg-slate-600");
+        }
+      }
+    });
+
+    // Update mobile dots
+    dots.forEach((dot, i) => {
+      const isActive = i === current;
+      dot.className = isActive
+        ? "w-5 h-1 rounded-full bg-cyan-400 transition-all"
+        : "w-1.5 h-1 rounded-full bg-slate-600 transition-all";
+    });
+  };
+
+  const next = () => showSlide(current + 1);
+  const prev = () => showSlide(current - 1);
+
+  const startAuto = () => {
+    stopAuto();
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return;
+    autoTimer = setInterval(() => {
+      if (!isHovered && !document.hidden) next();
+    }, 5500);
+  };
+
+  const stopAuto = () => {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  };
+
+  tabBtns.forEach((btn, idx) => {
+    btn.addEventListener("click", () => {
+      showSlide(idx);
+      startAuto();
+    });
+  });
+
+  dots.forEach((dot, idx) => {
+    dot.addEventListener("click", () => {
+      showSlide(idx);
+      startAuto();
+    });
+  });
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      next();
+      startAuto();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      prev();
+      startAuto();
+    });
+  }
+
+  slider.addEventListener("mouseenter", () => { isHovered = true; });
+  slider.addEventListener("mouseleave", () => { isHovered = false; });
+
+  // Touch swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+  slider.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  slider.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) next();
+      else prev();
+      startAuto();
+    }
+  }, { passive: true });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopAuto();
+    else startAuto();
+  });
+
+  showSlide(0);
+  startAuto();
+}
+
 /* ---- src/js/app/bootstrap.js ---- */
 /* -------------------------------------------------------------
  * Bootstrap: single entry point
@@ -474,6 +616,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFaqAccordion();
   initArchitectureTabs();
   initCopySnippets();
+  initHeroSlider();
 
   // Progressive enhancement only. No dependencies.
   const heroRoot = document.querySelector("#main-content.bg-radial-hero");

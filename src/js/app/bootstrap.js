@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFaqAccordion();
   initArchitectureTabs();
   initCopySnippets();
+  initHeroSlider();
 
   // Progressive enhancement only. No dependencies.
   const heroRoot = document.querySelector("#main-content.bg-radial-hero");
