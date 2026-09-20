@@ -198,11 +198,6 @@
   fixedScene.setAttribute('aria-hidden', 'true');
   document.body.appendChild(fixedScene);
 
-  // Accessible Pause/Resume Control (placed in hero)
-  const control = make('button', 'hero-fx__control');
-  control.type = 'button';
-  heroRoot.appendChild(control);
-
   // Rotating keyword line in Hero
   let rotatorTimer = 0;
   let rotatorAlive = false;
@@ -308,10 +303,6 @@
     activeSections.forEach(s => s.el.classList.toggle('hero-fx-paused', !active));
     fixedScene.classList.toggle('hero-fx-hidden', !active);
 
-    control.hidden = reduced.matches;
-    control.textContent = userPaused ? 'Resume motion' : 'Pause motion';
-    control.setAttribute('aria-label', userPaused ? 'Resume ambient animations' : 'Pause ambient animations');
-
     if (heroScene && heroScene.setActive) heroScene.setActive(active);
 
     if (active) {
@@ -327,8 +318,6 @@
     }
   };
 
-  const onControlClick = () => { userPaused = !userPaused; sync(); };
-  control.addEventListener('click', onControlClick);
   document.addEventListener('visibilitychange', sync);
   window.addEventListener('pagehide', () => {
     sectionInstances.forEach(s => s.stop());
@@ -376,7 +365,6 @@
         if (s.layer.parentNode) s.layer.parentNode.removeChild(s.layer);
       });
       if (rangeObserver) rangeObserver.disconnect();
-      control.removeEventListener('click', onControlClick);
       document.removeEventListener('visibilitychange', sync);
       reduced.removeEventListener('change', sync);
       finePointer.removeEventListener('change', sync);
@@ -389,7 +377,6 @@
       }
       heroScene = null;
       if (fixedScene.parentNode) fixedScene.parentNode.removeChild(fixedScene);
-      if (control.parentNode) control.parentNode.removeChild(control);
       if (tiltCard) { tiltCard.classList.remove('hero-fx-tilt'); tiltCard.style.transform = ''; }
       document.body.classList.remove('hero-fx-paused');
       if (window.__csmHeroFx) delete window.__csmHeroFx;

@@ -193,22 +193,6 @@
   background: radial-gradient(circle, rgba(34,211,238,0.13), transparent 68%);
 }
 
-/* --- Pause/Resume control ------------------------------------------- */
-.hero-fx__control {
-  position: absolute;
-  top: 10px;
-  right: 16px;
-  z-index: 11;
-  padding: 5px 9px;
-  border: 1px solid rgba(148,163,184,0.25);
-  border-radius: 6px;
-  color: #cbd5e1;
-  background: #0b1428;
-  font: 11px var(--font-mono, monospace);
-  cursor: pointer;
-}
-.hero-fx__control:hover { border-color: #22d3ee; color: #fff; }
-
 /* --- Rotating keyword line ------------------------------------------ */
 .hero-rotator {
   display: inline-flex;
@@ -310,6 +294,5 @@ body.hero-fx-paused .hero-rotator__cursor { animation-play-state: paused; }
   .hero-fx-fixed-scene { display: none !important; }
   .hero-fx__network,
   .hero-fx__halo { transform: none !important; }
-  .hero-fx__spot,
-  .hero-fx__control { display: none; }
+  .hero-fx__spot { display: none; }
 }
