@@ -510,9 +510,10 @@ function initHeroSlider() {
           dot.classList.add("bg-cyan-400");
           dot.classList.remove("bg-slate-600");
         }
-        // Smoothly scroll active tab into view if container is horizontally scrollable
-        if (typeof btn.scrollIntoView === "function") {
-          btn.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        // Horizontally center active tab inside the scroll container (without touching page scroll)
+        var tabWrap = btn.closest(".hero-tabs-scroll");
+        if (tabWrap) {
+          tabWrap.scrollTo({ left: btn.offsetLeft - tabWrap.offsetWidth / 2 + btn.offsetWidth / 2, behavior: "smooth" });
         }
       } else {
         btn.classList.remove("bg-cyan-500/20", "text-cyan-300", "border-cyan-500/40");
